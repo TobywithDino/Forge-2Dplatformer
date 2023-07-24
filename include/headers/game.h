@@ -19,6 +19,7 @@ public:
     static bool getRunning() {return running;}
     static SDL_Window* getWindow() {return window;}
     static SDL_Renderer* getRenderer() {return renderer;}
+    static int getDelTicks() {return delTicks;}
 
     static void setWidth(int w) {SCREEN_WIDTH = w;}
     static void setHeight(int h) {SCREEN_HEIGHT = h;}
@@ -26,6 +27,7 @@ public:
     static void setScale(double s) {SCREEN_SCALE = s;}
     static void setRunning(bool r) {running = r;}
     static void setFPS(int f) {FPS = f;}
+    static void setDelTicks(int d) {delTicks = d;}
 private:
     void handleEvent();
     void update();
@@ -39,6 +41,7 @@ private:
     static SDL_Renderer* renderer;
     static bool running;
     static int FPS;
+    static int delTicks;
 
     int lastTick;
 

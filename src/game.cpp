@@ -9,6 +9,7 @@ SDL_Window* Game::window;
 SDL_Renderer* Game::renderer;
 bool Game::running;
 int Game::FPS;
+int Game::delTicks;
 
 Game::Game(int width, int height, const char* title, double scale, bool running, int fps){
     setWidth(width);
@@ -17,6 +18,7 @@ Game::Game(int width, int height, const char* title, double scale, bool running,
     setScale(scale);
     setRunning(running);
     setFPS(fps);
+    setDelTicks(0);
 }
 
 int Game::init(){
@@ -46,13 +48,15 @@ int Game::init(){
         return 1;
     }
 
-    Entity* p = new Entity(vector2(SCREEN_WIDTH/2, SCREEN_HEIGHT/2), vector2(0,0), TEX_player);
+    Entity* p = new Entity(vector2(SCREEN_WIDTH/2, SCREEN_HEIGHT/2), vector2(10,0), TEX_player);
     entities.push_back(p);
     
     lastTick = SDL_GetTicks64();
     while(running){
         handleEvent();
         if(SDL_GetTicks64() - lastTick > 1000/FPS){
+            setDelTicks(SDL_GetTicks64() - lastTick);
+            lastTick = SDL_GetTicks64();
             update();
             render();
         }
@@ -76,14 +80,12 @@ void Game::handleEvent(){
 }
 
 void Game::update(){
-
+    for(Entity* entity : entities) entity->update();
 }
 
 void Game::render(){
     SDL_SetRenderDrawColor(renderer, 20, 20, 20, 255);
     SDL_RenderClear(renderer);
-    for(Entity* entity : entities){
-        entity->render();
-    }
+    for(Entity* entity : entities) entity->render();
     SDL_RenderPresent(renderer);
 }

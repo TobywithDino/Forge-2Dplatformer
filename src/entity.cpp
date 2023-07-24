@@ -14,7 +14,8 @@ Entity::Entity(vector2 pos, vector2 vel, TextureType type){
 }
 
 void Entity::update(){
-
+    pos.x += vel.x * Game::getDelTicks() / 1000;
+    pos.y += vel.y * Game::getDelTicks() / 1000;
 }
 
 void Entity::render(){
