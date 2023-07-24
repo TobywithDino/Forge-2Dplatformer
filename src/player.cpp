@@ -2,12 +2,12 @@
 
 Player::Player() : MovableEntity(vector2(0,0), TEX_player){
     speed = 400;
-    jumpSpeed = 1000;
+    jumpSpeed = 800;
 }
 
 Player::Player(vector2 pos) : MovableEntity(pos, TEX_player){
     speed = 400;
-    jumpSpeed = 1000;
+    jumpSpeed = 800;
 }
 
 void Player::handleEvent(SDL_Event e){
