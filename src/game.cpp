@@ -49,7 +49,7 @@ int Game::init(){
     }
 
     Entity* e;
-    e = new Entity(vector2(SCREEN_WIDTH/2, SCREEN_HEIGHT/2), vector2(0,0), TEX_testBlock);
+    e = new Entity(vector2(SCREEN_WIDTH/2, SCREEN_HEIGHT/2), TEX_testBlock);
     entities.push_back(e);
     player = new Player();
     
@@ -72,8 +72,8 @@ void Game::handleEvent(){
     while(SDL_PollEvent(&event)){
         if(event.type == SDL_QUIT) setRunning(false);
         else{
-            player->handleEvent();
-            for(Entity* entity : entities) entity->handleEvent();
+            player->handleEvent(event);
+            for(Entity* entity : entities) entity->handleEvent(event);
         }
     }
 }

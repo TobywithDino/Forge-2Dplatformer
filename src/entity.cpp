@@ -1,35 +1,41 @@
 #include "headers/entity.h"
 #include "headers/game.h"
+#include <stdio.h>
 
 Entity::Entity(){
     pos = vector2(0,0);
     vel = vector2(0,0);
     tex = Texture::getTexture(TEX_testBlock);
-    size = vector2(32, 32);
+    size = vector2(32, 32)*Game::getScale();
+    speed = 10;
+    isFlip = false;
 }
 
-Entity::Entity(vector2 pos, vector2 vel, TextureType type){
+Entity::Entity(vector2 pos, TextureType type){
     this->pos = pos;
-    this->vel = vel;
+    speed = 10;
+    vel = vector2(0,0);
     tex = Texture::getTexture(type);
-    size = vector2(32, 32);
+    size = vector2(32, 32)*Game::getScale();
+    isFlip = false;
 }
 
-Entity::Entity(vector2 pos, vector2 vel, TextureType type, vector2 size){
+Entity::Entity(vector2 pos, TextureType type, vector2 size){
     this->pos = pos;
-    this->vel = vel;
+    speed = 10;
+    vel = vector2(0,0);
     tex = Texture::getTexture(type);
-    this->size = size;
+    this->size = size*Game::getScale();
+    isFlip = false;
 }
 
 
-void Entity::handleEvent(){
+void Entity::handleEvent(SDL_Event e){
     
 }
 
 void Entity::update(){
-    // vel.y += gravity * Game::getDelTicks() / 1000;
-
+    vel.y += gravity * Game::getDelTicks() / 1000;
     pos.x += vel.x * Game::getDelTicks() / 1000;
     pos.y += vel.y * Game::getDelTicks() / 1000;
     if(pos.y + size.y > Game::getHeight()){
@@ -40,9 +46,11 @@ void Entity::update(){
 
 void Entity::render(){
     SDL_Rect dst;
-    dst.w = (int)(size.x * Game::getScale());
-    dst.h = (int)(size.y * Game::getScale());
+    dst.w = size.x;
+    dst.h = size.y;
     dst.x = pos.x;
     dst.y = pos.y;
-    SDL_RenderCopy(Game::getRenderer(), tex, NULL, &dst);
+    SDL_RendererFlip flip = SDL_FLIP_NONE;
+    if(isFlip) flip = SDL_FLIP_HORIZONTAL;
+    SDL_RenderCopyEx(Game::getRenderer(), tex, NULL, &dst, 0, NULL, flip);
 }

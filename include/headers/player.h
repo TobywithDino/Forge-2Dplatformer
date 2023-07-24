@@ -3,9 +3,9 @@
 
 class Player : public Entity{
 public:
-    Player() : Entity(vector2(0,0), vector2(0,0), TEX_player){}
-    Player(vector2 pos) : Entity(pos, vector2(0,0), TEX_player){}
-    void handleEvent();
+    Player();
+    Player(vector2 pos);
+    void handleEvent(SDL_Event e) override;
 private:
 
 };

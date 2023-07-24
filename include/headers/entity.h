@@ -6,19 +6,21 @@
 class Entity{
 public:
     Entity();
-    Entity(vector2 pos, vector2 vel, TextureType type);
-    Entity(vector2 pos, vector2 vel, TextureType type, vector2 size);
-    void handleEvent();
-    void update();
-    void render();
+    Entity(vector2 pos, TextureType type);
+    Entity(vector2 pos, TextureType type, vector2 size);
+    virtual void handleEvent(SDL_Event e);
+    virtual void update();
+    virtual void render();
+    vector2 getPos() {return pos;}
+    vector2 getVel() {return vel;}
 private:
     SDL_Texture* tex;
     const double gravity = 2000;
 protected:
-    void setPos(vector2 p) {pos = p;}
-    void setVel(vector2 v) {vel = v;}
-    
+    double speed;
     vector2 pos;
     vector2 vel;
     vector2 size;
+
+    bool isFlip;
 };

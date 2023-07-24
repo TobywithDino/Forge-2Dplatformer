@@ -13,8 +13,8 @@ public:
     Game(int width, int height, const char* title, double scale, bool running, int fps);
     int init();
 
-    static int getWidth() {return SCREEN_WIDTH/SCREEN_SCALE;}
-    static int getHeight() {return SCREEN_HEIGHT/SCREEN_SCALE;}
+    static int getWidth() {return SCREEN_WIDTH;}
+    static int getHeight() {return SCREEN_HEIGHT;}
     static const char* getTitle() {return SCREEN_TITLE;}
     static double getScale() {return SCREEN_SCALE;}
     static bool getRunning() {return running;}

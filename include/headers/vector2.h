@@ -7,6 +7,11 @@ public:
         this->x = x;
         this->y = y;
     }
+
+    vector2 operator*(double k){
+        return vector2(x*k,y*k);
+    }
+
     double x;
     double y;
 };
