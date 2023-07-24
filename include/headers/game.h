@@ -3,6 +3,7 @@
 #include "SDL2/SDL_image.h"
 #include "headers/texture.h"
 #include "headers/entity.h"
+#include "headers/player.h"
 
 #include <vector>
 using namespace std;
@@ -46,4 +47,5 @@ private:
     int lastTick;
 
     vector<Entity*> entities;
+    Entity* player;
 };

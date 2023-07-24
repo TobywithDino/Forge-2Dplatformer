@@ -48,8 +48,11 @@ int Game::init(){
         return 1;
     }
 
-    Entity* p = new Entity(vector2(SCREEN_WIDTH/2, SCREEN_HEIGHT/2), vector2(10,0), TEX_player);
-    entities.push_back(p);
+    Entity* e;
+    e = new Entity(vector2(SCREEN_WIDTH/2, SCREEN_HEIGHT/2), vector2(10,0), TEX_player);
+    entities.push_back(e);
+    player = new Player(vector2(SCREEN_WIDTH/2, SCREEN_HEIGHT/2));
+
     
     lastTick = SDL_GetTicks64();
     while(running){
@@ -68,24 +71,23 @@ int Game::init(){
 void Game::handleEvent(){
     SDL_Event event;
     while(SDL_PollEvent(&event)){
-        switch(event.type){
-            case SDL_QUIT:
-                setRunning(false);
-                break;
-
-            default:
-                break;
+        if(event.type == SDL_QUIT) setRunning(false);
+        else{
+            player->handleEvent();
+            for(Entity* entity : entities) entity->handleEvent();
         }
     }
 }
 
 void Game::update(){
+    player->update();
     for(Entity* entity : entities) entity->update();
 }
 
 void Game::render(){
     SDL_SetRenderDrawColor(renderer, 20, 20, 20, 255);
     SDL_RenderClear(renderer);
+    player->render();
     for(Entity* entity : entities) entity->render();
     SDL_RenderPresent(renderer);
 }

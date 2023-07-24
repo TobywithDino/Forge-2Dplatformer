@@ -13,6 +13,10 @@ Entity::Entity(vector2 pos, vector2 vel, TextureType type){
     tex = Texture::getTexture(type);
 }
 
+void Entity::handleEvent(){
+    
+}
+
 void Entity::update(){
     pos.x += vel.x * Game::getDelTicks() / 1000;
     pos.y += vel.y * Game::getDelTicks() / 1000;
