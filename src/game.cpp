@@ -90,7 +90,7 @@ void Game::update(){
 void Game::render(){
     SDL_SetRenderDrawColor(renderer, 20, 20, 20, 255);
     SDL_RenderClear(renderer);
-    Map::renderLevel(0);
+    Map::renderLevel(1);
     player->render();
     for(Entity* entity : entities) entity->render();
     SDL_RenderPresent(renderer);

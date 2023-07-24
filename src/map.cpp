@@ -18,6 +18,7 @@ int Map::init(){
 
     // load png to surfaces
     if(loadSurface("res/maps/Forge-level1.png") < 0) return -1;
+    if(loadSurface("res/maps/Forge-level2.png") < 0) return -1;
 
     // convert each surface to int arrays and store in levels
     for(SDL_Surface* surface : surfaces){

@@ -23,6 +23,6 @@ void Player::handleEvent(SDL_Event e){
     }
 
     if(keyboard[SDL_SCANCODE_SPACE]){
-        vel.y = -jumpSpeed;
+        if(vel.y >= 0) vel.y = -jumpSpeed;
     }
 }
