@@ -4,14 +4,16 @@
 int Game::SCREEN_WIDTH;
 int Game::SCREEN_HEIGHT;
 const char* Game::SCREEN_TITLE;
+double Game::SCREEN_SCALE;
 SDL_Window* Game::window;
 SDL_Renderer* Game::renderer;
 bool Game::running;
 
-Game::Game(int w, int h, const char* t, bool r){
+Game::Game(int w, int h, const char* t, double s, bool r){
     setWidth(w);
     setHeight(h);
     setTitle(t);
+    setScale(s);
     setRunning(r);
 }
 
@@ -44,6 +46,7 @@ int Game::init(){
 
     Entity* p = new Entity(vector2(SCREEN_WIDTH/2, SCREEN_HEIGHT/2), vector2(0,0), TEX_player);
     entities.push_back(p);
+    
     while(running){
         handleEvent();
         update();

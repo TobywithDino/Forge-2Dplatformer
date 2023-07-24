@@ -9,12 +9,13 @@ using namespace std;
 
 class Game{
 public:
-    Game(int w, int h, const char* t, bool r);
+    Game(int w, int h, const char* t, double s, bool r);
     int init();
 
     static int getWidth() {return SCREEN_WIDTH;}
     static int getHeight() {return SCREEN_HEIGHT;}
     static const char* getTitle() {return SCREEN_TITLE;}
+    static double getScale() {return SCREEN_SCALE;}
     static bool getRunning() {return running;}
     static SDL_Window* getWindow() {return window;}
     static SDL_Renderer* getRenderer() {return renderer;}
@@ -22,6 +23,7 @@ public:
     static void setWidth(int w) {SCREEN_WIDTH = w;}
     static void setHeight(int h) {SCREEN_HEIGHT = h;}
     static void setTitle(const char* t) {SCREEN_TITLE = t;}
+    static void setScale(double s) {SCREEN_SCALE = s;}
     static void setRunning(bool r) {running = r;}
 private:
     void handleEvent();
@@ -31,6 +33,7 @@ private:
     static int SCREEN_WIDTH;
     static int SCREEN_HEIGHT;
     static const char* SCREEN_TITLE;
+    static double SCREEN_SCALE;
     static SDL_Window* window;
     static SDL_Renderer* renderer;
     static bool running;

@@ -19,7 +19,7 @@ void Entity::update(){
 
 void Entity::render(){
     SDL_Rect dst;
-    dst.w = dst.h = 32;
+    dst.w = dst.h = (int)((double)32 * Game::getScale());
     dst.x = pos.x;
     dst.y = pos.y;
     SDL_RenderCopy(Game::getRenderer(), tex, NULL, &dst);
