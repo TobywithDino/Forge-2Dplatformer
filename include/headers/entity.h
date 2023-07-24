@@ -12,13 +12,13 @@ public:
     void update();
     void render();
 private:
-    vector2 pos;
-    vector2 vel;
     SDL_Texture* tex;
-    vector2 size;
     const double gravity = 2000;
 protected:
     void setPos(vector2 p) {pos = p;}
     void setVel(vector2 v) {vel = v;}
     
+    vector2 pos;
+    vector2 vel;
+    vector2 size;
 };
