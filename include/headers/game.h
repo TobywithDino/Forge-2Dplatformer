@@ -9,7 +9,7 @@ using namespace std;
 
 class Game{
 public:
-    Game(int w, int h, const char* t, double s, bool r);
+    Game(int width, int height, const char* title, double scale, bool running, int fps);
     int init();
 
     static int getWidth() {return SCREEN_WIDTH;}
@@ -25,6 +25,7 @@ public:
     static void setTitle(const char* t) {SCREEN_TITLE = t;}
     static void setScale(double s) {SCREEN_SCALE = s;}
     static void setRunning(bool r) {running = r;}
+    static void setFPS(int f) {FPS = f;}
 private:
     void handleEvent();
     void update();
@@ -37,6 +38,9 @@ private:
     static SDL_Window* window;
     static SDL_Renderer* renderer;
     static bool running;
+    static int FPS;
+
+    int lastTick;
 
     vector<Entity*> entities;
 };

@@ -8,13 +8,15 @@ double Game::SCREEN_SCALE;
 SDL_Window* Game::window;
 SDL_Renderer* Game::renderer;
 bool Game::running;
+int Game::FPS;
 
-Game::Game(int w, int h, const char* t, double s, bool r){
-    setWidth(w);
-    setHeight(h);
-    setTitle(t);
-    setScale(s);
-    setRunning(r);
+Game::Game(int width, int height, const char* title, double scale, bool running, int fps){
+    setWidth(width);
+    setHeight(height);
+    setTitle(title);
+    setScale(scale);
+    setRunning(running);
+    setFPS(fps);
 }
 
 int Game::init(){
@@ -47,10 +49,13 @@ int Game::init(){
     Entity* p = new Entity(vector2(SCREEN_WIDTH/2, SCREEN_HEIGHT/2), vector2(0,0), TEX_player);
     entities.push_back(p);
     
+    lastTick = SDL_GetTicks64();
     while(running){
         handleEvent();
-        update();
-        render();
+        if(SDL_GetTicks64() - lastTick > 1000/FPS){
+            update();
+            render();
+        }
     }
 
     return 0;

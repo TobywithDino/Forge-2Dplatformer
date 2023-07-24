@@ -5,7 +5,7 @@
 
 int main(int argc, char** argv){
     
-    Game game = Game(1280, 720, "Forge", 1.5, true);
+    Game game = Game(1280, 720, "Forge", 1.5, true, 60);
     if(game.init() == 1) return 0;
     return 0;
 }
