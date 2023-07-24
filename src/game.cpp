@@ -49,10 +49,9 @@ int Game::init(){
     }
 
     Entity* e;
-    e = new Entity(vector2(SCREEN_WIDTH/2, SCREEN_HEIGHT/2), vector2(10,0), TEX_player);
+    e = new Entity(vector2(SCREEN_WIDTH/2, SCREEN_HEIGHT/2), vector2(0,0), TEX_testBlock);
     entities.push_back(e);
-    player = new Player(vector2(SCREEN_WIDTH/2, SCREEN_HEIGHT/2));
-
+    player = new Player();
     
     lastTick = SDL_GetTicks64();
     while(running){

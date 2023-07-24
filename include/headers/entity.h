@@ -7,6 +7,7 @@ class Entity{
 public:
     Entity();
     Entity(vector2 pos, vector2 vel, TextureType type);
+    Entity(vector2 pos, vector2 vel, TextureType type, vector2 size);
     void handleEvent();
     void update();
     void render();
@@ -14,7 +15,10 @@ private:
     vector2 pos;
     vector2 vel;
     SDL_Texture* tex;
+    vector2 size;
+    const double gravity = 2000;
 protected:
     void setPos(vector2 p) {pos = p;}
     void setVel(vector2 v) {vel = v;}
+    
 };

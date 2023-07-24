@@ -4,6 +4,7 @@
 using namespace std;
 
 enum TextureType{
+    TEX_testBlock,
     TEX_player
 };
 
@@ -13,4 +14,5 @@ public:
     static SDL_Texture* getTexture(TextureType type);
 private:
     static vector<SDL_Texture*> textures;
+    static int loadTexture(const char* path);
 };
