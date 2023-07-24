@@ -48,8 +48,8 @@ int Game::init(){
         return 1;
     }
 
-    Entity* e;
-    e = new Entity(vector2(SCREEN_WIDTH/2, SCREEN_HEIGHT/2), TEX_testBlock);
+    MovableEntity* e;
+    e = new MovableEntity(vector2(SCREEN_WIDTH/2, SCREEN_HEIGHT/2), TEX_testBlock);
     entities.push_back(e);
     player = new Player();
     
@@ -73,14 +73,14 @@ void Game::handleEvent(){
         if(event.type == SDL_QUIT) setRunning(false);
         else{
             player->handleEvent(event);
-            for(Entity* entity : entities) entity->handleEvent(event);
+            for(MovableEntity* entity : entities) entity->handleEvent(event);
         }
     }
 }
 
 void Game::update(){
     player->update();
-    for(Entity* entity : entities) entity->update();
+    for(MovableEntity* entity : entities) entity->update();
 }
 
 void Game::render(){

@@ -1,11 +1,11 @@
 #pragma once
-#include "headers/entity.h"
+#include "headers/movableEntity.h"
 
-class Player : public Entity{
+class Player : public MovableEntity{
 public:
     Player();
     Player(vector2 pos);
     void handleEvent(SDL_Event e) override;
 private:
-
+    double jumpSpeed;
 };

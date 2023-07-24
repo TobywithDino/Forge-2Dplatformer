@@ -1,11 +1,13 @@
 #include "headers/player.h"
 
-Player::Player() : Entity(vector2(0,0), TEX_player){
+Player::Player() : MovableEntity(vector2(0,0), TEX_player){
     speed = 400;
+    jumpSpeed = 1000;
 }
 
-Player::Player(vector2 pos) : Entity(pos, TEX_player){
+Player::Player(vector2 pos) : MovableEntity(pos, TEX_player){
     speed = 400;
+    jumpSpeed = 1000;
 }
 
 void Player::handleEvent(SDL_Event e){
@@ -18,5 +20,9 @@ void Player::handleEvent(SDL_Event e){
         isFlip = true;
     }else{
         vel.x = 0;
+    }
+
+    if(keyboard[SDL_SCANCODE_SPACE]){
+        vel.y = -jumpSpeed;
     }
 }

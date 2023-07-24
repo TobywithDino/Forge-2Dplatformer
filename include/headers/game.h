@@ -3,6 +3,7 @@
 #include "SDL2/SDL_image.h"
 #include "headers/texture.h"
 #include "headers/entity.h"
+#include "headers/movableEntity.h"
 #include "headers/player.h"
 
 #include <vector>
@@ -46,6 +47,6 @@ private:
 
     int lastTick;
 
-    vector<Entity*> entities;
-    Entity* player;
+    vector<MovableEntity*> entities;
+    MovableEntity* player;
 };
