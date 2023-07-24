@@ -1,13 +1,13 @@
 #include "headers/player.h"
 
-Player::Player() : MovableEntity(vector2(0,0), TEX_player){
+Player::Player() : MovableEntity(vector2(0,0), TEX_sprite_player){
     speed = 400;
-    jumpSpeed = 800;
+    jumpSpeed = 1500;
 }
 
-Player::Player(vector2 pos) : MovableEntity(pos, TEX_player){
+Player::Player(vector2 pos) : MovableEntity(pos, TEX_sprite_player){
     speed = 400;
-    jumpSpeed = 800;
+    jumpSpeed = 1500;
 }
 
 void Player::handleEvent(SDL_Event e){

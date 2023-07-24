@@ -11,13 +11,13 @@ bool Game::running;
 int Game::FPS;
 int Game::delTicks;
 
-Game::Game(int width, int height, const char* title, double scale, bool running, int fps){
-    setWidth(width);
-    setHeight(height);
-    setTitle(title);
-    setScale(scale);
-    setRunning(running);
-    setFPS(fps);
+Game::Game(){
+    setWidth(960);
+    setHeight(704);
+    setTitle("Forge");
+    setScale(1.5);
+    setRunning(true);
+    setFPS(60);
     setDelTicks(0);
 }
 
@@ -48,10 +48,14 @@ int Game::init(){
         return 1;
     }
 
+    if(Map::init() < 0){
+        return 1;
+    }
+
     MovableEntity* e;
-    e = new MovableEntity(vector2(SCREEN_WIDTH/2, SCREEN_HEIGHT/2), TEX_testBlock);
+    e = new MovableEntity(vector2(SCREEN_WIDTH/2, SCREEN_HEIGHT/2), TEX_sprite_testBlock);
     entities.push_back(e);
-    player = new Player();
+    player = new Player(vector2(200, 200));
     
     lastTick = SDL_GetTicks64();
     while(running){
@@ -86,6 +90,7 @@ void Game::update(){
 void Game::render(){
     SDL_SetRenderDrawColor(renderer, 20, 20, 20, 255);
     SDL_RenderClear(renderer);
+    Map::renderLevel(0);
     player->render();
     for(Entity* entity : entities) entity->render();
     SDL_RenderPresent(renderer);

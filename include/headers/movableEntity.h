@@ -12,7 +12,7 @@ public:
     vector2 getVel() {return vel;}
 private:
     SDL_Texture* tex;
-    const double gravity = 3000;
+    const double gravity = 5000;
 protected:
     double speed;
     vector2 vel;

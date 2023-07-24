@@ -4,7 +4,7 @@
 
 Entity::Entity(){
     pos = vector2(0,0);
-    tex = Texture::getTexture(TEX_testBlock);
+    tex = Texture::getTexture(TEX_sprite_testBlock);
     size = vector2(32, 32)*Game::getScale();
     isFlip = false;
 }

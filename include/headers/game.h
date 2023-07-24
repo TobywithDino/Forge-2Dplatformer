@@ -5,13 +5,14 @@
 #include "headers/entity.h"
 #include "headers/movableEntity.h"
 #include "headers/player.h"
+#include "headers/map.h"
 
 #include <vector>
 using namespace std;
 
 class Game{
 public:
-    Game(int width, int height, const char* title, double scale, bool running, int fps);
+    Game();
     int init();
 
     static int getWidth() {return SCREEN_WIDTH;}

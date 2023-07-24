@@ -3,7 +3,7 @@
 #define SCREEN_HEIGHT 720
 
 int main(int argc, char** argv){
-    Game game = Game(1280, 720, "Forge", 1.8, true, 60);
+    Game game = Game();
     if(game.init() == 1) return 0;
     return 0;
 }
