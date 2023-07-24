@@ -6,7 +6,6 @@
 int main(int argc, char** argv){
     
     Game game = Game(1280, 720, "Forge", true);
-    game.init();
-
+    if(game.init() == 1) return 0;
     return 0;
 }

@@ -1,10 +1,12 @@
 #pragma once
-#include "headers/vector2.h"
 #include "SDL2/SDL.h"
+#include "headers/texture.h"
+#include "headers/vector2.h"
 
 class Entity{
 public:
     Entity();
+    Entity(vector2 pos, vector2 vel, TextureType type);
     void update();
     void render();
 private:
