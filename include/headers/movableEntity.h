@@ -11,12 +11,13 @@ public:
     MovableEntity(vector2 pos, TextureType tType, ColliderType cType, vector2 size);
     virtual void handleEvent(SDL_Event e);
     virtual void update();
+    virtual void render() override;
     vector2 getPos() {return pos;}
     vector2 getVel() {return vel;}
 private:
-    CollideBox* collideBox;
     const double gravity = 5000;
 protected:
+    CollideBox* collideBox;
     double speed;
     vector2 vel;
 };

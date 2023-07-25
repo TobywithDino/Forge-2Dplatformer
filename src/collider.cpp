@@ -44,6 +44,10 @@ int Collider::init(){
                 }
                 if(findingWidth){
                     boxWidth++;
+                    if(boxWidth == surface->w){
+                        findingWidth = false;
+                        findingHeight = true;
+                    }
                 }
                 if(findingHeight){
                     boxHeight++;
@@ -65,23 +69,22 @@ int Collider::init(){
         collideBox.push_back(boxHeight);
         collideBoxes.push_back(collideBox);
     }
-
     return 0;
 }
 
-vector<int> Collider::getCollideBox(ColliderType type){
+vector<int>* Collider::getCollideBox(ColliderType type){
     switch (type)
     {
     case COL_default:
-        return collideBoxes[0];
+        return &collideBoxes[0];
         break;
     case COL_player:
-        return collideBoxes[1];
+        return &collideBoxes[1];
         break;
     
     default:
         printf("Error: failed to get collideBox\nGetCollideBox Error: '%s'\n", type);
-        return collideBoxes[0];
+        return &collideBoxes[0];
         break;
     }
 }

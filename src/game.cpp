@@ -47,7 +47,7 @@ int Game::init(){
     }
 
     MovableEntity* e;
-    e = new MovableEntity(vector2(gb::getWidth()/2, gb::getWidth()/2), TEX_sprite_testBlock, COL_default);
+    e = new MovableEntity(vector2(300, 200), TEX_sprite_testBlock, COL_default);
     entities.push_back(e);
     player = new Player(vector2(200, 200));
     
@@ -84,7 +84,7 @@ void Game::update(){
 void Game::render(){
     SDL_SetRenderDrawColor(gb::getRenderer(), 20, 20, 20, 255);
     SDL_RenderClear(gb::getRenderer());
-    Map::renderLevel(1);
+    Map::renderLevel(0);
     player->render();
     for(Entity* entity : entities) entity->render();
     SDL_RenderPresent(gb::getRenderer());
