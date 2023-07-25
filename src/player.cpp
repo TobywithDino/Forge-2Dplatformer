@@ -1,13 +1,12 @@
 #include "headers/player.h"
-#include "headers/map.h"
 #include <stdio.h>
 
-Player::Player() : MovableEntity(vector2(0,0), TEX_sprite_player){
+Player::Player() : MovableEntity(vector2(0,0), TEX_sprite_player, COL_player){
     speed = 400;
     jumpSpeed = 1500;
 }
 
-Player::Player(vector2 pos) : MovableEntity(pos, TEX_sprite_player){
+Player::Player(vector2 pos) : MovableEntity(pos, TEX_sprite_player, COL_player){
     speed = 400;
     jumpSpeed = 1500;
 }

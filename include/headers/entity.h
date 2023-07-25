@@ -1,8 +1,8 @@
 #pragma once
 #include "SDL2/SDL.h"
-#include "headers/texture.h"
+#include "headers/gb.h"
 #include "headers/vector2.h"
-
+#include "headers/texture.h"
 class Entity{
 public:
     Entity();

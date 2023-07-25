@@ -1,8 +1,6 @@
 #include "headers/map.h"
-#include "headers/game.h"
-#include "SDL2/SDL.h"
-#include "SDL2/SDL_image.h"
 #include <stdio.h>
+
 
 vector<vector<int>> Map::levels;
 vector<SDL_Surface*> Map::surfaces;
@@ -59,8 +57,8 @@ int Map::loadSurface(const char* path, vector<SDL_Surface*>& surfaces){
 void Map::renderLevel(int index){
     int mapWidth = levels[index][0];
     int mapHeight = levels[index][1];
-    int pixelSizeW = Game::getWidth() / mapWidth;
-    int pixelSizeH = Game::getHeight() / mapHeight; 
+    int pixelSizeW = gb::getWidth() / mapWidth;
+    int pixelSizeH = gb::getHeight() / mapHeight; 
     for(int i=0;i<mapHeight;i++){
         for(int j=0;j<mapWidth;j++){
             if(i*mapWidth+j+2 > levels[index].size() - 1) continue;
@@ -70,8 +68,8 @@ void Map::renderLevel(int index){
             dst.h = pixelSizeH;
             dst.x = j * pixelSizeW;
             dst.y = i * pixelSizeH;
-            SDL_SetRenderDrawColor(Game::getRenderer(), 255, 255, 255, 255);
-            SDL_RenderFillRect(Game::getRenderer(), &dst);
+            SDL_SetRenderDrawColor(gb::getRenderer(), 255, 255, 255, 255);
+            SDL_RenderFillRect(gb::getRenderer(), &dst);
 
             // draw tiny collide boxes
             if(!showCollideBox) continue; // close and open the collide box display
@@ -82,8 +80,8 @@ void Map::renderLevel(int index){
                         dst.w = dst.h = 1;
                         dst.x = n + j * pixelSizeW;
                         dst.y = m + i * pixelSizeH;
-                        SDL_SetRenderDrawColor(Game::getRenderer(), 50, 255, 50, 255);
-                        SDL_RenderFillRect(Game::getRenderer(), &dst);
+                        SDL_SetRenderDrawColor(gb::getRenderer(), 50, 255, 50, 255);
+                        SDL_RenderFillRect(gb::getRenderer(), &dst);
                     }
                 }
             }

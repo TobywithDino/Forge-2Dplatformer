@@ -1,5 +1,5 @@
 #pragma once
-#include "headers/movableEntity.h"
+#include "movableEntity.h"
 
 class Player : public MovableEntity{
 public:

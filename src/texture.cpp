@@ -1,7 +1,5 @@
-#include <stdio.h>
 #include "headers/texture.h"
-#include "headers/game.h"
-#include "SDL2/SDL_image.h"
+#include <stdio.h>
 
 vector<SDL_Texture*> Texture::spriteTextures;
 
@@ -30,7 +28,7 @@ SDL_Texture* Texture::getTexture(TextureType type){
 
 int Texture::loadTexture(const char* path){
     SDL_Texture* tex;
-    tex = IMG_LoadTexture(Game::getRenderer(), path);
+    tex = IMG_LoadTexture(gb::getRenderer(), path);
     if(tex == nullptr){
         printf("Error: failed to load texture\nTexture Error: '%s'\n", path);
         return -1;

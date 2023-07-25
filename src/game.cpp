@@ -1,24 +1,14 @@
 #include <stdio.h>
 #include "headers/game.h"
 
-int Game::SCREEN_WIDTH;
-int Game::SCREEN_HEIGHT;
-const char* Game::SCREEN_TITLE;
-double Game::SCREEN_SCALE;
-SDL_Window* Game::window;
-SDL_Renderer* Game::renderer;
-bool Game::running;
-int Game::FPS;
-int Game::delTicks;
-
 Game::Game(){
-    setWidth(960);
-    setHeight(704);
-    setTitle("Forge");
-    setScale(1.5);
-    setRunning(true);
-    setFPS(60);
-    setDelTicks(0);
+    gb::setWidth(960);
+    gb::setHeight(704);
+    gb::setTitle("Forge");
+    gb::setScale(1.5);
+    gb::setRunning(true);
+    gb::setFPS(60);
+    gb::setDelTicks(0);
 }
 
 int Game::init(){
@@ -32,14 +22,14 @@ int Game::init(){
         return 1;
     }
 
-    window = SDL_CreateWindow(SCREEN_TITLE, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, SCREEN_WIDTH, SCREEN_HEIGHT, 0);
-    if(!window){
+    gb::setWindow(SDL_CreateWindow(gb::getTitle(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, gb::getWidth(), gb::getHeight(), 0));
+    if(!gb::getWindow()){
         printf("Error: Failed to open window\nSDL Error: '%s'\n", SDL_GetError());
         return 1;
     }
 
-    renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
-    if(!renderer){
+    gb::setRenderer(SDL_CreateRenderer(gb::getWindow(), -1, SDL_RENDERER_ACCELERATED));
+    if(!gb::getRenderer()){
         printf("Error: Failed to create renderer\nSDL Error: '%s'\n", SDL_GetError());
         return 1;
     }
@@ -57,16 +47,16 @@ int Game::init(){
     }
 
     MovableEntity* e;
-    e = new MovableEntity(vector2(SCREEN_WIDTH/2, SCREEN_HEIGHT/2), TEX_sprite_testBlock);
+    e = new MovableEntity(vector2(gb::getWidth()/2, gb::getWidth()/2), TEX_sprite_testBlock, COL_default);
     entities.push_back(e);
     player = new Player(vector2(200, 200));
     
-    lastTick = SDL_GetTicks64();
-    while(running){
+    gb::setLastTicks(SDL_GetTicks64());
+    while(gb::getRunning()){
         handleEvent();
-        if(SDL_GetTicks64() - lastTick > 1000/FPS){
-            setDelTicks(SDL_GetTicks64() - lastTick);
-            lastTick = SDL_GetTicks64();
+        if(SDL_GetTicks64() - gb::getLastTicks() > 1000/gb::getFPS()){
+            gb::setDelTicks(SDL_GetTicks64() - gb::getLastTicks());
+            gb::setLastTicks(SDL_GetTicks64());
             update();
             render();
         }
@@ -78,7 +68,7 @@ int Game::init(){
 void Game::handleEvent(){
     SDL_Event event;
     while(SDL_PollEvent(&event)){
-        if(event.type == SDL_QUIT) setRunning(false);
+        if(event.type == SDL_QUIT) gb::setRunning(false);
         else{
             player->handleEvent(event);
             for(MovableEntity* entity : entities) entity->handleEvent(event);
@@ -92,10 +82,10 @@ void Game::update(){
 }
 
 void Game::render(){
-    SDL_SetRenderDrawColor(renderer, 20, 20, 20, 255);
-    SDL_RenderClear(renderer);
+    SDL_SetRenderDrawColor(gb::getRenderer(), 20, 20, 20, 255);
+    SDL_RenderClear(gb::getRenderer());
     Map::renderLevel(1);
     player->render();
     for(Entity* entity : entities) entity->render();
-    SDL_RenderPresent(renderer);
+    SDL_RenderPresent(gb::getRenderer());
 }

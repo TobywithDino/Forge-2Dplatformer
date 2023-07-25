@@ -5,6 +5,7 @@ vector<SDL_Surface*> Collider::surfaces;
 vector<vector<int>> Collider::collideBoxes;
 
 int Collider::init(){
+    if(Map::loadSurface("res/collideBox/Forge-collideBox-default.png", surfaces) < 0) return -1;
     if(Map::loadSurface("res/collideBox/Forge-collideBox-player.png", surfaces) < 0) return -1;
 
     // record the offsetX, offsetY, boxWidth, boxHeight of each surface's green box 
@@ -68,16 +69,19 @@ int Collider::init(){
     return 0;
 }
 
-vector<int>* Collider::getCollideBox(ColliderType type){
+vector<int> Collider::getCollideBox(ColliderType type){
     switch (type)
     {
+    case COL_default:
+        return collideBoxes[0];
+        break;
     case COL_player:
-        return &collideBoxes[0];
+        return collideBoxes[1];
         break;
     
     default:
         printf("Error: failed to get collideBox\nGetCollideBox Error: '%s'\n", type);
-        return nullptr;
+        return collideBoxes[0];
         break;
     }
 }
