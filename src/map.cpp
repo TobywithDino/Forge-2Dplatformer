@@ -69,6 +69,28 @@ void Map::renderLevel(int index){
             dst.y = i * PIXEL_SIZE;
             SDL_SetRenderDrawColor(Game::getRenderer(), 255, 255, 255, 255);
             SDL_RenderFillRect(Game::getRenderer(), &dst);
+
+            // draw tiny collide boxes
+            for(int m=0;m<PIXEL_SIZE;m++){
+                for(int n=0;n<PIXEL_SIZE;n++){
+                    if(m==0 || m==PIXEL_SIZE-1){
+                        SDL_Rect dst;
+                        dst.w = dst.h = 1;
+                        dst.x = n + j * PIXEL_SIZE;
+                        dst.y = m + i * PIXEL_SIZE;
+                        SDL_SetRenderDrawColor(Game::getRenderer(), 50, 255, 50, 255);
+                        SDL_RenderFillRect(Game::getRenderer(), &dst);
+                    }else if(n==0 || n==PIXEL_SIZE-1){
+                        SDL_Rect dst;
+                        dst.w = dst.h = 1;
+                        dst.x = n + j * PIXEL_SIZE;
+                        dst.y = m + i * PIXEL_SIZE;
+                        SDL_SetRenderDrawColor(Game::getRenderer(), 50, 255, 50, 255);
+                        SDL_RenderFillRect(Game::getRenderer(), &dst);
+                    }
+                }
+            }
+            
         }
     }
 
