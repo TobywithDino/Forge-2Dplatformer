@@ -34,23 +34,11 @@ int Game::init(){
         return 1;
     }
 
-    if(Texture::init() < 0){
-        return 1;
-    }
+    if(Texture::init() < 0) return 1;
+    if(Map::init() < 0) return 1;
+    if(CollideBox::init() < 0) return 1;
+    if(AllSprite::init() < 0) return 1;
 
-    if(Map::init() < 0){
-        return 1;
-    }
-
-    if(CollideBox::init() < 0){
-        return 1;
-    }
-
-    // MovableEntity* e;
-    // e = new MovableEntity(vector2(300, 200), TEX_sprite_testBlock, COL_default);
-    // entities.push_back(e);
-    player = new Player(vector2(200, 200));
-    
     gb::setLastTicks(SDL_GetTicks64());
     while(gb::getRunning()){
         handleEvent();
@@ -70,22 +58,25 @@ void Game::handleEvent(){
     while(SDL_PollEvent(&event)){
         if(event.type == SDL_QUIT) gb::setRunning(false);
         else{
-            player->handleEvent(event);
-            for(MovableEntity* entity : entities) entity->handleEvent(event);
+            AllSprite::getPlayer()->handleEvent(event);
+            vector<MovableEntity*>* entities = AllSprite::getEntites();
+            for(MovableEntity* entity : *entities) entity->handleEvent(event);
         }
     }
 }
 
 void Game::update(){
-    player->update();
-    for(MovableEntity* entity : entities) entity->update();
+    AllSprite::getPlayer()->update();
+    vector<MovableEntity*>* entities = AllSprite::getEntites();
+    for(MovableEntity* entity : *entities) entity->update();
 }
 
 void Game::render(){
     SDL_SetRenderDrawColor(gb::getRenderer(), 20, 20, 20, 255);
     SDL_RenderClear(gb::getRenderer());
     Map::renderLevel(0);
-    player->render();
-    for(Entity* entity : entities) entity->render();
+    AllSprite::getPlayer()->render();
+    vector<MovableEntity*>* entities = AllSprite::getEntites();
+    for(MovableEntity* entity : *entities) entity->render();
     SDL_RenderPresent(gb::getRenderer());
 }

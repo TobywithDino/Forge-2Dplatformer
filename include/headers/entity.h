@@ -1,9 +1,7 @@
 #pragma once
 #include "SDL2/SDL.h"
-#include "headers/gb.h"
-#include "headers/vector2.h"
+#include "headers/collideBox.h" 
 #include "headers/texture.h"
-#include "headers/collideBox.h"
 
 class Entity{
 public:
