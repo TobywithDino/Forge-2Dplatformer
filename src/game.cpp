@@ -42,7 +42,7 @@ int Game::init(){
         return 1;
     }
 
-    if(Collider::init() < 0){
+    if(CollideBox::init() < 0){
         return 1;
     }
 

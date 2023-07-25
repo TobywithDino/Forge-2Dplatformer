@@ -1,14 +1,13 @@
 #pragma once
 #include "headers/entity.h"
-#include "headers/collider.h"
 #include "headers/collideBox.h"
 #include "headers/texture.h"
 
 class MovableEntity : public Entity{
 public:
     MovableEntity();
-    MovableEntity(vector2 pos, TextureType tType, ColliderType cType);
-    MovableEntity(vector2 pos, TextureType tType, ColliderType cType, vector2 size);
+    MovableEntity(vector2 pos, TextureType tType, CollideType cType);
+    MovableEntity(vector2 pos, TextureType tType, CollideType cType, vector2 size);
     virtual void handleEvent(SDL_Event e);
     virtual void update();
     virtual void render() override;

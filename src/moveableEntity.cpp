@@ -7,13 +7,13 @@ MovableEntity::MovableEntity() : Entity(){
     collideBox = new CollideBox(COL_default, &this->pos);
 }
 
-MovableEntity::MovableEntity(vector2 pos, TextureType type, ColliderType cType) : Entity(pos, type){
+MovableEntity::MovableEntity(vector2 pos, TextureType type, CollideType cType) : Entity(pos, type){
     speed = 10;
     vel = vector2(0,0);
     collideBox = new CollideBox(cType, &this->pos);
 }
 
-MovableEntity::MovableEntity(vector2 pos, TextureType type, ColliderType cType, vector2 size) : Entity(pos, type, size){
+MovableEntity::MovableEntity(vector2 pos, TextureType type, CollideType cType, vector2 size) : Entity(pos, type, size){
     speed = 10;
     vel = vector2(0,0);
     collideBox = new CollideBox(cType, &this->pos);
