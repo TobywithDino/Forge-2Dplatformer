@@ -1,4 +1,5 @@
 #include "headers/player.h"
+#include <stdio.h>
 
 Player::Player() : MovableEntity(vector2(0,0), TEX_sprite_player, COL_player){
     speed = 400;

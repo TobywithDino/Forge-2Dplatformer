@@ -4,24 +4,21 @@
 MovableEntity::MovableEntity() : Entity(){
     speed = 10;
     vel = vector2(0,0);
-    collideBox = new CollideBox(COL_default, &this->pos);
 }
 
-MovableEntity::MovableEntity(vector2 pos, TextureType type, CollideType cType) : Entity(pos, type){
+MovableEntity::MovableEntity(vector2 pos, TextureType tType, CollideType cType) : Entity(pos, tType, cType){
     speed = 10;
     vel = vector2(0,0);
-    collideBox = new CollideBox(cType, &this->pos);
 }
 
-MovableEntity::MovableEntity(vector2 pos, TextureType type, CollideType cType, vector2 size) : Entity(pos, type, size){
+MovableEntity::MovableEntity(vector2 pos, TextureType tType, CollideType cType, vector2 size) : Entity(pos, tType, cType, size){
     speed = 10;
     vel = vector2(0,0);
-    collideBox = new CollideBox(cType, &this->pos);
 }
 
 
 void MovableEntity::handleEvent(SDL_Event e){
-    collideBox->handleEvent(e);
+    Entity::handleEvent(e);
 }
 
 void MovableEntity::update(){
@@ -35,14 +32,12 @@ void MovableEntity::update(){
 
 
     /* window height is the ground */
-
-    // if(pos.y + size.y > gb::getHeight()){
-    //     vel.y = 0;
-    //     pos.y = gb::getHeight() - size.y;
-    // }
+    if(pos.y + size.y > gb::getHeight()){
+        vel.y = 0;
+        pos.y = gb::getHeight() - size.y;
+    }
 }
 
 void MovableEntity::render(){
     Entity::render();
-    collideBox->render();
 }

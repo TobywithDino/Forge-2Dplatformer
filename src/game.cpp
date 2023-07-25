@@ -46,9 +46,9 @@ int Game::init(){
         return 1;
     }
 
-    MovableEntity* e;
-    e = new MovableEntity(vector2(300, 200), TEX_sprite_testBlock, COL_default);
-    entities.push_back(e);
+    // MovableEntity* e;
+    // e = new MovableEntity(vector2(300, 200), TEX_sprite_testBlock, COL_default);
+    // entities.push_back(e);
     player = new Player(vector2(200, 200));
     
     gb::setLastTicks(SDL_GetTicks64());
