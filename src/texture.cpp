@@ -6,8 +6,8 @@
 vector<SDL_Texture*> Texture::spriteTextures;
 
 int Texture::init(){
-    if(loadTexture("res/sprites/Forge-testBlock.png") < 0) return -1;
-    if(loadTexture("res/sprites/Forge-player.png") < 0) return -1;
+    if(loadTexture("res/sprites/Forge-sprite-testBlock.png") < 0) return -1;
+    if(loadTexture("res/sprites/Forge-sprite-player.png") < 0) return -1;
 
     return 0;
 }

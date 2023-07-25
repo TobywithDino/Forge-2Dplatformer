@@ -6,21 +6,14 @@
 
 vector<vector<int>> Map::levels;
 vector<SDL_Surface*> Map::surfaces;
-int Map::MAP_WIDTH;
-int Map::MAP_HEIGHT;
-int Map::PIXEL_SIZE;
 bool Map::showCollideBox;
 
 int Map::init(){
-    // set WIDTH, HEIGHT and PixelSize
-    MAP_WIDTH = 30; // Big pixels
-    MAP_HEIGHT = 22;
-    PIXEL_SIZE = Game::getWidth() / MAP_WIDTH;
     showCollideBox = false;
 
     // load png to surfaces
-    if(loadSurface("res/maps/Forge-level1.png") < 0) return -1;
-    if(loadSurface("res/maps/Forge-level2.png") < 0) return -1;
+    if(loadSurface("res/maps/Forge-map-level1.png", surfaces) < 0) return -1;
+    if(loadSurface("res/maps/Forge-map-level2.png", surfaces) < 0) return -1;
 
     // convert each surface to int arrays and store in levels
     for(SDL_Surface* surface : surfaces){
@@ -29,8 +22,10 @@ int Map::init(){
         Uint8 red;
 
         fmt = surface->format;
-        int totalPixels = MAP_WIDTH * MAP_HEIGHT;
+        int totalPixels = surface->w * surface->h;
         vector<int> level;
+        level.push_back(surface->w);
+        level.push_back(surface->h);
         for(int i=0;i<totalPixels;i++){
             SDL_LockSurface(surface);
             pixel = *(((Uint32*)surface->pixels) + i);
@@ -50,7 +45,7 @@ int Map::init(){
     return 0;
 }
 
-int Map::loadSurface(const char* path){
+int Map::loadSurface(const char* path, vector<SDL_Surface*>& surfaces){
     SDL_Surface* surface;
     surface = IMG_Load(path);
     if(surface == nullptr){
@@ -62,25 +57,31 @@ int Map::loadSurface(const char* path){
 }
 
 void Map::renderLevel(int index){
-    for(int i=0;i<MAP_HEIGHT;i++){
-        for(int j=0;j<MAP_WIDTH;j++){
-            if(levels[index][i*MAP_WIDTH+j] == 0) continue;
+    int mapWidth = levels[index][0];
+    int mapHeight = levels[index][1];
+    int pixelSizeW = Game::getWidth() / mapWidth;
+    int pixelSizeH = Game::getHeight() / mapHeight; 
+    for(int i=0;i<mapHeight;i++){
+        for(int j=0;j<mapWidth;j++){
+            if(i*mapWidth+j+2 > levels[index].size() - 1) continue;
+            if(levels[index][i*mapWidth+j+2] == 0) continue;
             SDL_Rect dst;
-            dst.w = dst.h = PIXEL_SIZE;
-            dst.x = j * PIXEL_SIZE;
-            dst.y = i * PIXEL_SIZE;
+            dst.w = pixelSizeW;
+            dst.h = pixelSizeH;
+            dst.x = j * pixelSizeW;
+            dst.y = i * pixelSizeH;
             SDL_SetRenderDrawColor(Game::getRenderer(), 255, 255, 255, 255);
             SDL_RenderFillRect(Game::getRenderer(), &dst);
 
             // draw tiny collide boxes
             if(!showCollideBox) continue; // close and open the collide box display
-            for(int m=0;m<PIXEL_SIZE;m++){
-                for(int n=0;n<PIXEL_SIZE;n++){
-                    if(m==0 || m==PIXEL_SIZE-1 || n == 0 || n == PIXEL_SIZE-1){
+            for(int m=0;m<pixelSizeH;m++){
+                for(int n=0;n<pixelSizeW;n++){
+                    if(m==0 || m==pixelSizeH-1 || n == 0 || n == pixelSizeW-1){
                         SDL_Rect dst;
                         dst.w = dst.h = 1;
-                        dst.x = n + j * PIXEL_SIZE;
-                        dst.y = m + i * PIXEL_SIZE;
+                        dst.x = n + j * pixelSizeW;
+                        dst.y = m + i * pixelSizeH;
                         SDL_SetRenderDrawColor(Game::getRenderer(), 50, 255, 50, 255);
                         SDL_RenderFillRect(Game::getRenderer(), &dst);
                     }

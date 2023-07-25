@@ -52,6 +52,10 @@ int Game::init(){
         return 1;
     }
 
+    if(Collider::init() < 0){
+        return 1;
+    }
+
     MovableEntity* e;
     e = new MovableEntity(vector2(SCREEN_WIDTH/2, SCREEN_HEIGHT/2), TEX_sprite_testBlock);
     entities.push_back(e);

@@ -6,6 +6,7 @@
 #include "headers/movableEntity.h"
 #include "headers/player.h"
 #include "headers/map.h"
+#include "headers/collider.h"
 
 #include <vector>
 using namespace std;
