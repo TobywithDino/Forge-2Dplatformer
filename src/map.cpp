@@ -9,12 +9,14 @@ vector<SDL_Surface*> Map::surfaces;
 int Map::MAP_WIDTH;
 int Map::MAP_HEIGHT;
 int Map::PIXEL_SIZE;
+bool Map::showCollideBox;
 
 int Map::init(){
     // set WIDTH, HEIGHT and PixelSize
     MAP_WIDTH = 30; // Big pixels
     MAP_HEIGHT = 22;
     PIXEL_SIZE = Game::getWidth() / MAP_WIDTH;
+    showCollideBox = false;
 
     // load png to surfaces
     if(loadSurface("res/maps/Forge-level1.png") < 0) return -1;
@@ -71,16 +73,10 @@ void Map::renderLevel(int index){
             SDL_RenderFillRect(Game::getRenderer(), &dst);
 
             // draw tiny collide boxes
+            if(!showCollideBox) continue; // close and open the collide box display
             for(int m=0;m<PIXEL_SIZE;m++){
                 for(int n=0;n<PIXEL_SIZE;n++){
-                    if(m==0 || m==PIXEL_SIZE-1){
-                        SDL_Rect dst;
-                        dst.w = dst.h = 1;
-                        dst.x = n + j * PIXEL_SIZE;
-                        dst.y = m + i * PIXEL_SIZE;
-                        SDL_SetRenderDrawColor(Game::getRenderer(), 50, 255, 50, 255);
-                        SDL_RenderFillRect(Game::getRenderer(), &dst);
-                    }else if(n==0 || n==PIXEL_SIZE-1){
+                    if(m==0 || m==PIXEL_SIZE-1 || n == 0 || n == PIXEL_SIZE-1){
                         SDL_Rect dst;
                         dst.w = dst.h = 1;
                         dst.x = n + j * PIXEL_SIZE;
