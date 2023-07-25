@@ -1,6 +1,5 @@
 #pragma once
 #include "headers/entity.h"
-#include "headers/texture.h"
 
 class MovableEntity : public Entity{
 public:
