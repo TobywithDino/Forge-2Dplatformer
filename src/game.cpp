@@ -58,25 +58,19 @@ void Game::handleEvent(){
     while(SDL_PollEvent(&event)){
         if(event.type == SDL_QUIT) gb::setRunning(false);
         else{
-            AllSprite::getPlayer()->handleEvent(event);
-            vector<MovableEntity*>* entities = AllSprite::getEntites();
-            for(MovableEntity* entity : *entities) entity->handleEvent(event);
+            AllSprite::handleEvent(event);
         }
     }
 }
 
 void Game::update(){
-    AllSprite::getPlayer()->update();
-    vector<MovableEntity*>* entities = AllSprite::getEntites();
-    for(MovableEntity* entity : *entities) entity->update();
+    AllSprite::update();
 }
 
 void Game::render(){
     SDL_SetRenderDrawColor(gb::getRenderer(), 20, 20, 20, 255);
     SDL_RenderClear(gb::getRenderer());
     Map::renderLevel(0);
-    AllSprite::getPlayer()->render();
-    vector<MovableEntity*>* entities = AllSprite::getEntites();
-    for(MovableEntity* entity : *entities) entity->render();
+    AllSprite::render();
     SDL_RenderPresent(gb::getRenderer());
 }

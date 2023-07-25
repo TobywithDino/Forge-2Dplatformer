@@ -1,16 +1,25 @@
 #include "headers/allSprite.h"
 #include <stdio.h>
-
-vector<MovableEntity*>* AllSprite::entities;
-MovableEntity* AllSprite::player;
+Entity* AllSprite::enemies[maxEnemies];
+Entity* AllSprite::player;
 
 int AllSprite::init(){
-    entities = new vector<MovableEntity*>;
-    
-    MovableEntity* e;
-    e = new MovableEntity(vector2(300, 200), TEX_sprite_testBlock, COL_default);
-    entities->push_back(e);
-
+    for(int i=0;i<maxEnemies;i++) enemies[i] = new MovableEntity();
     player = new Player(vector2(200, 200));
     return 0;
+}
+
+void AllSprite::handleEvent(SDL_Event e){
+    for(int i=0;i<maxEnemies;i++) enemies[i]->handleEvent(e);
+    player->handleEvent(e);
+}
+
+void AllSprite::update(){
+    for(int i=0;i<maxEnemies;i++) enemies[i]->update();
+    player->update();
+}
+
+void AllSprite::render(){
+    for(int i=0;i<maxEnemies;i++) enemies[i]->render();
+    player->render();
 }

@@ -8,8 +8,9 @@ public:
     Entity();
     Entity(vector2 pos, TextureType tType, CollideType cType);
     Entity(vector2 pos, TextureType tType, CollideType cType, vector2 size);
-    virtual void render();
     virtual void handleEvent(SDL_Event e);
+    virtual void update();
+    virtual void render();
 private:
     SDL_Texture* tex;
 protected:

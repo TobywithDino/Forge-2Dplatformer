@@ -28,6 +28,10 @@ void Entity::handleEvent(SDL_Event e){
     collideBox->handleEvent(e);
 }
 
+void Entity::update(){
+
+}
+
 void Entity::render(){
     SDL_Rect dst;
     dst.w = size.x;

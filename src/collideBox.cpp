@@ -108,16 +108,6 @@ void CollideBox::handleEvent(SDL_Event e){
     }
 }
 
-bool CollideBox::checkHorizontal(){
-
-    return false;
-}
-
-bool CollideBox::checkVertical(){
-
-    return false;
-}
-
 void CollideBox::render(){
     if(!showCollideBox) return;
     int offsetX = box->at(0);

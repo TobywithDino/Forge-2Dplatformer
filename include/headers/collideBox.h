@@ -22,8 +22,6 @@ public:
     CollideBox(CollideType type, vector2* pos);
     void handleEvent(SDL_Event e);
     void render();
-    bool checkHorizontal();
-    bool checkVertical();
 private:
     vector<int>* box;
     bool showCollideBox;

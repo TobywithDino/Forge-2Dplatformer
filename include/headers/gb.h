@@ -1,5 +1,7 @@
 #pragma once
 #include "SDL2/SDL.h"
+#include <vector>
+using namespace std;
 
 class gb{
 public:

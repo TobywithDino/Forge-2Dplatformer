@@ -4,9 +4,15 @@
 class AllSprite{
 public:
     static int init();
-    static vector<MovableEntity*>* getEntites() {return entities;}
-    static MovableEntity* getPlayer() {return player;}
+    static void handleEvent(SDL_Event e);
+    static void update();
+    static void render();
 private:
-    static vector<MovableEntity*>* entities;
-    static MovableEntity* player;
+    static void checkCollide();
+    bool checkHorizontal();
+    bool checkVertical();
+
+    static const int maxEnemies = 1;
+    static Entity* enemies[maxEnemies];
+    static Entity* player;
 };

@@ -4,9 +4,6 @@
 #include "headers/gb.h"
 #include "headers/allSprite.h"
 
-#include <vector>
-using namespace std;
-
 class Game{
 public:
     Game();
