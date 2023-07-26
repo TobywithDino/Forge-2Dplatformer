@@ -4,11 +4,8 @@
 
 vector<vector<int>> Map::levels;
 vector<SDL_Surface*> Map::surfaces;
-bool Map::showCollideBox;
 
 int Map::init(){
-    showCollideBox = false;
-
     // load png to surfaces
     if(loadSurface("res/maps/Forge-map-level1.png", surfaces) < 0) return -1;
     if(loadSurface("res/maps/Forge-map-level2.png", surfaces) < 0) return -1;
@@ -76,22 +73,6 @@ void Map::render(int index){
             dst.y = i * pixelSizeH;
             SDL_SetRenderDrawColor(gb::getRenderer(), 255, 255, 255, 255);
             SDL_RenderFillRect(gb::getRenderer(), &dst);
-
-            // draw tiny collide boxes
-            if(!showCollideBox) continue; // close and open the collide box display
-            for(int m=0;m<pixelSizeH;m++){
-                for(int n=0;n<pixelSizeW;n++){
-                    if(m==0 || m==pixelSizeH-1 || n == 0 || n == pixelSizeW-1){
-                        SDL_Rect dst;
-                        dst.w = dst.h = 1;
-                        dst.x = n + j * pixelSizeW;
-                        dst.y = m + i * pixelSizeH;
-                        SDL_SetRenderDrawColor(gb::getRenderer(), 50, 255, 50, 255);
-                        SDL_RenderFillRect(gb::getRenderer(), &dst);
-                    }
-                }
-            }
-            
         }
     }
 

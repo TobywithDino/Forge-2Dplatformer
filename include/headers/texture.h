@@ -7,7 +7,6 @@ using namespace std;
 enum TextureType{
     TEX_sprite_testBlock,
     TEX_sprite_player,
-    TEX_sprite_none
 };
 
 class Texture{

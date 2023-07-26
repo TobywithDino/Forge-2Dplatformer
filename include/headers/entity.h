@@ -15,6 +15,7 @@ public:
 private:
     SDL_Texture* tex;
 protected:
+    bool isActive;
     vector2 dMove;
     vector2 pos;
     vector2 size;

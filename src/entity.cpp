@@ -1,8 +1,9 @@
 #include "headers/entity.h"
 #include <stdio.h>
 Entity::Entity(){
+    isActive = false;
     pos = vector2(0,0);
-    tex = Texture::getTexture(TEX_sprite_none);
+    tex = Texture::getTexture(TEX_sprite_testBlock);
     size = vector2(32, 32)*gb::getScale();
     isFlip = false;
     collideBox = new CollideBox();
@@ -10,6 +11,7 @@ Entity::Entity(){
 }
 
 Entity::Entity(vector2 pos, TextureType tType, CollideType cType){
+    isActive = true;
     this->pos = pos;
     tex = Texture::getTexture(tType);
     size = vector2(32, 32)*gb::getScale();
@@ -19,6 +21,7 @@ Entity::Entity(vector2 pos, TextureType tType, CollideType cType){
 }
 
 Entity::Entity(vector2 pos, TextureType tType, CollideType cType, vector2 size){
+    isActive = true;
     this->pos = pos;
     tex = Texture::getTexture(tType);
     this->size = size*gb::getScale();
@@ -28,10 +31,12 @@ Entity::Entity(vector2 pos, TextureType tType, CollideType cType, vector2 size){
 }
 
 void Entity::handleEvent(SDL_Event e){
+    if(!isActive) return;
     collideBox->handleEvent(e);
 }
 
 void Entity::update(){
+    if(!isActive) return;
     // if(collideBox->getIsCollidedHorizontal()){
     //     pos.x -= dMove.x;
     // }
@@ -45,6 +50,7 @@ void Entity::update(){
 }
 
 void Entity::render(){
+    if(!isActive) return;
     SDL_Rect dst;
     dst.w = size.x;
     dst.h = size.y;

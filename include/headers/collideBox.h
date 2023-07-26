@@ -7,21 +7,33 @@
 enum CollideType{
     COL_default,
     COL_player,
-    COL_none
 };
+enum LevelCollideType{
+    COL_level_1,
+    COL_level_2
+};
+    
 
 class CollideBox{
+
+// static part
 public:
     static int init();
+    static vector<vector<int>>* getLevelCollideBox(LevelCollideType type);
 private:
+    static int initCollideBoxes();
+    static int initLevelCollideBoxes();
+    static void loadPixelFromSurface(vector<SDL_Surface*> surfaces, vector<vector<int>>& boxes, vector2 scale = vector2(1,1));
     vector<int>* getCollideBox(CollideType type);
-    static vector<SDL_Surface*> surfaces;
     static vector<vector<int>> collideBoxes;
+    static vector<vector<int>> levelCollideBoxes_1;
+    static vector<vector<int>> levelCollideBoxes_2;
     
+// non-static part
 public:
     CollideBox();
-    ~CollideBox() {delete box; delete pos;};
     CollideBox(CollideType type, vector2* pos);
+    CollideBox(vector<int>* box);
     void handleEvent(SDL_Event e);
     void render();
     bool getIsCollidedHorizontal() {return isCollidedHorizontal;}

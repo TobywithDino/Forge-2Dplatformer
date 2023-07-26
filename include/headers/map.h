@@ -8,12 +8,8 @@ class Map{
 public:
     static int init();
     static void render(int index);
-    static vector<int>* getLevel(int index) {return &levels[index];}
-    static bool getShowCollideBox() {return showCollideBox;}
-    static void setShowCollideBox(bool show) {showCollideBox = show;}
     static int loadSurface(const char* path, vector<SDL_Surface*>& surfaces);
 private:
     static vector<vector<int>> levels;
     static vector<SDL_Surface*> surfaces;
-    static bool showCollideBox;
 };

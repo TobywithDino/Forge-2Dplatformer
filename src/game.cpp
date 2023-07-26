@@ -39,6 +39,7 @@ int Game::init(){
     if(CollideBox::init() < 0) return 1;
     if(AllSprite::init() < 0) return 1;
 
+    gb::setLevelIndex(0);
     gb::setLastTicks(SDL_GetTicks64());
     while(gb::getRunning()){
         handleEvent();
@@ -70,7 +71,7 @@ void Game::update(){
 void Game::render(){
     SDL_SetRenderDrawColor(gb::getRenderer(), 20, 20, 20, 255);
     SDL_RenderClear(gb::getRenderer());
-    Map::render(0);
+    Map::render(gb::getLevelIndex());
     AllSprite::render();
     SDL_RenderPresent(gb::getRenderer());
 }

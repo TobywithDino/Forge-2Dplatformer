@@ -15,6 +15,7 @@ public:
     static int getFPS() {return FPS;}
     static int getDelTicks() {return delTicks;}
     static int getLastTicks() {return lastTicks;}
+    static int getLevelIndex() {return levelIndex;}
 
     static void setWidth(int w) {SCREEN_WIDTH = w;}
     static void setHeight(int h) {SCREEN_HEIGHT = h;}
@@ -25,7 +26,8 @@ public:
     static void setRenderer(SDL_Renderer* renderer) {gb::renderer = renderer;}
     static void setFPS(int f) {FPS = f;}
     static void setDelTicks(int d) {delTicks = d;}
-    static void setLastTicks(int d) {lastTicks = d;}
+    static void setLastTicks(int l) {lastTicks = l;}
+    static void setLevelIndex(int l) {levelIndex = l;}
 private:
     static int SCREEN_WIDTH;
     static int SCREEN_HEIGHT;
@@ -37,4 +39,5 @@ private:
     static int FPS;
     static int delTicks;
     static int lastTicks;
+    static int levelIndex;
 };

@@ -10,3 +10,4 @@ bool gb::running;
 int gb::FPS;
 int gb::delTicks;
 int gb::lastTicks;
+int gb::levelIndex;

@@ -6,20 +6,24 @@ Entity* AllSprite::player;
 Entity** AllSprite::entities[maxEntities];
 
 int AllSprite::init(){
+    // initial other game entities
     for(int i=0;i<maxEnemyEntites;i++){
         enemyEntities[i] = new Entity();
     }
     for(int i=0;i<maxLevelEntities;i++){
         levelEntities[i] = new Entity();
     }
-    enemyEntities[0] = new MovableEntity(vector2(300,300), TEX_sprite_testBlock, COL_default);
-    loadLevel(2);
+    enemyEntities[0] = new MovableEntity(vector2(280,300), TEX_sprite_testBlock, COL_default);
+    loadLevelEntities(gb::getLevelIndex());
     player = new Player(vector2(200, 200));
     
+    // initial entities
     for(int i=0;i<maxEntities;i++){
         entities[i] = new Entity*;
         *entities[i] = new Entity();
     }
+
+    // link other game entities into entities
     int tmp = 0;
     for(int i=0;i<maxEnemyEntites;i++){
         *entities[tmp] = enemyEntities[i];
@@ -87,23 +91,20 @@ void AllSprite::checkCollide(){
     }
 }
 
-void AllSprite::loadLevel(int index){
-    vector<int>* level = Map::getLevel(index);
-    int totalPixels = level->size();
-    int mapWidth = level->at(0);
-    int mapHeight = level->at(1);
-    int pixelSizeW = gb::getWidth() / mapWidth;
-    int pixelSizeH = gb::getHeight() / mapHeight; 
-    int tmp = 0;
-    for(int i=0;i<mapHeight;i++){
-        for(int j=0;j<mapWidth;j++){
-            int k = i*mapWidth+j+2;
-            if(k > totalPixels - 2) continue;
-            if(level->at(k) == 0) continue;
-            vector2 pos = vector2(j*pixelSizeW,i*pixelSizeH);
-            vector2 size = vector2(pixelSizeW, pixelSizeH);
-            levelEntities[tmp] = new Entity(pos, TEX_sprite_testBlock, COL_default, size);
-            tmp++;
-        }
+void AllSprite::loadLevelEntities(int index){
+    vector<vector<int>>* levelCollideBox = new vector<vector<int>>;
+    switch (index)
+    {
+    case 0:
+        levelCollideBox = CollideBox::getLevelCollideBox(COL_level_1);
+        break;
+    case 1:
+        levelCollideBox = CollideBox::getLevelCollideBox(COL_level_2);
+        break;
+    default:
+        break;
+    }
+    for(int i=0;i<levelCollideBox->size();i++){
+        levelEntities[i] = new StaticEntity(&levelCollideBox->at(i));
     }
 }
