@@ -13,7 +13,6 @@ public:
     vector2 getVel() {return vel;}
 private:
     const double gravity = 5000;
-    vector2 dMove;
 protected:
     double speed;
     vector2 vel;

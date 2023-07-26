@@ -2,10 +2,11 @@
 #include <stdio.h>
 Entity::Entity(){
     pos = vector2(0,0);
-    tex = Texture::getTexture(TEX_sprite_testBlock);
+    tex = Texture::getTexture(TEX_sprite_none);
     size = vector2(32, 32)*gb::getScale();
     isFlip = false;
-    collideBox = new CollideBox(COL_default, &this->pos);
+    collideBox = new CollideBox();
+    dMove = vector2(0, 0);
 }
 
 Entity::Entity(vector2 pos, TextureType tType, CollideType cType){
@@ -14,6 +15,7 @@ Entity::Entity(vector2 pos, TextureType tType, CollideType cType){
     size = vector2(32, 32)*gb::getScale();
     isFlip = false;
     collideBox = new CollideBox(cType, &this->pos);
+    dMove = vector2(0, 0);
 }
 
 Entity::Entity(vector2 pos, TextureType tType, CollideType cType, vector2 size){
@@ -22,6 +24,7 @@ Entity::Entity(vector2 pos, TextureType tType, CollideType cType, vector2 size){
     this->size = size*gb::getScale();
     isFlip = false;
     collideBox = new CollideBox(cType, &this->pos);
+    dMove = vector2(0, 0);
 }
 
 void Entity::handleEvent(SDL_Event e){
@@ -29,7 +32,16 @@ void Entity::handleEvent(SDL_Event e){
 }
 
 void Entity::update(){
+    // if(collideBox->getIsCollidedHorizontal()){
+    //     pos.x -= dMove.x;
+    // }
+    // if(collideBox->getIsCollidedVertical()){
+    //     pos.y -= dMove.y;
+    // }
 
+    if(collideBox->getIsCollidedHorizontal() && collideBox->getIsCollidedVertical()){
+        pos = pos - dMove;
+    }
 }
 
 void Entity::render(){

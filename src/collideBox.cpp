@@ -5,6 +5,7 @@ vector<vector<int>> CollideBox::collideBoxes;
 int CollideBox::init(){
     if(Map::loadSurface("res/collideBox/Forge-collideBox-default.png", surfaces) < 0) return -1;
     if(Map::loadSurface("res/collideBox/Forge-collideBox-player.png", surfaces) < 0) return -1;
+    if(Map::loadSurface("res/collideBox/Forge-collideBox-none.png", surfaces) < 0) return -1;
 
     // record the offsetX, offsetY, boxWidth, boxHeight of each surface's green box 
     for(SDL_Surface* surface : surfaces){
@@ -61,10 +62,14 @@ int CollideBox::init(){
                 break;
             }
         }
-        collideBox.push_back(offsetX);
-        collideBox.push_back(offsetY);
-        collideBox.push_back(boxWidth);
-        collideBox.push_back(boxHeight);
+        offsetX *= gb::getScale();
+        offsetY *= gb::getScale();
+        boxWidth *= gb::getScale();
+        boxHeight *= gb::getScale();
+        collideBox.push_back(offsetX); // at(0)
+        collideBox.push_back(offsetY); // at(1)
+        collideBox.push_back(boxWidth); // at(2)
+        collideBox.push_back(boxHeight); // at(3)
         collideBoxes.push_back(collideBox);
     }
     return 0;
@@ -79,7 +84,9 @@ vector<int>* CollideBox::getCollideBox(CollideType type){
     case COL_player:
         return &collideBoxes[1];
         break;
-    
+    case COL_none:
+        return &collideBoxes[2];
+        break;
     default:
         printf("Error: failed to get collideBox\nGetCollideBox Error: '%s'\n", type);
         return &collideBoxes[0];
@@ -88,9 +95,9 @@ vector<int>* CollideBox::getCollideBox(CollideType type){
 }
 
 CollideBox::CollideBox(){
-    box = CollideBox::getCollideBox(COL_default);
+    box = CollideBox::getCollideBox(COL_none);
     showCollideBox = false;
-    this->pos = nullptr;
+    this->pos = new vector2(0,0);
 }
 
 CollideBox::CollideBox(CollideType type, vector2* pos){
@@ -115,10 +122,10 @@ void CollideBox::render(){
     int boxWidth = box->at(2);
     int boxHeight = box->at(3);
     SDL_Rect dst;
-    dst.x =  pos->x + offsetX * gb::getScale();
-    dst.y =  pos->y + offsetY * gb::getScale();
-    dst.w = boxWidth * gb::getScale();
-    dst.h = boxHeight * gb::getScale();
+    dst.x =  pos->x + offsetX;
+    dst.y =  pos->y + offsetY;
+    dst.w = boxWidth;
+    dst.h = boxHeight;
     SDL_SetRenderDrawColor(gb::getRenderer(), 0, 255, 0, 255);
     SDL_RenderDrawRect(gb::getRenderer(), &dst);
 }

@@ -11,9 +11,11 @@ public:
     virtual void handleEvent(SDL_Event e);
     virtual void update();
     virtual void render();
+    CollideBox* getCollideBox() {return collideBox;}
 private:
     SDL_Texture* tex;
 protected:
+    vector2 dMove;
     vector2 pos;
     vector2 size;
     bool isFlip;

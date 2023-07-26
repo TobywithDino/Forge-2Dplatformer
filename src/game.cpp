@@ -70,7 +70,7 @@ void Game::update(){
 void Game::render(){
     SDL_SetRenderDrawColor(gb::getRenderer(), 20, 20, 20, 255);
     SDL_RenderClear(gb::getRenderer());
-    Map::renderLevel(0);
+    Map::render(0);
     AllSprite::render();
     SDL_RenderPresent(gb::getRenderer());
 }

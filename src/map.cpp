@@ -12,6 +12,7 @@ int Map::init(){
     // load png to surfaces
     if(loadSurface("res/maps/Forge-map-level1.png", surfaces) < 0) return -1;
     if(loadSurface("res/maps/Forge-map-level2.png", surfaces) < 0) return -1;
+    if(loadSurface("res/maps/Forge-map-level3.png", surfaces) < 0) return -1;
 
     // convert each surface to int arrays and store in levels
     for(SDL_Surface* surface : surfaces){
@@ -21,6 +22,7 @@ int Map::init(){
 
         fmt = surface->format;
         int totalPixels = surface->w * surface->h;
+        int maxLevelEntities = 0;
         vector<int> level;
         level.push_back(surface->w);
         level.push_back(surface->h);
@@ -34,9 +36,13 @@ int Map::init(){
             temp = temp >> fmt->Rshift; // Shift it down to 8-bit 
             temp = temp << fmt->Rloss;  // Expand to a full 8-bit number
             red = (Uint8)temp;
-            if(red == 255) level.push_back(1);
+            if(red == 255){
+                level.push_back(1);
+                maxLevelEntities++;
+            }
             else level.push_back(0);
         }
+        level.push_back(maxLevelEntities);
         levels.push_back(level);
     }
 
@@ -54,7 +60,7 @@ int Map::loadSurface(const char* path, vector<SDL_Surface*>& surfaces){
     return 0;
 }
 
-void Map::renderLevel(int index){
+void Map::render(int index){
     int mapWidth = levels[index][0];
     int mapHeight = levels[index][1];
     int pixelSizeW = gb::getWidth() / mapWidth;
