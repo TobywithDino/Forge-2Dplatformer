@@ -9,7 +9,10 @@ public:
     static void update();
     static void render();
 private:
-    static void checkCollide();
+    static void collision();
+    static bool collided(Entity *a, Entity *b);
+    static void blockH(Entity *a, Entity *b);
+    static void blockV(Entity *a, Entity *b, bool &isOnGroundAgain);
     static void loadLevelEntities(int index);
 
     static const int maxEnemyEntities = 30;

@@ -30,10 +30,10 @@ void MovableEntity::update(){
 
 
     /* window height is the ground */
-    // if(pos.y + size.y > gb::getHeight()){
-    //     vel.y = 0;
-    //     pos.y = gb::getHeight() - size.y;
-    // }
+    if(pos.y + size.y > gb::getHeight()){
+        vel.y = 0;
+        pos.y = gb::getHeight() - size.y;
+    }
 }
 
 void MovableEntity::render(){
