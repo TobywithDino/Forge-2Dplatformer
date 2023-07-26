@@ -7,6 +7,7 @@ Entity::Entity(){
     tex = Texture::getTexture(TEX_sprite_testBlock);
     size = vector2(32, 32)*gb::getScale();
     isFlip = false;
+    isOnGround = false;
     collideBox = new CollideBox();
 }
 
@@ -17,6 +18,7 @@ Entity::Entity(vector2 pos, TextureType tType, CollideType cType){
     tex = Texture::getTexture(tType);
     size = vector2(32, 32)*gb::getScale();
     isFlip = false;
+    isOnGround = false;
     collideBox = new CollideBox(cType, &this->pos);
 }
 
@@ -27,6 +29,7 @@ Entity::Entity(vector2 pos, TextureType tType, CollideType cType, vector2 size){
     tex = Texture::getTexture(tType);
     this->size = size*gb::getScale();
     isFlip = false;
+    isOnGround = false;
     collideBox = new CollideBox(cType, &this->pos);
 }
 

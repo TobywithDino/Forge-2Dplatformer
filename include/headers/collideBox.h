@@ -36,6 +36,7 @@ public:
     CollideBox(vector<int>* box);
     void handleEvent(SDL_Event e);
     void render();
+    void setPos(vector2* pos) {this->pos = pos;}
     double getBoxLeft() {return pos->x + box->at(0);}
     double getBoxRight() {return pos->x + box->at(0) + box->at(2);}
     double getBoxTop() {return pos->y + box->at(1);}

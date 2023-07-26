@@ -15,10 +15,12 @@ public:
     void setActive(bool isActive) {this->isActive = isActive;}
     void setPos(vector2 pos) {this->pos = pos;}
     void setVel(vector2 vel) {this->vel = vel;}
+    void setIsOnGround(bool isOnGround) {this->isOnGround = isOnGround;}
 
     vector2 getPos() {return pos;}
     vector2 getVel() {return vel;}
     vector2 getSize() {return size;}
+    bool getIsOnGround() {return isOnGround;}
     bool getActive() {return isActive;}
     CollideBox* getCollideBox() {return collideBox;}
 private:
@@ -29,5 +31,6 @@ protected:
     vector2 vel;
     vector2 size;
     bool isFlip;
+    bool isOnGround;
     CollideBox* collideBox;
 };

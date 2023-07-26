@@ -26,6 +26,6 @@ void Player::handleEvent(SDL_Event e){
     }
 
     if(keyboard[SDL_SCANCODE_SPACE]){
-        if(vel.y >= 0) vel.y = -jumpSpeed;
+        if(vel.y >= 0 && isOnGround) vel.y = -jumpSpeed;
     }
 }
