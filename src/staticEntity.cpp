@@ -6,7 +6,6 @@ StaticEntity::StaticEntity() : Entity(){
 }
 
 StaticEntity::StaticEntity(vector<int>* box) : Entity(){
-    isActive = true;
     collideBox = new CollideBox(box);
 }
 

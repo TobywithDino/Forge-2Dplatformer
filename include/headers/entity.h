@@ -12,6 +12,7 @@ public:
     virtual void update();
     virtual void render();
     CollideBox* getCollideBox() {return collideBox;}
+    void setActive(bool active) {isActive = active;}
 private:
     SDL_Texture* tex;
 protected:

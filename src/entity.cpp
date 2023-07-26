@@ -1,7 +1,7 @@
 #include "headers/entity.h"
 #include <stdio.h>
 Entity::Entity(){
-    isActive = false;
+    isActive = true;
     pos = vector2(0,0);
     tex = Texture::getTexture(TEX_sprite_testBlock);
     size = vector2(32, 32)*gb::getScale();
@@ -43,7 +43,6 @@ void Entity::update(){
     // if(collideBox->getIsCollidedVertical()){
     //     pos.y -= dMove.y;
     // }
-
     if(collideBox->getIsCollidedHorizontal() && collideBox->getIsCollidedVertical()){
         pos = pos - dMove;
     }

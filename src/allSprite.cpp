@@ -9,28 +9,31 @@ int AllSprite::init(){
     // initial other game entities
     for(int i=0;i<maxEnemyEntites;i++){
         enemyEntities[i] = new Entity();
+        enemyEntities[i]->setActive(false);
     }
     for(int i=0;i<maxLevelEntities;i++){
         levelEntities[i] = new Entity();
+        levelEntities[i]->setActive(false);
     }
     enemyEntities[0] = new MovableEntity(vector2(280,300), TEX_sprite_testBlock, COL_default);
-    loadLevelEntities(gb::getLevelIndex());
+    // loadLevelEntities(gb::getLevelIndex());
     player = new Player(vector2(200, 200));
     
     // initial entities
     for(int i=0;i<maxEntities;i++){
         entities[i] = new Entity*;
         *entities[i] = new Entity();
+        (*entities[i])->setActive(false);
     }
 
     // link other game entities into entities
     int tmp = 0;
-    for(int i=0;i<maxEnemyEntites;i++){
-        *entities[tmp] = enemyEntities[i];
-        tmp++;
-    }
     for(int i=0;i<maxLevelEntities;i++){
         *entities[tmp] = levelEntities[i];
+        tmp++;
+    }
+    for(int i=0;i<maxEnemyEntites;i++){
+        *entities[tmp] = enemyEntities[i];
         tmp++;
     }
     for(int i=0;i<1;i++){
@@ -41,21 +44,15 @@ int AllSprite::init(){
 }
 
 void AllSprite::handleEvent(SDL_Event e){
-    // for(int i=0;i<maxEnemyEntites;i++) enemyEntities[i]->handleEvent(e);
-    // player->handleEvent(e);
     for(int i=0;i<maxEntities;i++) (*entities[i])->handleEvent(e);
 }
 
 void AllSprite::update(){
-    // for(int i=0;i<maxEnemyEntites;i++) enemyEntities[i]->update();
-    // player->update();
     for(int i=0;i<maxEntities;i++) (*entities[i])->update();
     checkCollide();
 }
 
 void AllSprite::render(){
-    // for(int i=0;i<maxEnemyEntites;i++) enemyEntities[i]->render();
-    // player->render();
     for(int i=0;i<maxEntities;i++) (*entities[i])->render();
 }
 
