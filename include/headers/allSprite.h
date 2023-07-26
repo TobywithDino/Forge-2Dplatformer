@@ -12,10 +12,10 @@ private:
     static void checkCollide();
     static void loadLevelEntities(int index);
 
-    static const int maxEnemyEntites = 1;
+    static const int maxEnemyEntities = 30;
     static const int maxLevelEntities = 20;
-    static const int maxEntities = 50;
-    static Entity* enemyEntities[maxEnemyEntites];
+    static const int maxEntities = maxEnemyEntities + maxLevelEntities + 1;
+    static Entity* enemyEntities[maxEnemyEntities];
     static Entity* levelEntities[maxLevelEntities];
     static Entity* player;
 

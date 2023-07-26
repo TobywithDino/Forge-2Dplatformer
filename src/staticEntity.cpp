@@ -9,10 +9,7 @@ StaticEntity::StaticEntity(vector<int>* box) : Entity(){
     collideBox = new CollideBox(box);
 }
 
-void StaticEntity::update(){
-    return;
-}
-
 void StaticEntity::render(){
+    if(!isActive) return;
     collideBox->render();
 }

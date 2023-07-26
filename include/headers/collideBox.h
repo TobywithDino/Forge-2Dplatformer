@@ -36,19 +36,15 @@ public:
     CollideBox(vector<int>* box);
     void handleEvent(SDL_Event e);
     void render();
-    bool getIsCollidedHorizontal() {return isCollidedHorizontal;}
-    bool getIsCollidedVertical() {return isCollidedVertical;}
-    void setIsCollidedHorizontal(bool is) {isCollidedHorizontal = is;}
-    void setIsCollidedVertical(bool is) {isCollidedVertical = is;}
     double getBoxLeft() {return pos->x + box->at(0);}
     double getBoxRight() {return pos->x + box->at(0) + box->at(2);}
     double getBoxTop() {return pos->y + box->at(1);}
     double getBoxDown() {return pos->y + box->at(1) + box->at(3);}
+    vector2 getBoxOffset() {return vector2(box->at(0), box->at(1));}
+    vector2 getBoxSize() {return vector2(box->at(2), box->at(3));}
 
 private:
     vector<int>* box;
     bool showCollideBox;
-    bool isCollidedHorizontal;
-    bool isCollidedVertical;
     vector2* pos;
 };

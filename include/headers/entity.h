@@ -11,14 +11,22 @@ public:
     virtual void handleEvent(SDL_Event e);
     virtual void update();
     virtual void render();
+
+    void setActive(bool isActive) {this->isActive = isActive;}
+    void setPos(vector2 pos) {this->pos = pos;}
+    void setVel(vector2 vel) {this->vel = vel;}
+
+    vector2 getPos() {return pos;}
+    vector2 getVel() {return vel;}
+    vector2 getSize() {return size;}
+    bool getActive() {return isActive;}
     CollideBox* getCollideBox() {return collideBox;}
-    void setActive(bool active) {isActive = active;}
 private:
     SDL_Texture* tex;
 protected:
     bool isActive;
-    vector2 dMove;
     vector2 pos;
+    vector2 vel;
     vector2 size;
     bool isFlip;
     CollideBox* collideBox;

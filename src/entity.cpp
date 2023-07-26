@@ -3,31 +3,31 @@
 Entity::Entity(){
     isActive = true;
     pos = vector2(0,0);
+    vel = vector2(0,0);
     tex = Texture::getTexture(TEX_sprite_testBlock);
     size = vector2(32, 32)*gb::getScale();
     isFlip = false;
     collideBox = new CollideBox();
-    dMove = vector2(0, 0);
 }
 
 Entity::Entity(vector2 pos, TextureType tType, CollideType cType){
     isActive = true;
     this->pos = pos;
+    vel = vector2(0,0);
     tex = Texture::getTexture(tType);
     size = vector2(32, 32)*gb::getScale();
     isFlip = false;
     collideBox = new CollideBox(cType, &this->pos);
-    dMove = vector2(0, 0);
 }
 
 Entity::Entity(vector2 pos, TextureType tType, CollideType cType, vector2 size){
     isActive = true;
     this->pos = pos;
+    vel = vector2(0,0);
     tex = Texture::getTexture(tType);
     this->size = size*gb::getScale();
     isFlip = false;
     collideBox = new CollideBox(cType, &this->pos);
-    dMove = vector2(0, 0);
 }
 
 void Entity::handleEvent(SDL_Event e){
@@ -37,15 +37,6 @@ void Entity::handleEvent(SDL_Event e){
 
 void Entity::update(){
     if(!isActive) return;
-    // if(collideBox->getIsCollidedHorizontal()){
-    //     pos.x -= dMove.x;
-    // }
-    // if(collideBox->getIsCollidedVertical()){
-    //     pos.y -= dMove.y;
-    // }
-    if(collideBox->getIsCollidedHorizontal() && collideBox->getIsCollidedVertical()){
-        pos = pos - dMove;
-    }
 }
 
 void Entity::render(){
