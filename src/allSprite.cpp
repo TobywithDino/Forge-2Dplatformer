@@ -18,10 +18,10 @@ int AllSprite::init(){
     }
     // enemyEntities[0] = new MovableEntity(vector2(480-48,200), TEX_sprite_testBlock, COL_default);
     // enemyEntities[1] = new MovableEntity(vector2(480,200), TEX_sprite_testBlock, COL_default);
-    enemyEntities[2] = new MovableEntity(vector2(480,300), TEX_sprite_testBlock, COL_default);
+    enemyEntities[2] = new MovableEntity(vector2(480,350), TEX_sprite_testBlock, COL_default);
 
     loadLevelEntities(gb::getLevelIndex());
-    player = new Player(vector2(480-48, 300));
+    player = new Player(vector2(480-48, 350));
     
     // initial entities
     for(int i=0;i<gb::maxEntities;i++){

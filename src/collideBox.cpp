@@ -16,8 +16,8 @@ int CollideBox::init(){
 
 int CollideBox::initCollideBoxes(){
     vector<SDL_Surface*> surfaces;
-    if(Map::loadSurface("res/collideBox/Forge-collideBox-default.png", surfaces) < 0) return -1;
-    if(Map::loadSurface("res/collideBox/Forge-collideBox-player.png", surfaces) < 0) return -1;
+    if(Map::loadSurface("res/collideBox/sprites/Forge-collideBox-default.png", surfaces) < 0) return -1;
+    if(Map::loadSurface("res/collideBox/sprites/Forge-collideBox-player.png", surfaces) < 0) return -1;
     loadPixelFromSurface(surfaces, collideBoxes);
     return 0;
 }
@@ -38,11 +38,20 @@ int CollideBox::initLevelCollideBoxes(){
     loadPixelFromSurface(surfaces, levelCollideBoxes_1, vector2(gb::getWidth() / gb::getScale() / surfaces[0]->w,gb::getHeight() / gb::getScale() / surfaces[0]->h));
     surfaces.clear();
     
-    // if(Map::loadSurface("cool.png", surfaces) < 0) return -1;
-    // if(Map::loadSurface("cool.png", surfaces) < 0) return -1;
-    // if(Map::loadSurface("cool.png", surfaces) < 0) return -1;
-    // loadPixelFromSurface(surfaces, levelCollideBoxes_2);
-    // surfaces.clear();
+    if(Map::loadSurface("res/collideBox/level2/Layer 1.png", surfaces) < 0) return -1;
+    if(Map::loadSurface("res/collideBox/level2/Layer 2.png", surfaces) < 0) return -1;
+    if(Map::loadSurface("res/collideBox/level2/Layer 3.png", surfaces) < 0) return -1;
+    if(Map::loadSurface("res/collideBox/level2/Layer 4.png", surfaces) < 0) return -1;
+    if(Map::loadSurface("res/collideBox/level2/Layer 5.png", surfaces) < 0) return -1;
+    if(Map::loadSurface("res/collideBox/level2/Layer 6.png", surfaces) < 0) return -1;
+    if(Map::loadSurface("res/collideBox/level2/Layer 7.png", surfaces) < 0) return -1;
+    if(Map::loadSurface("res/collideBox/level2/Layer 8.png", surfaces) < 0) return -1;
+    if(Map::loadSurface("res/collideBox/level2/Layer 9.png", surfaces) < 0) return -1;
+    if(Map::loadSurface("res/collideBox/level2/Layer 10.png", surfaces) < 0) return -1;
+    if(Map::loadSurface("res/collideBox/level2/Layer 11.png", surfaces) < 0) return -1;
+    if(Map::loadSurface("res/collideBox/level2/Layer 12.png", surfaces) < 0) return -1;
+    loadPixelFromSurface(surfaces, levelCollideBoxes_2, vector2(gb::getWidth() / gb::getScale() / surfaces[0]->w,gb::getHeight() / gb::getScale() / surfaces[0]->h));
+    surfaces.clear();
     
     return 0;
 }

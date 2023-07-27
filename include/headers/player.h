@@ -8,8 +8,9 @@ public:
     void handleEvent(SDL_Event e) override;
     void update() override;
 private: 
+    void jump(vector2& tmpVel);
     double jumpSpeed = 1500;
     bool left = false;
     bool right = false;
-    bool jump = false;
+    bool jumping = false;
 };

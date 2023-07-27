@@ -13,7 +13,7 @@ public:
     static SDL_Window* getWindow() {return window;}
     static SDL_Renderer* getRenderer() {return renderer;}
     static int getFPS() {return FPS;}
-    static int getDelTicks() {return delTicks;}
+    static int getFrameTicks() {return frameTicks;}
     static int getLastTicks() {return lastTicks;}
     static int getLevelIndex() {return levelIndex;}
     static const int maxEnemyEntities = 30;
@@ -28,7 +28,7 @@ public:
     static void setWindow(SDL_Window* window) {gb::window = window;}
     static void setRenderer(SDL_Renderer* renderer) {gb::renderer = renderer;}
     static void setFPS(int f) {FPS = f;}
-    static void setDelTicks(int d) {delTicks = d;}
+    static void setFrameTicks(int d) {frameTicks = d;}
     static void setLastTicks(int l) {lastTicks = l;}
     static void setLevelIndex(int l) {levelIndex = l;}
 private:
@@ -40,7 +40,7 @@ private:
     static SDL_Renderer* renderer;
     static bool running;
     static int FPS;
-    static int delTicks;
+    static int frameTicks;
     static int lastTicks;
     static int levelIndex;
 };

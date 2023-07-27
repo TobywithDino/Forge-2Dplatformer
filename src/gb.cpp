@@ -8,6 +8,6 @@ SDL_Window* gb::window;
 SDL_Renderer* gb::renderer;
 bool gb::running;
 int gb::FPS;
-int gb::delTicks;
+int gb::frameTicks;
 int gb::lastTicks;
 int gb::levelIndex;

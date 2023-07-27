@@ -16,32 +16,58 @@ void MovableEntity::handleEvent(SDL_Event e){
 
 void MovableEntity::update(){
     Entity::update();
-    CollideBox tmpBox = collideBox;
+    
     vector2 dMove(0, 0);
 
+    if(!inAir){
+        CollideBox tmpBox = collideBox;
+        tmpBox.setPos(new vector2(pos.x, pos.y+1));
+        if(!Collision::isColliding(tmpBox, this, entities)){
+            inAir = true;
+        }
+    }
 
+    // when in air, check vertically
     if(inAir){
-        // tmpBox.setPos()
-        Collision::isColliding(tmpBox, this, entities);
+        CollideBox tmpBox = collideBox;
+        tmpBox.setPos(new vector2(pos.x, pos.y+vel.y* ((double)gb::getFrameTicks() / 1000)));
+        if(!Collision::isColliding(tmpBox, this, entities)){
+            // if it is not hitting any roof or floor, move vertically
+            dMove.y += vel.y * ((double)gb::getFrameTicks() / 1000);
+            vel.y += gravity * ((double)gb::getFrameTicks() / 1000);
+        }else{
+            // if it's hitting roof or floor, move to the sides of the roof or floor
+            pos.y = Collision::getYAfterCollision(vel.y, collideBox, collidedEntityBox);
+            // after moved to correct y, check inAir state and update vel.y
+            if(vel.y > 0){
+                inAir = false;
+                vel.y = 0;
+            }
+            else{
+                vel.y = fallSpeedAfterCollision;
+            }
+        }
+        // after checking vertically, check horizontally
+        updateXPos(dMove);
     }else{
-        updateXPos(dMove, tmpBox);
+        // when not in air, only check horizontally
+        updateXPos(dMove);
     }
 
     pos = pos + dMove;
 }
 
-void MovableEntity::updateXPos(vector2& dMove, CollideBox tmpBox){
-    tmpBox.setPos(new vector2(pos.x+vel.x * ((double)gb::getDelTicks() / 1000), pos.y));
+void MovableEntity::updateXPos(vector2& dMove){
+    // check horizontally
+    CollideBox tmpBox = collideBox;
+    tmpBox.setPos(new vector2(pos.x+vel.x * ((double)gb::getFrameTicks() / 1000), pos.y));
     if(!Collision::isColliding(tmpBox, this, entities)){
-        dMove.x = vel.x * ((double)gb::getDelTicks() / 1000);
+        // if it's not hitting walls, move horizontally
+        dMove.x += vel.x * ((double)gb::getFrameTicks() / 1000);
     }
     else{
-        if(vel.x > 0){
-            pos.x = collidedEntityBox.getBoxLeft() - (size.x - collideBox.getBoxOffset().x);
-        } 
-        else if(vel.x < 0){
-            pos.x = collidedEntityBox.getBoxRight() - collideBox.getBoxOffset().x + 1;
-        }
+        // if it's hitting walls, move to the side of the walls
+        pos.x = Collision::getXAfterCollision(vel.x, collideBox, collidedEntityBox);
     } 
 }
 

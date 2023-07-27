@@ -8,7 +8,8 @@ Game::Game(){
     gb::setScale(1.5);
     gb::setRunning(true);
     gb::setFPS(60);
-    gb::setDelTicks(0);
+    gb::setFrameTicks(0);
+    gb::setLevelIndex(1);
 }
 
 int Game::init(){
@@ -39,12 +40,11 @@ int Game::init(){
     if(CollideBox::init() < 0) return 1;
     if(AllSprite::init() < 0) return 1;
 
-    gb::setLevelIndex(0);
     gb::setLastTicks(SDL_GetTicks64());
     while(gb::getRunning()){
         handleEvent();
         if(SDL_GetTicks64() - gb::getLastTicks() > 1000/gb::getFPS()){
-            gb::setDelTicks(SDL_GetTicks64() - gb::getLastTicks());
+            gb::setFrameTicks(SDL_GetTicks64() - gb::getLastTicks());
             gb::setLastTicks(SDL_GetTicks64());
             update();
             render();
@@ -69,7 +69,7 @@ void Game::update(){
 }
 
 void Game::render(){
-    SDL_SetRenderDrawColor(gb::getRenderer(), 20, 20, 20, 255);
+    SDL_SetRenderDrawColor(gb::getRenderer(), 200, 200, 200, 255);
     SDL_RenderClear(gb::getRenderer());
     Map::render(gb::getLevelIndex());
     AllSprite::render();
