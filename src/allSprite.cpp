@@ -1,32 +1,30 @@
 #include "headers/allSprite.h"
 #include <stdio.h>
-Entity* AllSprite::enemyEntities[maxEnemyEntities];
-Entity* AllSprite::levelEntities[maxLevelEntities];
+Entity* AllSprite::enemyEntities[gb::maxEnemyEntities];
+Entity* AllSprite::levelEntities[gb::maxLevelEntities];
 Entity* AllSprite::player;
-Entity** AllSprite::entities[maxEntities];
+Entity** AllSprite::entities[gb::maxEntities];
 
 int AllSprite::init(){
     // initial other game entities
-    for(int i=0;i<maxEnemyEntities;i++){
+    for(int i=0;i<gb::maxEnemyEntities;i++){
         enemyEntities[i] = new Entity();
         enemyEntities[i]->setActive(false);
     }
-    for(int i=0;i<maxLevelEntities;i++){
+    
+    for(int i=0;i<gb::maxLevelEntities;i++){
         levelEntities[i] = new Entity();
         levelEntities[i]->setActive(false);
     }
-    enemyEntities[0] = new MovableEntity(vector2(0,300), TEX_sprite_testBlock, COL_default);
-    enemyEntities[1] = new MovableEntity(vector2(48,300), TEX_sprite_testBlock, COL_default);
+    // enemyEntities[0] = new MovableEntity(vector2(480-48,200), TEX_sprite_testBlock, COL_default);
+    // enemyEntities[1] = new MovableEntity(vector2(480,200), TEX_sprite_testBlock, COL_default);
     enemyEntities[2] = new MovableEntity(vector2(480,300), TEX_sprite_testBlock, COL_default);
-    for(int i=5;i<22;i++){
-        enemyEntities[i] = new MovableEntity(vector2(48*i,600), TEX_sprite_testBlock, COL_default);
-    }
 
-    // loadLevelEntities(gb::getLevelIndex());
-    player = new Player(vector2(480, 0));
+    loadLevelEntities(gb::getLevelIndex());
+    player = new Player(vector2(480-48, 300));
     
     // initial entities
-    for(int i=0;i<maxEntities;i++){
+    for(int i=0;i<gb::maxEntities;i++){
         entities[i] = new Entity*;
         *entities[i] = new Entity();
         (*entities[i])->setActive(false);
@@ -34,11 +32,11 @@ int AllSprite::init(){
 
     // link other game entities into entities
     int tmp = 0;
-    for(int i=0;i<maxLevelEntities;i++){
+    for(int i=0;i<gb::maxLevelEntities;i++){
         *entities[tmp] = levelEntities[i];
         tmp++;
     }
-    for(int i=0;i<maxEnemyEntities;i++){
+    for(int i=0;i<gb::maxEnemyEntities;i++){
         *entities[tmp] = enemyEntities[i];
         tmp++;
     }
@@ -46,22 +44,25 @@ int AllSprite::init(){
         *entities[tmp] = player;
         tmp++;
     }
+    for(int i=0;i<gb::maxEntities;i++){
+        (*entities[i])->setEntites(entities);
+    }
     return 0;
 }
 
 void AllSprite::handleEvent(SDL_Event e){
-    for(int i=0;i<maxEntities;i++) (*entities[i])->handleEvent(e);
+    for(int i=0;i<gb::maxEntities;i++) (*entities[i])->handleEvent(e);
 }
 
 void AllSprite::update(){
-    for(int i=0;i<maxEntities;i++) (*entities[i])->update();
-    collision();
+    for(int i=0;i<gb::maxEntities;i++) (*entities[i])->update();
 }
 
 void AllSprite::render(){
-    for(int i=0;i<maxEntities;i++) (*entities[i])->render();
+    for(int i=0;i<gb::maxEntities;i++) (*entities[i])->render();
 }
 
+/* about to dump them
 void AllSprite::collision(){
     Entity *a, *b;
     for(int i=0;i<maxEntities;i++){
@@ -72,22 +73,22 @@ void AllSprite::collision(){
             b = *entities[j];
             if(!b->getActive()) continue;
             if(a == b) continue;
+
             if(collided(a, b)){
                 blockH(a, b);
             }
+            if(collided(a, b)){
+                blockV(a, b);
+            }
             // check if a is on ground again. 'a->getVel.y == 0' is to check if the player is jumping or not
             if(a->getIsOnGround() && !isOnGroundAgain && a->getVel().y == 0){
-                Entity tmp = *a;
-                a = &tmp;
-                a->setPos(vector2(a->getPos().x, a->getPos().y+1));
-                a->setVel(vector2(a->getVel().x, 1));
+                if(onGroundAgain(*a, *b)){
+                    isOnGroundAgain = true;
+                }else{
+                    a->setIsOnGround(false);
+                }
             }
-            if(collided(a, b)){
-                blockV(a, b, isOnGroundAgain);
-            }
-            else{
-                if(!isOnGroundAgain && a->getIsOnGround()) a->setIsOnGround(false);
-            }
+
         }
     }
 }
@@ -95,7 +96,6 @@ void AllSprite::collision(){
 bool AllSprite::collided(Entity *a, Entity *b){
     CollideBox* aBox = a->getCollideBox();
     CollideBox* bBox = b->getCollideBox();
-    
     if( aBox->getBoxLeft() < bBox->getBoxRight() && 
         aBox->getBoxRight() > bBox->getBoxLeft() &&
         aBox->getBoxTop() < bBox->getBoxDown() && 
@@ -119,22 +119,30 @@ void AllSprite::blockH(Entity *a, Entity *b){
     }   
 }
 
-void AllSprite::blockV(Entity *a, Entity *b, bool &isOnGroundAgain){
+void AllSprite::blockV(Entity *a, Entity *b){
     CollideBox* aBox = a->getCollideBox();
     CollideBox* bBox = b->getCollideBox();
-        
-
+           
     if(a->getVel().y > 0){
         a->setPos(vector2(a->getPos().x, bBox->getBoxTop() - aBox->getBoxOffset().y - aBox->getBoxSize().y));
         a->setVel(vector2(a->getVel().x, 0));
         a->setIsOnGround(true);
-        isOnGroundAgain = true;
     }
     if(a->getVel().y < 0){
         a->setPos(vector2(a->getPos().x, bBox->getBoxDown() - aBox->getBoxOffset().y));
         a->setVel(vector2(a->getVel().x, 0));
     }
 }
+
+bool AllSprite::onGroundAgain(Entity tmp_a, Entity tmp_b){
+    tmp_a.getCollideBox()->setPos(new vector2(tmp_a.getPos().x, tmp_a.getPos().y+1));
+    if(collided(&tmp_a, &tmp_b)){
+        return true;
+    }
+    return false;
+}
+*/
+
 
 void AllSprite::loadLevelEntities(int index){
     vector<vector<int>>* levelCollideBox = new vector<vector<int>>;

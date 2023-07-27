@@ -16,6 +16,9 @@ public:
     static int getDelTicks() {return delTicks;}
     static int getLastTicks() {return lastTicks;}
     static int getLevelIndex() {return levelIndex;}
+    static const int maxEnemyEntities = 30;
+    static const int maxLevelEntities = 20;
+    static const int maxEntities = maxEnemyEntities + maxLevelEntities + 1;
 
     static void setWidth(int w) {SCREEN_WIDTH = w;}
     static void setHeight(int h) {SCREEN_HEIGHT = h;}
@@ -40,4 +43,5 @@ private:
     static int delTicks;
     static int lastTicks;
     static int levelIndex;
+
 };

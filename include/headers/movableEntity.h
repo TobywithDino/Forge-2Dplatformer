@@ -1,5 +1,6 @@
 #pragma once
 #include "headers/entity.h"
+#include "headers/collision.h"
 
 class MovableEntity : public Entity{
 public:

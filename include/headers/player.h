@@ -6,6 +6,10 @@ public:
     Player();
     Player(vector2 pos);
     void handleEvent(SDL_Event e) override;
-private:
+    void update() override;
+private: 
     double jumpSpeed;
+    bool left;
+    bool right;
+    bool jump;
 };

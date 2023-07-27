@@ -9,18 +9,19 @@ public:
     static void update();
     static void render();
 private:
+
+    /* about to dump them
     static void collision();
     static bool collided(Entity *a, Entity *b);
+    static bool onGroundAgain(Entity tmp_a, Entity tmp_b);
     static void blockH(Entity *a, Entity *b);
-    static void blockV(Entity *a, Entity *b, bool &isOnGroundAgain);
+    static void blockV(Entity *a, Entity *b);
+    */
     static void loadLevelEntities(int index);
 
-    static const int maxEnemyEntities = 30;
-    static const int maxLevelEntities = 20;
-    static const int maxEntities = maxEnemyEntities + maxLevelEntities + 1;
-    static Entity* enemyEntities[maxEnemyEntities];
-    static Entity* levelEntities[maxLevelEntities];
+    static Entity* enemyEntities[gb::maxEnemyEntities];
+    static Entity* levelEntities[gb::maxLevelEntities];
     static Entity* player;
 
-    static Entity** entities[maxEntities];
+    static Entity** entities[gb::maxEntities];
 };

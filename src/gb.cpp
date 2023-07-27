@@ -11,3 +11,6 @@ int gb::FPS;
 int gb::delTicks;
 int gb::lastTicks;
 int gb::levelIndex;
+static const int maxEnemyEntities = 30;
+static const int maxLevelEntities = 20;
+static const int maxEntities = maxEnemyEntities + maxLevelEntities + 1;

@@ -43,7 +43,6 @@ public:
     double getBoxDown() {return pos->y + box->at(1) + box->at(3);}
     vector2 getBoxOffset() {return vector2(box->at(0), box->at(1));}
     vector2 getBoxSize() {return vector2(box->at(2), box->at(3));}
-
 private:
     vector<int>* box;
     bool showCollideBox;

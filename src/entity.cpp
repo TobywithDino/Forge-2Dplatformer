@@ -6,8 +6,7 @@ Entity::Entity(){
     vel = vector2(0,0);
     tex = Texture::getTexture(TEX_sprite_testBlock);
     size = vector2(32, 32)*gb::getScale();
-    isFlip = false;
-    isOnGround = false;
+    isFlipping = false;
     collideBox = new CollideBox();
 }
 
@@ -17,8 +16,7 @@ Entity::Entity(vector2 pos, TextureType tType, CollideType cType){
     vel = vector2(0,0);
     tex = Texture::getTexture(tType);
     size = vector2(32, 32)*gb::getScale();
-    isFlip = false;
-    isOnGround = false;
+    isFlipping = false;
     collideBox = new CollideBox(cType, &this->pos);
 }
 
@@ -28,8 +26,7 @@ Entity::Entity(vector2 pos, TextureType tType, CollideType cType, vector2 size){
     vel = vector2(0,0);
     tex = Texture::getTexture(tType);
     this->size = size*gb::getScale();
-    isFlip = false;
-    isOnGround = false;
+    isFlipping = false;
     collideBox = new CollideBox(cType, &this->pos);
 }
 
@@ -50,7 +47,7 @@ void Entity::render(){
     dst.x = pos.x;
     dst.y = pos.y;
     SDL_RendererFlip flip = SDL_FLIP_NONE;
-    if(isFlip) flip = SDL_FLIP_HORIZONTAL;
+    if(isFlipping) flip = SDL_FLIP_HORIZONTAL;
     SDL_RenderCopyEx(gb::getRenderer(), tex, NULL, &dst, 0, NULL, flip);
     collideBox->render();
 }
