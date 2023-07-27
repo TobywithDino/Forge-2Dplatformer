@@ -20,6 +20,6 @@ public:
         return vector2(x-b.x, y-b.y);
     }
 
-    double x;
-    double y;
+    double x = 0;
+    double y = 0;
 };

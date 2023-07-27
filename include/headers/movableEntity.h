@@ -11,7 +11,13 @@ public:
     virtual void update() override;
     virtual void render() override;
 private:
+    void updateXPos(vector2& dMove, CollideBox tmpBox);
+    // variables for JUMPING
     const double gravity = 5000;
+    double airSpeed = 0;
+    double jumpSpeed = 1500;
+    double fallSpeedAfterCollision = 700;
+    bool inAir = false;
 protected:
-    double speed;
+    double speed = 100;
 };

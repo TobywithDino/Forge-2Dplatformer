@@ -52,6 +52,11 @@ int AllSprite::init(){
 
 void AllSprite::handleEvent(SDL_Event e){
     for(int i=0;i<gb::maxEntities;i++) (*entities[i])->handleEvent(e);
+    for(int i=0;i<gb::maxEntities;i++) {
+        if((*entities[i])->getActive()){
+            (*entities[i])->getCollideBox()->handleEvent(e);
+        }
+    }
 }
 
 void AllSprite::update(){
@@ -60,6 +65,11 @@ void AllSprite::update(){
 
 void AllSprite::render(){
     for(int i=0;i<gb::maxEntities;i++) (*entities[i])->render();
+    for(int i=0;i<gb::maxEntities;i++) {
+        if((*entities[i])->getActive()){
+            (*entities[i])->getCollideBox()->render();
+        }
+    }
 }
 
 /* about to dump them

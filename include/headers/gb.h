@@ -43,5 +43,4 @@ private:
     static int delTicks;
     static int lastTicks;
     static int levelIndex;
-
 };

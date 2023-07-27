@@ -6,6 +6,4 @@ public:
     StaticEntity();
     StaticEntity(vector<int>* box);
     virtual void render() override;
-private:
-
 };

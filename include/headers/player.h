@@ -8,8 +8,8 @@ public:
     void handleEvent(SDL_Event e) override;
     void update() override;
 private: 
-    double jumpSpeed;
-    bool left;
-    bool right;
-    bool jump;
+    double jumpSpeed = 1500;
+    bool left = false;
+    bool right = false;
+    bool jump = false;
 };

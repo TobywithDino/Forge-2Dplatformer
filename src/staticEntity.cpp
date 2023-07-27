@@ -6,10 +6,10 @@ StaticEntity::StaticEntity() : Entity(){
 }
 
 StaticEntity::StaticEntity(vector<int>* box) : Entity(){
-    collideBox = new CollideBox(box);
+    collideBox = CollideBox(box);
 }
 
 void StaticEntity::render(){
     if(!isActive) return;
-    collideBox->render();
+    collideBox.render();
 }

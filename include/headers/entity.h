@@ -14,17 +14,19 @@ public:
     
     void setEntites(Entity*** e) {entities = e;}
     void setActive(bool isActive) {this->isActive = isActive;}
+    void setCollidedEntityBox(CollideBox c) {this->collidedEntityBox = c;}
 
     bool getActive() {return isActive;}
-    CollideBox* getCollideBox() {return collideBox;}
+    CollideBox* getCollideBox() {return &collideBox;}
 private:
-    SDL_Texture* tex;
+    SDL_Texture* tex = Texture::getTexture(TEX_sprite_testBlock);
 protected:
-    bool isActive;
-    vector2 pos;
-    vector2 vel;
-    vector2 size;
-    bool isFlipping;
-    CollideBox* collideBox;
+    bool isActive = true;
+    vector2 pos = vector2(0,0);
+    vector2 vel = vector2(0,0);
+    vector2 size = vector2(32,32) * gb::getScale();
+    bool isFlipping = false;
+    CollideBox collideBox = CollideBox();
     Entity*** entities;
+    CollideBox collidedEntityBox = CollideBox();
 };

@@ -152,22 +152,16 @@ vector<vector<int>>* CollideBox::getLevelCollideBox(LevelCollideType type){
 */
 
 CollideBox::CollideBox(){
-    box = CollideBox::getCollideBox(COL_default);
-    showCollideBox = false;
-    this->pos = new vector2(0, 0);
 }
 
 CollideBox::CollideBox(CollideType type, vector2* pos){
     box = CollideBox::getCollideBox(type);
-    showCollideBox = false;
-    this->pos = pos;
+    this->entityPos = pos;
 }
 
 // for level box
 CollideBox::CollideBox(vector<int>* box){
     this->box = box;
-    showCollideBox = false;
-    this->pos = new vector2(0, 0);
 }
 
 void CollideBox::handleEvent(SDL_Event e){
@@ -186,8 +180,8 @@ void CollideBox::render(){
     int boxWidth = box->at(2);
     int boxHeight = box->at(3);
     SDL_Rect dst;
-    dst.x =  pos->x + offsetX;
-    dst.y =  pos->y + offsetY;
+    dst.x =  entityPos->x + offsetX;
+    dst.y =  entityPos->y + offsetY;
     dst.w = boxWidth;
     dst.h = boxHeight;
     SDL_SetRenderDrawColor(gb::getRenderer(), 0, 255, 0, 255);

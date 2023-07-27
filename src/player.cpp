@@ -3,18 +3,10 @@
 
 Player::Player() : MovableEntity(vector2(0,0), TEX_sprite_player, COL_player){
     speed = 400;
-    jumpSpeed = 1500;
-    right = false;
-    left = false;
-    jump = false;
 }
 
 Player::Player(vector2 pos) : MovableEntity(pos, TEX_sprite_player, COL_player){
     speed = 400;
-    jumpSpeed = 1500;
-    right = false;
-    left = false;
-    jump = false;
 }
 
 void Player::handleEvent(SDL_Event e){

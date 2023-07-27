@@ -36,15 +36,15 @@ public:
     CollideBox(vector<int>* box);
     void handleEvent(SDL_Event e);
     void render();
-    void setPos(vector2* pos) {this->pos = pos;}
-    double getBoxLeft() {return pos->x + box->at(0);}
-    double getBoxRight() {return pos->x + box->at(0) + box->at(2);}
-    double getBoxTop() {return pos->y + box->at(1);}
-    double getBoxDown() {return pos->y + box->at(1) + box->at(3);}
+    void setPos(vector2* pos) {this->entityPos = pos;}
+    double getBoxLeft() {return entityPos->x + box->at(0);}
+    double getBoxRight() {return entityPos->x + box->at(0) + box->at(2);}
+    double getBoxTop() {return entityPos->y + box->at(1);}
+    double getBoxDown() {return entityPos->y + box->at(1) + box->at(3);}
     vector2 getBoxOffset() {return vector2(box->at(0), box->at(1));}
     vector2 getBoxSize() {return vector2(box->at(2), box->at(3));}
 private:
-    vector<int>* box;
-    bool showCollideBox;
-    vector2* pos;
+    vector<int>* box = CollideBox::getCollideBox(COL_default);
+    bool showCollideBox = false;
+    vector2* entityPos = new vector2(0,0);
 };
