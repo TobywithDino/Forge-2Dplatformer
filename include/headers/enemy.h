@@ -5,4 +5,5 @@ class Enemy : public MovableEntity{
 public:
     Enemy();
     Enemy(vector2 pos, TextureType tType, CollideBoxType cbType);
+    void update() override;
 };

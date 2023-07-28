@@ -1,11 +1,11 @@
 #pragma once
-#include "headers/gb.h"
 #include "headers/vector2.h"
 #include "headers/map.h"
 
 enum CollideBoxType{
     COLBOX_default,
     COLBOX_player,
+    COLBOX_crawler
 };
 enum LevelCollideBoxType{
     COLBOX_level_1,

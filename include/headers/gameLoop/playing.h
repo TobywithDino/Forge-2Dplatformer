@@ -8,6 +8,4 @@ public:
     void handleEvent() override;
     void update() override;
     void render() override;
-private:
-    bool spawnEnties = false;
 };

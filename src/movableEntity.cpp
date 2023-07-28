@@ -14,7 +14,6 @@ void MovableEntity::handleEvent(SDL_Event e){
 }
 
 void MovableEntity::update(){
-    Entity::update();
     
     vector2 dMove(0, 0);
 
@@ -54,6 +53,7 @@ void MovableEntity::update(){
     }
 
     pos = pos + dMove;
+    Entity::update();
 }
 
 void MovableEntity::updateXPos(vector2& dMove){

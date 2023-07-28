@@ -25,6 +25,8 @@ void Entity::handleEvent(SDL_Event e){
 
 void Entity::update(){
     if(!isActive) return;
+    if(vel.x > 0) isFlipping = false;
+    if(vel.x < 0) isFlipping = true;
 }
 
 void Entity::render(){

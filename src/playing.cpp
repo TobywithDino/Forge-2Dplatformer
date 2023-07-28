@@ -1,4 +1,5 @@
 #include "headers/gameLoop/playing.h"
+bool GameLoop::spawnedEntities = false;
 
 void Playing::handleEvent(){
     SDL_Event event;
@@ -11,9 +12,9 @@ void Playing::handleEvent(){
 }
   
 void Playing::update(){
-    if(!spawnEnties){
+    if(!spawnedEntities){
         AllSprite::loadGameEntities();
-        spawnEnties = true;
+        spawnedEntities = true;
     }
     AllSprite::update();
 }

@@ -6,7 +6,7 @@ void Menu::handleEvent(){
         if(event.type == SDL_QUIT) gb::setRunning(false);
         else{
             if(event.type == SDL_KEYDOWN){
-                if(event.key.keysym.scancode == SDL_SCANCODE_SPACE){
+                if(event.key.keysym.scancode == SDL_SCANCODE_Z){
                     gb::setGameState(GS_Playing);
                 }
             }

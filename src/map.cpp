@@ -57,6 +57,20 @@ int Map::loadSurface(const char* path, vector<SDL_Surface*>& surfaces){
 }
 
 void Map::render(int index){
+    TextureType texType;
+    switch (index)
+    {
+    case 0:
+        texType = TEX_level_1;
+        break;
+    case 1:
+        texType = TEX_level_2;
+        break;
+    default:
+        texType = TEX_sprite_testBlock;
+        break;
+    }
+
     int mapWidth = levels[index][0];
     int mapHeight = levels[index][1];
     int pixelSizeW = gb::getWidth() / mapWidth;
@@ -70,8 +84,7 @@ void Map::render(int index){
             dst.h = pixelSizeH;
             dst.x = j * pixelSizeW;
             dst.y = i * pixelSizeH;
-            SDL_SetRenderDrawColor(gb::getRenderer(), 255, 255, 255, 255);
-            SDL_RenderFillRect(gb::getRenderer(), &dst);
+            SDL_RenderCopy(gb::getRenderer(), Texture::getTexture(texType), NULL, &dst);
         }
     }
 

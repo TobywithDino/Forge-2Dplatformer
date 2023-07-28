@@ -53,7 +53,7 @@ int AllSprite::init(){
 void AllSprite::loadGameEntities(){
     // enemyEntities[2] = new MovableEntity(vector2(480-48,200), TEX_sprite_testBlock, COLBOX_default);
     // enemyEntities[1] = new MovableEntity(vector2(480,200), TEX_sprite_testBlock, COLBOX_default);
-    enemyEntities[0] = new Enemy(vector2(480,200), TEX_sprite_testBlock, COLBOX_default);
+    enemyEntities[0] = new Enemy(vector2(50,50), TEX_sprite_crawler, COLBOX_crawler);
     loadLevelEntities(gb::getLevelIndex());
     player = new Player(vector2(480-48, 350));
 }

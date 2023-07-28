@@ -12,14 +12,14 @@ void Player::handleEvent(SDL_Event e){
     MovableEntity::handleEvent(e);
 
     if(e.type == SDL_KEYDOWN){
-        if(e.key.keysym.scancode == SDL_SCANCODE_D) right = true;
-        if(e.key.keysym.scancode == SDL_SCANCODE_A) left = true;
-        if(e.key.keysym.scancode == SDL_SCANCODE_SPACE) jumping = true;
+        if(e.key.keysym.scancode == SDL_SCANCODE_RIGHT) right = true;
+        if(e.key.keysym.scancode == SDL_SCANCODE_LEFT) left = true;
+        if(e.key.keysym.scancode == SDL_SCANCODE_Z) jumping = true;
     }
     if(e.type == SDL_KEYUP){
-        if(e.key.keysym.scancode == SDL_SCANCODE_D) right = false;
-        if(e.key.keysym.scancode == SDL_SCANCODE_A) left = false;
-        if(e.key.keysym.scancode == SDL_SCANCODE_SPACE) jumping = false;
+        if(e.key.keysym.scancode == SDL_SCANCODE_RIGHT) right = false;
+        if(e.key.keysym.scancode == SDL_SCANCODE_LEFT) left = false;
+        if(e.key.keysym.scancode == SDL_SCANCODE_Z) jumping = false;
     }
 }
 
@@ -29,13 +29,15 @@ void Player::update(){
     if(left) tmpVel.x -= speed;
     if(jumping) jump(tmpVel);
 
-    if(tmpVel.x < 0) isFlipping = true;
-    else isFlipping = false;
-
     vel = tmpVel;
     if(Collision::isColliding(collideBox, this, COL_enemy)){
-        printf("player is hit by enemy\n");
+        gb::setGameState(GS_GameOver);
     }
+    if(pos.y > gb::getHeight()){
+        gb::setGameState(GS_GameOver);
+    }
+
+
     MovableEntity::update();
 }
 

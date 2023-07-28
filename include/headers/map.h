@@ -1,5 +1,6 @@
 #pragma once
-#include "headers/gb.h"
+#include "headers/texture.h"
+
 class Map{
 public:
     static int init();

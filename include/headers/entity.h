@@ -1,6 +1,5 @@
 #pragma once
 #include "headers/collideBox.h" 
-#include "headers/texture.h"
 
 class Entity{
 // static part
