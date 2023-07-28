@@ -1,11 +1,10 @@
 #include "headers/player.h"
-#include <stdio.h>
 
-Player::Player() : MovableEntity(vector2(0,0), TEX_sprite_player, COL_player){
+Player::Player() : MovableEntity(vector2(0,0), TEX_sprite_player, COLBOX_player, COL_player){
     speed = 400;
 }
 
-Player::Player(vector2 pos) : MovableEntity(pos, TEX_sprite_player, COL_player){
+Player::Player(vector2 pos) : MovableEntity(pos, TEX_sprite_player, COLBOX_player, COL_player){
     speed = 400;
 }
 
@@ -34,6 +33,9 @@ void Player::update(){
     else isFlipping = false;
 
     vel = tmpVel;
+    if(Collision::isColliding(collideBox, this, COL_enemy)){
+        printf("player is hit by enemy\n");
+    }
     MovableEntity::update();
 }
 

@@ -1,20 +1,22 @@
 #include "headers/entity.h"
-#include <stdio.h>
+
+Entity*** Entity::entities;
+
 Entity::Entity(){
 }
 
-Entity::Entity(vector2 pos, TextureType tType, CollideType cType){
+Entity::Entity(vector2 pos, TextureType tType, CollideBoxType cbType, CollideType cType){
     this->pos = pos;
     tex = Texture::getTexture(tType);
-    collideBox = CollideBox(cType, &this->pos);
+    collideBox = CollideBox(cbType, &this->pos, cType);
 }
 
-Entity::Entity(vector2 pos, TextureType tType, CollideType cType, vector2 size){
+Entity::Entity(vector2 pos, TextureType tType, CollideBoxType cbType, CollideType cType, vector2 size){
     this->pos = pos;
     vel = vector2(0,0);
     tex = Texture::getTexture(tType);
     this->size = size*gb::getScale();
-    collideBox = CollideBox(cType, &this->pos);
+    collideBox = CollideBox(cbType, &this->pos, cType);
 }
 
 void Entity::handleEvent(SDL_Event e){

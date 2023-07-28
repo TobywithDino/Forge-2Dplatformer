@@ -1,5 +1,4 @@
 #include "headers/texture.h"
-#include <stdio.h>
 
 vector<SDL_Texture*> Texture::spriteTextures;
 

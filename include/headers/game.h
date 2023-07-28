@@ -1,15 +1,15 @@
 #pragma once
-#include "SDL2/SDL.h"
-#include "SDL2/SDL_image.h"
-#include "headers/gb.h"
-#include "headers/allSprite.h"
+#include "headers/gameLoop/menu.h"
+#include "headers/gameLoop/playing.h"
+#include "headers/gameLoop/gameOver.h"
 
 class Game{
 public:
     Game();
     int init();
+    void start();
 private:
-    void handleEvent();
-    void update();
-    void render();
+    Menu menu = Menu();
+    Playing playing = Playing();
+    GameOver gameOver = GameOver();
 };

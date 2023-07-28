@@ -1,5 +1,4 @@
 #include "headers/map.h"
-#include <stdio.h>
 
 
 vector<vector<int>> Map::levels;

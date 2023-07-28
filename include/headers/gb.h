@@ -1,5 +1,8 @@
 #pragma once
 #include "SDL2/SDL.h"
+#include "SDL2/SDL_image.h"
+#include "headers/gameState.h"
+#include <stdio.h>
 #include <vector>
 using namespace std;
 
@@ -16,7 +19,8 @@ public:
     static int getFrameTicks() {return frameTicks;}
     static int getLastTicks() {return lastTicks;}
     static int getLevelIndex() {return levelIndex;}
-    static const int maxEnemyEntities = 30;
+    static GameState getGameState() {return state;}
+    static const int maxEnemyEntities = 20;
     static const int maxLevelEntities = 20;
     static const int maxEntities = maxEnemyEntities + maxLevelEntities + 1;
 
@@ -31,6 +35,7 @@ public:
     static void setFrameTicks(int d) {frameTicks = d;}
     static void setLastTicks(int l) {lastTicks = l;}
     static void setLevelIndex(int l) {levelIndex = l;}
+    static void setGameState(GameState s) {state = s;}
 private:
     static int SCREEN_WIDTH;
     static int SCREEN_HEIGHT;
@@ -43,4 +48,5 @@ private:
     static int frameTicks;
     static int lastTicks;
     static int levelIndex;
+    static GameState state;
 };

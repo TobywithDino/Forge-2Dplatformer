@@ -11,3 +11,4 @@ int gb::FPS;
 int gb::frameTicks;
 int gb::lastTicks;
 int gb::levelIndex;
+GameState gb::state;

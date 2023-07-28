@@ -1,9 +1,9 @@
 #include "headers/collision.h"
-#include <stdio.h>
 
-bool Collision::isColliding(CollideBox aBox, Entity* a, Entity*** entities){
+bool Collision::isColliding(CollideBox aBox, Entity* a, CollideType colType){
+    Entity*** entities = Entity::getEntities();
     for(int i=0;i<gb::maxEntities;i++){
-        if(!(*entities[i])->getActive() || (*entities[i]) == a) continue;
+        if(!(*entities[i])->getActive() || (*entities[i]) == a || (*entities[i])->getCollideBox()->getCollideType() != colType) continue;
         CollideBox* bBox = (*entities[i])->getCollideBox();
         if( aBox.getBoxLeft() < bBox->getBoxRight() && 
             aBox.getBoxRight() > bBox->getBoxLeft() &&

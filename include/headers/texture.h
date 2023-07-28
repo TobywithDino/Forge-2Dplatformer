@@ -1,8 +1,5 @@
 #pragma once
-#include "SDL2/SDL_image.h"
 #include "headers/gb.h"
-#include <vector>
-using namespace std;
 
 enum TextureType{
     TEX_sprite_testBlock,

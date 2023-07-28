@@ -1,18 +1,24 @@
 #pragma once
-#include "SDL2/SDL.h"
 #include "headers/collideBox.h" 
 #include "headers/texture.h"
 
 class Entity{
+// static part
+public:
+    static void setEntities(Entity*** e) {entities = e;}
+    static Entity*** getEntities() {return entities;}
+private:
+    static Entity*** entities;
+
+// non-static part
 public:
     Entity();
-    Entity(vector2 pos, TextureType tType, CollideType cType);
-    Entity(vector2 pos, TextureType tType, CollideType cType, vector2 size);
+    Entity(vector2 pos, TextureType tType, CollideBoxType cbType, CollideType cType);
+    Entity(vector2 pos, TextureType tType, CollideBoxType cbType, CollideType cType, vector2 size);
     virtual void handleEvent(SDL_Event e);
     virtual void update();
     virtual void render();
-    
-    void setEntites(Entity*** e) {entities = e;}
+
     void setActive(bool isActive) {this->isActive = isActive;}
     void setCollidedEntityBox(CollideBox c) {this->collidedEntityBox = c;}
 
@@ -27,6 +33,5 @@ protected:
     vector2 size = vector2(32,32) * gb::getScale();
     bool isFlipping = false;
     CollideBox collideBox = CollideBox();
-    Entity*** entities;
     CollideBox collidedEntityBox = CollideBox();
 };

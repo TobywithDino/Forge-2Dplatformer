@@ -1,5 +1,4 @@
 #include "headers/staticEntity.h"
-#include <stdio.h>
 
 StaticEntity::StaticEntity() : Entity(){
 

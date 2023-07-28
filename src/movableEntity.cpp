@@ -1,13 +1,12 @@
 #include "headers/movableEntity.h"
-#include <stdio.h>
 
 MovableEntity::MovableEntity() : Entity(){
 }
 
-MovableEntity::MovableEntity(vector2 pos, TextureType tType, CollideType cType) : Entity(pos, tType, cType){
+MovableEntity::MovableEntity(vector2 pos, TextureType tType, CollideBoxType cbType, CollideType cType) : Entity(pos, tType, cbType, cType){
 }
 
-MovableEntity::MovableEntity(vector2 pos, TextureType tType, CollideType cType, vector2 size) : Entity(pos, tType, cType, size){
+MovableEntity::MovableEntity(vector2 pos, TextureType tType, CollideBoxType cbType, CollideType cType, vector2 size) : Entity(pos, tType, cbType, cType, size){
 }
 
 void MovableEntity::handleEvent(SDL_Event e){
@@ -22,7 +21,7 @@ void MovableEntity::update(){
     if(!inAir){
         CollideBox tmpBox = collideBox;
         tmpBox.setPos(new vector2(pos.x, pos.y+1));
-        if(!Collision::isColliding(tmpBox, this, entities)){
+        if(!Collision::isColliding(tmpBox, this, COL_level)){
             inAir = true;
         }
     }
@@ -31,7 +30,7 @@ void MovableEntity::update(){
     if(inAir){
         CollideBox tmpBox = collideBox;
         tmpBox.setPos(new vector2(pos.x, pos.y+vel.y* ((double)gb::getFrameTicks() / 1000)));
-        if(!Collision::isColliding(tmpBox, this, entities)){
+        if(!Collision::isColliding(tmpBox, this, COL_level)){
             // if it is not hitting any roof or floor, move vertically
             dMove.y += vel.y * ((double)gb::getFrameTicks() / 1000);
             vel.y += gravity * ((double)gb::getFrameTicks() / 1000);
@@ -61,7 +60,7 @@ void MovableEntity::updateXPos(vector2& dMove){
     // check horizontally
     CollideBox tmpBox = collideBox;
     tmpBox.setPos(new vector2(pos.x+vel.x * ((double)gb::getFrameTicks() / 1000), pos.y));
-    if(!Collision::isColliding(tmpBox, this, entities)){
+    if(!Collision::isColliding(tmpBox, this, COL_level)){
         // if it's not hitting walls, move horizontally
         dMove.x += vel.x * ((double)gb::getFrameTicks() / 1000);
     }

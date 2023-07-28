@@ -1,5 +1,4 @@
 #include "headers/collideBox.h"
-#include <stdio.h>
 
 vector<vector<int>> CollideBox::collideBoxes;
 vector<vector<int>> CollideBox::levelCollideBoxes_1;
@@ -124,13 +123,13 @@ void CollideBox::loadPixelFromSurface(vector<SDL_Surface*> surfaces, vector<vect
     }
 }
 
-vector<int>* CollideBox::getCollideBox(CollideType type){
+vector<int>* CollideBox::getCollideBox(CollideBoxType type){
     switch (type)
     {
-    case COL_default:
+    case COLBOX_default:
         return &collideBoxes[0];
         break;
-    case COL_player:
+    case COLBOX_player:
         return &collideBoxes[1];
         break;
     default:
@@ -140,13 +139,13 @@ vector<int>* CollideBox::getCollideBox(CollideType type){
     }
 }
 
-vector<vector<int>>* CollideBox::getLevelCollideBox(LevelCollideType type){
+vector<vector<int>>* CollideBox::getLevelCollideBox(LevelCollideBoxType type){
     switch (type)
     {
-    case COL_level_1:
+    case COLBOX_level_1:
         return &levelCollideBoxes_1;
         break;
-    case COL_level_2:
+    case COLBOX_level_2:
         return &levelCollideBoxes_2;
         break;
     default:
@@ -163,14 +162,16 @@ vector<vector<int>>* CollideBox::getLevelCollideBox(LevelCollideType type){
 CollideBox::CollideBox(){
 }
 
-CollideBox::CollideBox(CollideType type, vector2* pos){
-    box = CollideBox::getCollideBox(type);
+CollideBox::CollideBox(CollideBoxType boxType, vector2* pos, CollideType type){
+    box = CollideBox::getCollideBox(boxType);
     this->entityPos = pos;
+    this->collideType = type;
 }
 
 // for level box
 CollideBox::CollideBox(vector<int>* box){
     this->box = box;
+    this->collideType = COL_level;
 }
 
 void CollideBox::handleEvent(SDL_Event e){
