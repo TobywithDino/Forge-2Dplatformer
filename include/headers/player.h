@@ -9,7 +9,7 @@ public:
     void update() override;
 private: 
     void jump(vector2& tmpVel);
-    double jumpSpeed = 1400;
+    double jumpSpeed = 1300;
     bool left = false;
     bool right = false;
     bool jumping = false;

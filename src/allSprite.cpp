@@ -3,6 +3,7 @@ Entity* AllSprite::enemyEntities[gb::maxEnemyEntities];
 Entity* AllSprite::levelEntities[gb::maxLevelEntities];
 Entity* AllSprite::player;
 Entity** AllSprite::entities[gb::maxEntities];
+int AllSprite::enemyIndex = 0;
 
 int AllSprite::init(){
     // initialize level entities
@@ -50,17 +51,32 @@ int AllSprite::init(){
     return 0;
 }
 
-void AllSprite::loadGameEntities(){
-    // enemyEntities[2] = new MovableEntity(vector2(480-48,200), TEX_sprite_testBlock, COLBOX_default);
-    // enemyEntities[1] = new MovableEntity(vector2(480,200), TEX_sprite_testBlock, COLBOX_default);
-    enemyEntities[0] = new Enemy(vector2(50,50), TEX_sprite_crawler, COLBOX_crawler);
-    loadLevelEntities(gb::getLevelIndex());
-    player = new Player(vector2(480-48, 350));
+void AllSprite::spawnEnemy(EnemyType type, vector2 pos){
+    int tmp = 0;
+    for(int i=0;i<gb::maxEnemyEntities;i++) if(enemyEntities[i]->getActive()) tmp++;
+    if(tmp == gb::maxEnemyEntities) return;
+    
+    switch (type)
+    {
+    case ENEMY_crawler:
+        enemyEntities[enemyIndex] = new Enemy(pos, TEX_sprite_crawler, COLBOX_crawler);
+        break;
+    default:
+        printf("Error : AllSprite::spawnEnemy can't spawn correct type.\n");
+        break;
+    }
+    enemyIndex++;
+    enemyIndex %= gb::maxEnemyEntities;
 }
 
-void AllSprite::loadLevelEntities(int index){
+
+void AllSprite::spawnPlayer(vector2 pos){
+    player = new Player(pos);
+}
+
+void AllSprite::spawnLevel(int levelIndex){
     vector<vector<int>>* levelCollideBox = new vector<vector<int>>;
-    switch (index)
+    switch (levelIndex)
     {
     case 0:
         levelCollideBox = CollideBox::getLevelCollideBox(COLBOX_level_1);
@@ -76,12 +92,16 @@ void AllSprite::loadLevelEntities(int index){
     }
 }
 
+void AllSprite::clearEnemy(){
+    for(int i=0;i<gb::maxEnemyEntities;i++){
+        enemyEntities[i]->setActive(false);
+    }
+}
+
 void AllSprite::handleEvent(SDL_Event e){
     for(int i=0;i<gb::maxEntities;i++) (*entities[i])->handleEvent(e);
     for(int i=0;i<gb::maxEntities;i++) {
-        if((*entities[i])->getActive()){
-            (*entities[i])->getCollideBox()->handleEvent(e);
-        }
+        CollideBox::handleEvent(e);
     }
 }
 

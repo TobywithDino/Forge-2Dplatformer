@@ -36,7 +36,9 @@ void Player::update(){
     if(pos.y > gb::getHeight()){
         gb::setGameState(GS_GameOver);
     }
-
+    if(pos.y < 0){
+        vel.x = 0;
+    }
 
     MovableEntity::update();
 }

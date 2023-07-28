@@ -3,6 +3,7 @@
 vector<vector<int>> CollideBox::collideBoxes;
 vector<vector<int>> CollideBox::levelCollideBoxes_1;
 vector<vector<int>> CollideBox::levelCollideBoxes_2;
+bool CollideBox::showCollideBox = false;
 /*
         static part
 */
@@ -179,7 +180,7 @@ CollideBox::CollideBox(vector<int>* box){
 
 void CollideBox::handleEvent(SDL_Event e){
     if(e.type == SDL_KEYDOWN){
-        if(e.key.keysym.scancode == SDL_SCANCODE_Q){
+        if(e.key.keysym.scancode == SDL_SCANCODE_C){
             if(showCollideBox) showCollideBox = false;
             else showCollideBox = true;
         }

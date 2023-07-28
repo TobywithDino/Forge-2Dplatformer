@@ -39,7 +39,7 @@ public:
     CollideBox();
     CollideBox(CollideBoxType boxType, vector2* pos, CollideType type);
     CollideBox(vector<int>* box);
-    void handleEvent(SDL_Event e);
+    static void handleEvent(SDL_Event e);
     void render();
     void setPos(vector2* pos) {this->entityPos = pos;}
     double getBoxLeft() {return entityPos->x + box->at(0);}
@@ -51,7 +51,7 @@ public:
     CollideType getCollideType() {return collideType;}
 private:
     vector<int>* box = CollideBox::getCollideBox(COLBOX_default);
-    bool showCollideBox = false;
+    static bool showCollideBox;
     vector2* entityPos = new vector2(0,0);
     CollideType collideType = COL_sprite;
 };

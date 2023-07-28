@@ -1,7 +1,7 @@
 #pragma once
 #include "headers/gb.h"
 #include "headers/gameLoop/gameLoop.h"
-#include "headers/allSprite.h"
+#include "headers/levelSpawner.h"
 
 class Playing : public GameLoop{
 public:

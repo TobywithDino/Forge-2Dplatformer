@@ -1,5 +1,4 @@
 #include "headers/gameLoop/playing.h"
-bool GameLoop::spawnedEntities = false;
 
 void Playing::handleEvent(){
     SDL_Event event;
@@ -12,10 +11,7 @@ void Playing::handleEvent(){
 }
   
 void Playing::update(){
-    if(!spawnedEntities){
-        AllSprite::loadGameEntities();
-        spawnedEntities = true;
-    }
+    LevelSpawner::update(gb::getLevelIndex());
     AllSprite::update();
 }
 

@@ -16,8 +16,8 @@ public:
     static SDL_Window* getWindow() {return window;}
     static SDL_Renderer* getRenderer() {return renderer;}
     static int getFPS() {return FPS;}
-    static int getFrameTicks() {return frameTicks;}
-    static int getLastTicks() {return lastTicks;}
+    static Uint64 getFrameTicks() {return frameTicks;}
+    static Uint64 getLastTicks() {return lastTicks;}
     static int getLevelIndex() {return levelIndex;}
     static GameState getGameState() {return state;}
     static const int maxEnemyEntities = 20;
@@ -32,8 +32,8 @@ public:
     static void setWindow(SDL_Window* window) {gb::window = window;}
     static void setRenderer(SDL_Renderer* renderer) {gb::renderer = renderer;}
     static void setFPS(int f) {FPS = f;}
-    static void setFrameTicks(int d) {frameTicks = d;}
-    static void setLastTicks(int l) {lastTicks = l;}
+    static void setFrameTicks(Uint64 d) {frameTicks = d;}
+    static void setLastTicks(Uint64 l) {lastTicks = l;}
     static void setLevelIndex(int l) {levelIndex = l;}
     static void setGameState(GameState s) {state = s;}
 private:
@@ -45,8 +45,8 @@ private:
     static SDL_Renderer* renderer;
     static bool running;
     static int FPS;
-    static int frameTicks;
-    static int lastTicks;
+    static Uint64 frameTicks;
+    static Uint64 lastTicks;
     static int levelIndex;
     static GameState state;
 };
