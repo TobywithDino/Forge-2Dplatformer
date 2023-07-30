@@ -10,5 +10,4 @@ StaticEntity::StaticEntity(vector<int>* box) : Entity(){
 
 void StaticEntity::render(){
     if(!isActive) return;
-    collideBox.render();
 }

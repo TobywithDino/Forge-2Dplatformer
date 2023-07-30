@@ -1,7 +1,5 @@
 #pragma once
-#include "headers/player.h"
-#include "headers/staticEntity.h"
-#include "headers/enemy.h"
+#include "headers/entity.h"
 
 class AllSprite{
 public:
@@ -9,16 +7,16 @@ public:
     static void handleEvent(SDL_Event e);
     static void update();
     static void render();
-
-    static void spawnLevel(int levelIndex);
-    static void spawnEnemy(EnemyType type, vector2 pos);
-    static void spawnPlayer(vector2 pos);
-    static void clearEnemy();
+    static void addEnemy(Entity* e);
+    static void addPlayer(Entity* e);
+    static void addLevelEntity(Entity* e);
+    static bool isEnemyFull();
 private:
     static Entity* enemyEntities[gb::maxEnemyEntities];
-    static int enemyIndex;
     static Entity* levelEntities[gb::maxLevelEntities];
     static Entity* player;
+    static int enemyIndex;
+    static int levelIndex;
 
     static Entity** entities[gb::maxEntities];
 };

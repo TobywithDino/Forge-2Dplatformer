@@ -4,6 +4,7 @@ Entity* AllSprite::levelEntities[gb::maxLevelEntities];
 Entity* AllSprite::player;
 Entity** AllSprite::entities[gb::maxEntities];
 int AllSprite::enemyIndex = 0;
+int AllSprite::levelIndex = 0;
 
 int AllSprite::init(){
     // initialize level entities
@@ -19,7 +20,7 @@ int AllSprite::init(){
     }
 
     // initialize player entity
-    player = new Player();
+    player = new Entity();
     player->setActive(false);
 
     // initialize entities
@@ -44,58 +45,8 @@ int AllSprite::init(){
         tmp++;
     }
 
-    // for(int i=0;i<gb::maxEntities;i++){
-    //     (*entities[i])->setEntites(entities);
-    // }
     Entity::setEntities(entities);
     return 0;
-}
-
-void AllSprite::spawnEnemy(EnemyType type, vector2 pos){
-    int tmp = 0;
-    for(int i=0;i<gb::maxEnemyEntities;i++) if(enemyEntities[i]->getActive()) tmp++;
-    if(tmp == gb::maxEnemyEntities) return;
-    
-    switch (type)
-    {
-    case ENEMY_crawler:
-        enemyEntities[enemyIndex] = new Enemy(pos, TEX_sprite_crawler, COLBOX_crawler);
-        break;
-    default:
-        printf("Error : AllSprite::spawnEnemy can't spawn correct type.\n");
-        break;
-    }
-    enemyIndex++;
-    enemyIndex %= gb::maxEnemyEntities;
-}
-
-
-void AllSprite::spawnPlayer(vector2 pos){
-    player = new Player(pos);
-}
-
-void AllSprite::spawnLevel(int levelIndex){
-    vector<vector<int>>* levelCollideBox = new vector<vector<int>>;
-    switch (levelIndex)
-    {
-    case 0:
-        levelCollideBox = CollideBox::getLevelCollideBox(COLBOX_level_1);
-        break;
-    case 1:
-        levelCollideBox = CollideBox::getLevelCollideBox(COLBOX_level_2);
-        break;
-    default:
-        break;
-    }
-    for(int i=0;i<levelCollideBox->size();i++){
-        levelEntities[i] = new StaticEntity(&levelCollideBox->at(i));
-    }
-}
-
-void AllSprite::clearEnemy(){
-    for(int i=0;i<gb::maxEnemyEntities;i++){
-        enemyEntities[i]->setActive(false);
-    }
 }
 
 void AllSprite::handleEvent(SDL_Event e){
@@ -118,4 +69,29 @@ void AllSprite::render(){
             (*entities[i])->getCollideBox()->render();
         }
     }
+}
+
+void AllSprite::addEnemy(Entity* e){
+    enemyEntities[enemyIndex] = e;
+    enemyIndex++;
+    enemyIndex %= gb::maxEnemyEntities;
+}
+
+void AllSprite::addLevelEntity(Entity* e){
+    levelEntities[levelIndex] = e;
+    levelIndex++;
+    levelIndex %= gb::maxLevelEntities;
+}
+
+void AllSprite::addPlayer(Entity* e){
+    player = e;
+}
+
+bool AllSprite::isEnemyFull(){
+    int tmp = 0;
+    for(int i=0;i<gb::maxEnemyEntities;i++){
+        if(enemyEntities[i]->getActive()) tmp++;
+    }
+    if(tmp == gb::maxEnemyEntities) return true;
+    else return false;
 }

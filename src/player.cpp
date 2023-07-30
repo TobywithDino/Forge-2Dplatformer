@@ -1,11 +1,11 @@
 #include "headers/player.h"
 
 Player::Player() : MovableEntity(vector2(0,0), TEX_sprite_player, COLBOX_player, COL_player){
-    speed = 400;
+    speed = 350;
 }
 
 Player::Player(vector2 pos) : MovableEntity(pos, TEX_sprite_player, COLBOX_player, COL_player){
-    speed = 400;
+    speed = 350;
 }
 
 void Player::handleEvent(SDL_Event e){
