@@ -1,13 +1,15 @@
 #include "headers/enemy.h"
 
 Enemy::Enemy() : MovableEntity(vector2(0,0), TEX_sprite_testBlock, COLBOX_default, COL_enemy){
-    speed = 180;
-    vel.x = speed;
+    speed = 130;
+    if(rand()%2) vel.x = speed;
+    else vel.x = -speed;
 }
 Enemy::Enemy(vector2 spawnPos, TextureType tType, CollideBoxType cbType) : MovableEntity(spawnPos, tType, cbType, COL_enemy){
     this->spawnPos = spawnPos;
-    speed = 180;
-    vel.x = speed;
+    speed = 130;
+    if(rand()%2) vel.x = speed;
+    else vel.x = -speed;
 }
 
 void Enemy::update(){
@@ -20,6 +22,8 @@ void Enemy::update(){
     if(pos.y > gb::getHeight()){
         pos = spawnPos;
         vel.y = 0;
+        if(rand()%2) vel.x = speed;
+        else vel.x = -speed;
     }
 
     MovableEntity::update();

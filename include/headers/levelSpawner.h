@@ -6,7 +6,7 @@ class LevelSpawner{
 public:
     static void update(int levelIndex);
 private:
-    static void spawnLevel1();
+    static void spawnLevel();
     static vector2 playerSpawnPos;
     static Uint64 nextSpawnTick;
     static Uint64 spawnGapTicks;

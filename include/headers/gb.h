@@ -3,6 +3,8 @@
 #include "SDL2/SDL_image.h"
 #include "headers/gameState.h"
 #include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 #include <vector>
 using namespace std;
 
@@ -20,9 +22,6 @@ public:
     static Uint64 getLastTicks() {return lastTicks;}
     static int getLevelIndex() {return levelIndex;}
     static GameState getGameState() {return state;}
-    static const int maxEnemyEntities = 20;
-    static const int maxLevelEntities = 20;
-    static const int maxEntities = maxEnemyEntities + maxLevelEntities + 1;
 
     static void setWidth(int w) {SCREEN_WIDTH = w;}
     static void setHeight(int h) {SCREEN_HEIGHT = h;}
@@ -36,6 +35,10 @@ public:
     static void setLastTicks(Uint64 l) {lastTicks = l;}
     static void setLevelIndex(int l) {levelIndex = l;}
     static void setGameState(GameState s) {state = s;}
+
+    static const int maxEnemyEntities = 50;
+    static const int maxLevelEntities = 30;
+    static const int maxEntities = maxEnemyEntities + maxLevelEntities + 1;
 private:
     static int SCREEN_WIDTH;
     static int SCREEN_HEIGHT;

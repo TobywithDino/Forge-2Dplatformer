@@ -10,21 +10,27 @@ void LevelSpawner::update(int levelIndex){
     switch (levelIndex)
     {
     case 0:
-        spawnLevel1();
+        playerSpawnPos = vector2(gb::getWidth()/2, 50);
+        spawnGapTicks = 200;
+        spawnLevel();
+        break;
+    case 1:
+        playerSpawnPos = vector2(gb::getWidth()/2, 50);
+        spawnGapTicks = 200;
+        spawnLevel();
         break;
     default:
-        printf("Error: LevelSpawner can't spawn enemy\n");
+        printf("Error: LevelSpawner can't spawn level: %d\n", levelIndex);
         break;
     }
 }
 
-void LevelSpawner::spawnLevel1(){
+void LevelSpawner::spawnLevel(){
     if(!GameLoop::spawnedLevel){
         AllSprite::spawnLevel(gb::getLevelIndex());
         GameLoop::spawnedLevel = true;
     }
     if(!GameLoop::spawnedPlayer){
-        playerSpawnPos = vector2(gb::getWidth()/2, 50);
         AllSprite::spawnPlayer(playerSpawnPos);
         GameLoop::spawnedPlayer = true;
     }
@@ -34,7 +40,7 @@ void LevelSpawner::spawnLevel1(){
     }
     if(SDL_GetTicks64() >= nextSpawnTick){
         nextSpawnTick = SDL_GetTicks64() + spawnGapTicks;
-        vector2 enemySpawnPos(gb::getWidth()/2, -50);
+        vector2 enemySpawnPos(gb::getWidth()/2, -100);
         AllSprite::spawnEnemy(ENEMY_crawler, enemySpawnPos);
     }
 }

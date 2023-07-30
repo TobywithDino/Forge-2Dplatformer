@@ -10,6 +10,7 @@ int Texture::init(){
 
 
     if(loadTexture("res/sprites/Forge-sprite-level1.png", levelTextures) < 0) return -1;
+    if(loadTexture("res/sprites/Forge-sprite-level2.png", levelTextures) < 0) return -1;
     return 0;
 }
 
