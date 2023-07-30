@@ -3,6 +3,7 @@ vector2 LevelSpawner::playerSpawnPos = vector2(0,0);
 vector2 LevelSpawner::enemySpawnPos = vector2(0,0);
 Uint64 LevelSpawner::spawnGapTicks = 200;
 Uint64 LevelSpawner::nextSpawnTick = 0;
+int LevelSpawner::ratio[LevelSpawner::enemyTypes] = {0};
 bool GameLoop::spawnedPlayer = false;
 bool GameLoop::spawnedLevel = false;
 bool GameLoop::spawnedEnemy = false;
@@ -13,13 +14,17 @@ void LevelSpawner::update(int levelIndex){
     case 0:
         playerSpawnPos = vector2(gb::getWidth()/2, 300);
         enemySpawnPos = vector2(gb::getWidth()/2, -100);
-        spawnGapTicks = 200;
+        spawnGapTicks = 5000;
+        ratio[ENEMY_crawler] = 10;
+        ratio[ENEMY_ploder] = 2;
         loadLevel();
         break;
     case 1:
         playerSpawnPos = vector2(gb::getWidth()/2, 50);
         enemySpawnPos = vector2(gb::getWidth()/2, -100);
         spawnGapTicks = 5000;
+        ratio[ENEMY_crawler] = 10;
+        ratio[ENEMY_ploder] = 3;
         loadLevel();
         break;
     default:
@@ -44,7 +49,7 @@ void LevelSpawner::loadLevel(){
     }
     if(SDL_GetTicks64() >= nextSpawnTick){
         nextSpawnTick = SDL_GetTicks64() + spawnGapTicks;
-        spawnEnemy(ENEMY_crawler, enemySpawnPos);
+        spawnEnemy(enemySpawnPos, ratio);
     }
 }
 
@@ -71,14 +76,24 @@ void LevelSpawner::spawnPlayer(vector2 pos){
     AllSprite::addPlayer(p);
 }
 
-void LevelSpawner::spawnEnemy(EnemyType type, vector2 pos){
+void LevelSpawner::spawnEnemy(vector2 pos, int ratio[]){
     if(AllSprite::isEnemyFull()) return;
+    vector<EnemyType> typeDice;
+    for(EnemyType i=ENEMY_crawler;i<ENEMY_END;i = (EnemyType)(i+1)){
+        for(int j=0;j<ratio[i];j++){
+            typeDice.push_back(i);
+        }
+    }
+    EnemyType type = typeDice[rand()%typeDice.size()];
 
     Entity* e = new Entity();
     switch (type)
     {
     case ENEMY_crawler:
-        e = new Enemy(pos, TEX_sprite_crawler, COLBOX_crawler);
+        e = new Crawler(pos);
+        break;
+    case ENEMY_ploder:
+        e = new Ploder(pos);
         break;
     default:
         printf("Error : AllSprite::spawnEnemy can't spawn correct type.\n");

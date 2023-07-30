@@ -5,7 +5,8 @@
 enum CollideBoxType{
     COLBOX_default,
     COLBOX_player,
-    COLBOX_crawler
+    COLBOX_crawler,
+    COLBOX_ploder
 };
 enum LevelCollideBoxType{
     COLBOX_level_1,

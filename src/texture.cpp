@@ -7,7 +7,9 @@ int Texture::init(){
     if(loadTexture("res/sprites/Forge-sprite-testBlock.png", spriteTextures) < 0) return -1;
     if(loadTexture("res/sprites/Forge-sprite-player.png", spriteTextures) < 0) return -1;
     if(loadTexture("res/sprites/Forge-sprite-crawler.png", spriteTextures) < 0) return -1;
-
+    if(loadTexture("res/sprites/Forge-sprite-crawler_evolved.png", spriteTextures) < 0) return -1;
+    if(loadTexture("res/sprites/Forge-sprite-ploder.png", spriteTextures) < 0) return -1;
+    if(loadTexture("res/sprites/Forge-sprite-ploder_evolved.png", spriteTextures) < 0) return -1;
 
     if(loadTexture("res/sprites/Forge-sprite-level1.png", levelTextures) < 0) return -1;
     if(loadTexture("res/sprites/Forge-sprite-level2.png", levelTextures) < 0) return -1;
@@ -25,6 +27,15 @@ SDL_Texture* Texture::getTexture(TextureType type){
         break;
     case TEX_sprite_crawler:
         return spriteTextures[2];
+        break;
+    case TEX_sprite_crawler_evolved:
+        return spriteTextures[3];
+        break;
+    case TEX_sprite_ploder:
+        return spriteTextures[4];
+        break;
+    case TEX_sprite_ploder_evolved:
+        return spriteTextures[5];
         break;
     case TEX_level_1:
         return levelTextures[0];

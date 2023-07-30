@@ -20,6 +20,7 @@ public:
 
     void setActive(bool isActive) {this->isActive = isActive;}
     void setCollidedEntityBox(CollideBox c) {this->collidedEntityBox = c;}
+    void setTexture(TextureType tType) {this->tex = Texture::getTexture(tType);}
 
     bool getActive() {return isActive;}
     CollideBox* getCollideBox() {return &collideBox;}

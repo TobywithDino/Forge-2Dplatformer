@@ -19,6 +19,7 @@ int CollideBox::initCollideBoxes(){
     if(Map::loadSurface("res/collideBox/sprites/Forge-collideBox-default.png", surfaces) < 0) return -1;
     if(Map::loadSurface("res/collideBox/sprites/Forge-collideBox-player.png", surfaces) < 0) return -1;
     if(Map::loadSurface("res/collideBox/sprites/Forge-collideBox-crawler.png", surfaces) < 0) return -1;
+    if(Map::loadSurface("res/collideBox/sprites/Forge-collideBox-ploder.png", surfaces) < 0) return -1;
     loadPixelFromSurface(surfaces, collideBoxes);
     return 0;
 }
@@ -136,6 +137,10 @@ vector<int>* CollideBox::getCollideBox(CollideBoxType type){
         break;
     case COLBOX_crawler:
         return &collideBoxes[2];
+        break;
+    case COLBOX_ploder:
+        return &collideBoxes[3];
+        break;
     default:
         printf("Error: failed to get collideBox\nGetCollideBox Error: '%s'\n", type);
         return &collideBoxes[0];

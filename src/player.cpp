@@ -31,7 +31,8 @@ void Player::update(){
 
     vel = tmpVel;
     if(Collision::isColliding(collideBox, this, COL_enemy)){
-        gb::setGameState(GS_GameOver);
+        // gb::setGameState(GS_GameOver);
+        printf("player is hit by enemy\n");
     }
     if(pos.y > gb::getHeight()){
         gb::setGameState(GS_GameOver);
