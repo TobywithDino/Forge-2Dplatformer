@@ -8,7 +8,6 @@ Game::Game(){
     gb::setRunning(true);
     gb::setFPS(120);
     gb::setFrameTicks(0);
-    gb::setLevelIndex(0);
     gb::setGameState(GS_Menu);
 }
 

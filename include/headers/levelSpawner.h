@@ -1,16 +1,16 @@
 #pragma once
+#include "headers/gameLoop/gameLoop.h"
 #include "headers/crawler.h"
 #include "headers/ploder.h"
 #include "headers/player.h"
 #include "headers/staticEntity.h"
-#include "headers/gameLoop/gameLoop.h"
 
 class LevelSpawner{
 public:
-    static void update(int levelIndex);
+    static void update();
 private:
     static void loadLevel();
-    static void spawnLevelEntities(int levelIndex);
+    static void spawnLevelEntities();
     static void spawnPlayer(vector2 pos);
     static void spawnEnemy(vector2 pos, int ratio[]);
     static void clearEnemy();

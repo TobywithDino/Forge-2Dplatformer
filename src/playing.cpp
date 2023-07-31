@@ -11,14 +11,14 @@ void Playing::handleEvent(){
 }
   
 void Playing::update(){
-    LevelSpawner::update(gb::getLevelIndex());
+    LevelSpawner::update();
     AllSprite::update();
 }
 
 void Playing::render(){
     SDL_SetRenderDrawColor(gb::getRenderer(), 200, 200, 200, 255);
     SDL_RenderClear(gb::getRenderer());
-    Map::render(gb::getLevelIndex());
+    Map::render();
     AllSprite::render();
     SDL_RenderPresent(gb::getRenderer());
 }

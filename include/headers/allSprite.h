@@ -10,13 +10,17 @@ public:
     static void addEnemy(Entity* e);
     static void addPlayer(Entity* e);
     static void addLevelEntity(Entity* e);
-    static bool isEnemyFull();
+    static void addProjt(Entity* e);
 private:
+    static bool isEnemyFull();
+    static bool isProjtFull();
     static Entity* enemyEntities[gb::maxEnemyEntities];
     static Entity* levelEntities[gb::maxLevelEntities];
+    static Entity* projtEntities[gb::maxProjtEntities];
     static Entity* player;
     static int enemyIndex;
     static int levelIndex;
+    static int projtIndex;
 
     static Entity** entities[gb::maxEntities];
 };

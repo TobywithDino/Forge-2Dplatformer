@@ -16,9 +16,10 @@ int CollideBox::init(){
 int CollideBox::initCollideBoxes(){
     SDL_Surface* boxSurfaces[COLBOX_END];
     if(Map::loadSurfaceT<CollideBoxType>("res/collideBox/sprites/Forge-collideBox-default.png", COLBOX_default, boxSurfaces) < 0) return -1;
-    if(Map::loadSurfaceT<CollideBoxType>("res/collideBox/sprites/Forge-collideBox-player.png", COLBOX_player, boxSurfaces) < 0) return -1;
-    if(Map::loadSurfaceT<CollideBoxType>("res/collideBox/sprites/Forge-collideBox-crawler.png", COLBOX_crawler, boxSurfaces) < 0) return -1;
-    if(Map::loadSurfaceT<CollideBoxType>("res/collideBox/sprites/Forge-collideBox-ploder.png", COLBOX_ploder, boxSurfaces) < 0) return -1;
+    if(Map::loadSurfaceT<CollideBoxType>("res/collideBox/sprites/Forge-collideBox-player.png", COLBOX_sprite_player, boxSurfaces) < 0) return -1;
+    if(Map::loadSurfaceT<CollideBoxType>("res/collideBox/sprites/Forge-collideBox-crawler.png", COLBOX_sprite_crawler, boxSurfaces) < 0) return -1;
+    if(Map::loadSurfaceT<CollideBoxType>("res/collideBox/sprites/Forge-collideBox-ploder.png", COLBOX_sprite_ploder, boxSurfaces) < 0) return -1;
+    if(Map::loadSurfaceT<CollideBoxType>("res/collideBox/projectile/Forge-collideBox-bullet.png", COLBOX_projectile_bullet, boxSurfaces) < 0) return -1;
     loadPixelFromSurface<CollideBoxType>(COLBOX_END, boxSurfaces, collideBoxes);
     return 0;
 }

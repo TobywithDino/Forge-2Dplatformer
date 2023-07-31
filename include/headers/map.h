@@ -11,7 +11,7 @@ enum LevelType{
 class Map{
 public:
     static int init();
-    static void render(int index);
+    static void render();
     static int loadSurface(const char* path, vector<SDL_Surface*>& surfaces){
         SDL_Surface* surface;
         surface = IMG_Load(path);
@@ -34,7 +34,11 @@ public:
         surfaces[t] = surface;
         return 0;
     }
+
+    static LevelType getLevelType() {return levelType;}
+    static void setLevelType(LevelType levelType) {Map::levelType = levelType;}
 private:
     static SDL_Surface* surfaces[LEV_END];
     static vector<vector<int>> levels;
+    static LevelType levelType;
 };

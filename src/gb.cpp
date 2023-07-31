@@ -10,5 +10,4 @@ bool gb::running;
 int gb::FPS;
 Uint64 gb::frameTicks;
 Uint64 gb::lastTicks;
-int gb::levelIndex;
 GameState gb::state;

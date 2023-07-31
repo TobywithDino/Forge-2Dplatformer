@@ -35,7 +35,7 @@ void MovableEntity::update(){
             vel.y += gravity * ((double)gb::getFrameTicks() / 1000);
         }else{
             // if it's hitting roof or floor, move to the sides of the roof or floor
-            pos.y = Collision::getYAfterCollision(vel.y, collideBox, collidedEntityBox);
+            pos.y = Collision::getYAfterCollision(vel.y, collideBox, *(collidedEntity->getCollideBox()));
             // after moved to correct y, check inAir state and update vel.y
             if(vel.y > 0){
                 inAir = false;
@@ -66,7 +66,7 @@ void MovableEntity::updateXPos(vector2& dMove){
     }
     else{
         // if it's hitting walls, move to the side of the walls
-        pos.x = Collision::getXAfterCollision(vel.x, collideBox, collidedEntityBox);
+        pos.x = Collision::getXAfterCollision(vel.x, collideBox, *(collidedEntity->getCollideBox()));
     } 
 }
 

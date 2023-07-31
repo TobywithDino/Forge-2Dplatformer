@@ -8,18 +8,19 @@ bool GameLoop::spawnedPlayer = false;
 bool GameLoop::spawnedLevel = false;
 bool GameLoop::spawnedEnemy = false;
 
-void LevelSpawner::update(int levelIndex){
-    switch (levelIndex)
+void LevelSpawner::update(){
+    LevelType levelType = Map::getLevelType();
+    switch (levelType)
     {
-    case 0:
+    case LEV_1:
         playerSpawnPos = vector2(gb::getWidth()/2, 300);
         enemySpawnPos = vector2(gb::getWidth()/2, -100);
-        spawnGapTicks = 5000;
-        ratio[ENEMY_crawler] = 10;
-        ratio[ENEMY_ploder] = 2;
+        spawnGapTicks = 3000;
+        ratio[ENEMY_crawler] = 7;
+        ratio[ENEMY_ploder] = 1;
         loadLevel();
         break;
-    case 1:
+    case LEV_2:
         playerSpawnPos = vector2(gb::getWidth()/2, 50);
         enemySpawnPos = vector2(gb::getWidth()/2, -100);
         spawnGapTicks = 5000;
@@ -28,7 +29,7 @@ void LevelSpawner::update(int levelIndex){
         loadLevel();
         break;
     default:
-        printf("Error: LevelSpawner can't spawn level: %d\n", levelIndex);
+        printf("Error: LevelSpawner can't spawn level: %d\n", levelType);
         break;
     }
 }
@@ -36,7 +37,7 @@ void LevelSpawner::update(int levelIndex){
 void LevelSpawner::loadLevel(){
     if(!GameLoop::spawnedLevel){
         clearLevel();
-        spawnLevelEntities(gb::getLevelIndex());
+        spawnLevelEntities();
         GameLoop::spawnedLevel = true;
     }
     if(!GameLoop::spawnedPlayer){
@@ -53,14 +54,15 @@ void LevelSpawner::loadLevel(){
     }
 }
 
-void LevelSpawner::spawnLevelEntities(int levelIndex){
+void LevelSpawner::spawnLevelEntities(){
     vector<vector<int>>* levelCollideBox = new vector<vector<int>>;
-    switch (levelIndex)
+    LevelType levelType = Map::getLevelType();
+    switch (levelType)
     {
-    case 0:
+    case LEV_1:
         levelCollideBox = CollideBox::getLevelCollideBox(COLBOX_level_1);
         break;
-    case 1:
+    case LEV_2:
         levelCollideBox = CollideBox::getLevelCollideBox(COLBOX_level_2);
         break;
     default:
@@ -77,7 +79,6 @@ void LevelSpawner::spawnPlayer(vector2 pos){
 }
 
 void LevelSpawner::spawnEnemy(vector2 pos, int ratio[]){
-    if(AllSprite::isEnemyFull()) return;
     vector<EnemyType> typeDice;
     for(EnemyType i=ENEMY_crawler;i<ENEMY_END;i = (EnemyType)(i+1)){
         for(int j=0;j<ratio[i];j++){

@@ -10,7 +10,7 @@ bool Collision::isColliding(CollideBox aBox, Entity* a, CollideType colType){
             aBox.getBoxTop() < bBox->getBoxDown() && 
             aBox.getBoxDown() > bBox->getBoxTop())
         {
-            a->setCollidedEntityBox(*bBox);
+            a->setCollidedEntity(*entities[i]);
             return true;
         }
     }

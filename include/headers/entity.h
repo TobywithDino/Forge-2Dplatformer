@@ -17,13 +17,15 @@ public:
     virtual void handleEvent(SDL_Event e);
     virtual void update();
     virtual void render();
-
     void setActive(bool isActive) {this->isActive = isActive;}
-    void setCollidedEntityBox(CollideBox c) {this->collidedEntityBox = c;}
+    void setCollidedEntity(Entity* e) {this->collidedEntity = e;}
     void setTexture(TextureType tType) {this->tex = Texture::getTexture(tType);}
+    void setIsFlipping(bool isFlipping) {this->isFlipping = isFlipping;}
 
     bool getActive() {return isActive;}
     CollideBox* getCollideBox() {return &collideBox;}
+
+    void hurt(int damage) {this->hp -= damage;}
 private:
     SDL_Texture* tex = Texture::getTexture(TEX_sprite_testBlock);
 protected:
@@ -33,5 +35,6 @@ protected:
     vector2 size = vector2(32,32) * gb::getScale();
     bool isFlipping = false;
     CollideBox collideBox = CollideBox();
-    CollideBox collidedEntityBox = CollideBox();
+    Entity* collidedEntity = this;
+    int hp = 1;
 };

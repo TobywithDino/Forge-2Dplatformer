@@ -17,8 +17,6 @@ Enemy::Enemy(vector2 spawnPos, TextureType tType, CollideBoxType cbType) : Movab
 }
 
 void Enemy::update(){
-    if(hp <= 0) isActive = false;
-
     CollideBox tmpBox = collideBox;
     tmpBox.setPos(new vector2(pos.x+vel.x*gb::getFrameTicks()/1000, pos.y));
     if(Collision::isColliding(tmpBox, this, COL_level)) vel.x *= -1;

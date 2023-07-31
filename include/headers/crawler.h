@@ -6,10 +6,10 @@ public:
     Crawler() : Enemy(){
     }
     
-    Crawler(vector2 spawnPos) : Enemy(spawnPos, TEX_sprite_crawler, COLBOX_crawler){
-        hp = 3;
-        speed = 120;
+    Crawler(vector2 spawnPos) : Enemy(spawnPos, TEX_sprite_crawler, COLBOX_sprite_crawler){
+        hp = 9;
+        speed = 110;
         evolverType = TEX_sprite_crawler_evolved;
-        newSpeed = 250;
+        newSpeed = 280;
     }
 };

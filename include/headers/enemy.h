@@ -18,5 +18,4 @@ private:
 protected:
     TextureType evolverType = TEX_sprite_testBlock;
     double newSpeed = 200;
-    int hp = 1;
 };

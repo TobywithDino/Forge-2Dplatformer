@@ -4,9 +4,10 @@
 
 enum CollideBoxType{
     COLBOX_default,
-    COLBOX_player,
-    COLBOX_crawler,
-    COLBOX_ploder,
+    COLBOX_sprite_player,
+    COLBOX_sprite_crawler,
+    COLBOX_sprite_ploder,
+    COLBOX_projectile_bullet,
     COLBOX_END
 };
 enum LevelCollideBoxType{

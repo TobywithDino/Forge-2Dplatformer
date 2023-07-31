@@ -2,8 +2,11 @@
 
 SDL_Surface* Map::surfaces[LEV_END];
 vector<vector<int>> Map::levels = vector<vector<int>>(LEV_END);
+LevelType Map::levelType = LEV_1;
 
 int Map::init(){
+    setLevelType(LEV_1);
+
     // load png to surfaces
     if(loadSurfaceT<LevelType>("res/maps/Forge-map-level1.png", LEV_1, surfaces) < 0) return -1;
     if(loadSurfaceT<LevelType>("res/maps/Forge-map-level2.png", LEV_2, surfaces) < 0) return -1;
@@ -65,33 +68,29 @@ int Map::init(){
 //     return 0;
 // }
 
-void Map::render(int index){
+void Map::render(){
     TextureType texType;
-    LevelType levType;
-    switch (index)
+    switch (levelType)
     {
-    case 0:
-        texType = TEX_sprite_level1;
-        levType = LEV_1;
+    case LEV_1:
+        texType = TEX_map_level1;
         break;
-    case 1:
-        texType = TEX_sprite_level2;
-        levType = LEV_2;
+    case LEV_2:
+        texType = TEX_map_level2;
         break;
     default:
         texType = TEX_sprite_testBlock;
-        levType = LEV_1;
         break;
     }
 
-    int mapWidth = levels[levType][0];
-    int mapHeight = levels[levType][1];
+    int mapWidth = levels[levelType][0];
+    int mapHeight = levels[levelType][1];
     int pixelSizeW = gb::getWidth() / mapWidth;
     int pixelSizeH = gb::getHeight() / mapHeight; 
     for(int i=0;i<mapHeight;i++){
         for(int j=0;j<mapWidth;j++){
-            if(i*mapWidth+j+2 > levels[levType].size() - 1) continue;
-            if(levels[levType][i*mapWidth+j+2] == 0) continue;
+            if(i*mapWidth+j+2 > levels[levelType].size() - 1) continue;
+            if(levels[levelType][i*mapWidth+j+2] == 0) continue;
             SDL_Rect dst;
             dst.w = pixelSizeW;
             dst.h = pixelSizeH;

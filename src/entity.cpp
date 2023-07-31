@@ -20,11 +20,10 @@ Entity::Entity(vector2 pos, TextureType tType, CollideBoxType cbType, CollideTyp
 }
 
 void Entity::handleEvent(SDL_Event e){
-    if(!isActive) return;
 }
 
 void Entity::update(){
-    if(!isActive) return;
+    if(hp <= 0) isActive = false;
     if(vel.x > 0) isFlipping = false;
     if(vel.x < 0) isFlipping = true;
 }
