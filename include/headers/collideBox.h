@@ -6,17 +6,20 @@ enum CollideBoxType{
     COLBOX_default,
     COLBOX_player,
     COLBOX_crawler,
-    COLBOX_ploder
+    COLBOX_ploder,
+    COLBOX_END
 };
 enum LevelCollideBoxType{
     COLBOX_level_1,
-    COLBOX_level_2
+    COLBOX_level_2,
+    COLBOX_level_END
 };
 enum CollideType{
     COL_sprite,
     COL_player,
     COL_enemy,
-    COL_level
+    COL_level,
+    COL_projectile
 };
     
 
@@ -29,11 +32,12 @@ public:
 private:
     static int initCollideBoxes();
     static int initLevelCollideBoxes();
-    static void loadPixelFromSurface(vector<SDL_Surface*> surfaces, vector<vector<int>>& boxes, vector2 scale = vector2(1,1));
+    static void loadPixelFromSurface(vector<SDL_Surface*> surfaces, vector<vector<int>>& boxes, vector2 scale = vector2(0,0));
+    template<typename type>
+    static void loadPixelFromSurface(int length, SDL_Surface** surfaces, vector<vector<int>>& boxes);
     vector<int>* getCollideBox(CollideBoxType boxType);
     static vector<vector<int>> collideBoxes;
-    static vector<vector<int>> levelCollideBoxes_1;
-    static vector<vector<int>> levelCollideBoxes_2;
+    static vector<vector<vector<int>>> levelCollideBoxes;
     
 // non-static part
 public:

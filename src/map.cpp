@@ -1,24 +1,23 @@
 #include "headers/map.h"
 
-
-vector<vector<int>> Map::levels;
-vector<SDL_Surface*> Map::surfaces;
+SDL_Surface* Map::surfaces[LEV_END];
+vector<vector<int>> Map::levels = vector<vector<int>>(LEV_END);
 
 int Map::init(){
     // load png to surfaces
-    if(loadSurface("res/maps/Forge-map-level1.png", surfaces) < 0) return -1;
-    if(loadSurface("res/maps/Forge-map-level2.png", surfaces) < 0) return -1;
-    if(loadSurface("res/maps/Forge-map-level3.png", surfaces) < 0) return -1;
+    if(loadSurfaceT<LevelType>("res/maps/Forge-map-level1.png", LEV_1, surfaces) < 0) return -1;
+    if(loadSurfaceT<LevelType>("res/maps/Forge-map-level2.png", LEV_2, surfaces) < 0) return -1;
+    if(loadSurfaceT<LevelType>("res/maps/Forge-map-level3.png", LEV_3, surfaces) < 0) return -1;
 
     // convert each surface to int arrays and store in levels
-    for(SDL_Surface* surface : surfaces){
+    for(LevelType i=LEV_1;i<LEV_END;i=(LevelType)(i+1)){
+        SDL_Surface* surface = surfaces[i];
         SDL_PixelFormat *fmt;
         Uint32 temp, pixel;
         Uint8 red;
 
         fmt = surface->format;
         int totalPixels = surface->w * surface->h;
-        int maxLevelEntities = 0;
         vector<int> level;
         level.push_back(surface->w);
         level.push_back(surface->h);
@@ -34,51 +33,65 @@ int Map::init(){
             red = (Uint8)temp;
             if(red == 255){
                 level.push_back(1);
-                maxLevelEntities++;
             }
             else level.push_back(0);
         }
-        level.push_back(maxLevelEntities);
-        levels.push_back(level);
+        levels[i] = level;
     }
 
     return 0;
 }
 
-int Map::loadSurface(const char* path, vector<SDL_Surface*>& surfaces){
-    SDL_Surface* surface;
-    surface = IMG_Load(path);
-    if(surface == nullptr){
-        printf("Error: failed to load surface\nMap::init() Error: '%s'\n", path);
-        return -1;
-    }
-    surfaces.push_back(surface);
-    return 0;
-}
+// template<typename Type>
+// int Map::loadSurfaceT(const char* path, Type t, SDL_Surface** surfaces){
+//     SDL_Surface* surface;
+//     surface = IMG_Load(path);
+//     if(surface == nullptr){
+//         printf("Error: failed to load surface\nMap::init() Error: '%s'\n", path);
+//         return -1;
+//     }
+//     surfaces[t] = surface;
+//     return 0;
+// }
+
+// int Map::loadSurface(const char* path, vector<SDL_Surface*> surfaces){
+//     SDL_Surface* surface;
+//     surface = IMG_Load(path);
+//     if(surface == nullptr){
+//         printf("Error: failed to load surface\nMap::init() Error: '%s'\n", path);
+//         return -1;
+//     }
+//     surfaces.push_back(surface);
+//     return 0;
+// }
 
 void Map::render(int index){
     TextureType texType;
+    LevelType levType;
     switch (index)
     {
     case 0:
-        texType = TEX_level_1;
+        texType = TEX_sprite_level1;
+        levType = LEV_1;
         break;
     case 1:
-        texType = TEX_level_2;
+        texType = TEX_sprite_level2;
+        levType = LEV_2;
         break;
     default:
         texType = TEX_sprite_testBlock;
+        levType = LEV_1;
         break;
     }
 
-    int mapWidth = levels[index][0];
-    int mapHeight = levels[index][1];
+    int mapWidth = levels[levType][0];
+    int mapHeight = levels[levType][1];
     int pixelSizeW = gb::getWidth() / mapWidth;
     int pixelSizeH = gb::getHeight() / mapHeight; 
     for(int i=0;i<mapHeight;i++){
         for(int j=0;j<mapWidth;j++){
-            if(i*mapWidth+j+2 > levels[index].size() - 1) continue;
-            if(levels[index][i*mapWidth+j+2] == 0) continue;
+            if(i*mapWidth+j+2 > levels[levType].size() - 1) continue;
+            if(levels[levType][i*mapWidth+j+2] == 0) continue;
             SDL_Rect dst;
             dst.w = pixelSizeW;
             dst.h = pixelSizeH;

@@ -34,6 +34,7 @@ int Game::init(){
         printf("Error: Failed to create renderer\nSDL Error: '%s'\n", SDL_GetError());
         return 1;
     }
+
     if(Texture::init() < 0) return 1;
     if(Map::init() < 0) return 1;
     if(CollideBox::init() < 0) return 1;

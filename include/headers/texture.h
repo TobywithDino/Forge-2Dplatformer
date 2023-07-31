@@ -9,8 +9,9 @@ enum TextureType{
     TEX_sprite_ploder,
     TEX_sprite_ploder_evolved,
     
-    TEX_level_1,
-    TEX_level_2
+    TEX_sprite_level1,
+    TEX_sprite_level2,
+    TEX_END
 };
 
 class Texture{
@@ -18,7 +19,8 @@ public:
     static int init();
     static SDL_Texture* getTexture(TextureType type);
 private:
+    static SDL_Texture* textures[TEX_END];
     static vector<SDL_Texture*> spriteTextures;
     static vector<SDL_Texture*> levelTextures;
-    static int loadTexture(const char* path, vector<SDL_Texture*>& textures);
+    static int loadTexture(const char* path, TextureType type);
 };

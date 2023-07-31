@@ -1,8 +1,7 @@
 #include "headers/collideBox.h"
 
-vector<vector<int>> CollideBox::collideBoxes;
-vector<vector<int>> CollideBox::levelCollideBoxes_1;
-vector<vector<int>> CollideBox::levelCollideBoxes_2;
+vector<vector<int>> CollideBox::collideBoxes(COLBOX_END);
+vector<vector<vector<int>>> CollideBox::levelCollideBoxes(COLBOX_level_END);
 bool CollideBox::showCollideBox = false;
 /*
         static part
@@ -15,47 +14,121 @@ int CollideBox::init(){
 }
 
 int CollideBox::initCollideBoxes(){
-    vector<SDL_Surface*> surfaces;
-    if(Map::loadSurface("res/collideBox/sprites/Forge-collideBox-default.png", surfaces) < 0) return -1;
-    if(Map::loadSurface("res/collideBox/sprites/Forge-collideBox-player.png", surfaces) < 0) return -1;
-    if(Map::loadSurface("res/collideBox/sprites/Forge-collideBox-crawler.png", surfaces) < 0) return -1;
-    if(Map::loadSurface("res/collideBox/sprites/Forge-collideBox-ploder.png", surfaces) < 0) return -1;
-    loadPixelFromSurface(surfaces, collideBoxes);
+    SDL_Surface* boxSurfaces[COLBOX_END];
+    if(Map::loadSurfaceT<CollideBoxType>("res/collideBox/sprites/Forge-collideBox-default.png", COLBOX_default, boxSurfaces) < 0) return -1;
+    if(Map::loadSurfaceT<CollideBoxType>("res/collideBox/sprites/Forge-collideBox-player.png", COLBOX_player, boxSurfaces) < 0) return -1;
+    if(Map::loadSurfaceT<CollideBoxType>("res/collideBox/sprites/Forge-collideBox-crawler.png", COLBOX_crawler, boxSurfaces) < 0) return -1;
+    if(Map::loadSurfaceT<CollideBoxType>("res/collideBox/sprites/Forge-collideBox-ploder.png", COLBOX_ploder, boxSurfaces) < 0) return -1;
+    loadPixelFromSurface<CollideBoxType>(COLBOX_END, boxSurfaces, collideBoxes);
     return 0;
 }
 
 int CollideBox::initLevelCollideBoxes(){
-    vector<SDL_Surface*> surfaces;
-
-    if(Map::loadSurface("res/collideBox/level1/Layer 1.png", surfaces) < 0) return -1;
-    if(Map::loadSurface("res/collideBox/level1/Layer 2.png", surfaces) < 0) return -1;
-    if(Map::loadSurface("res/collideBox/level1/Layer 3.png", surfaces) < 0) return -1;
-    if(Map::loadSurface("res/collideBox/level1/Layer 4.png", surfaces) < 0) return -1;
-    if(Map::loadSurface("res/collideBox/level1/Layer 5.png", surfaces) < 0) return -1;
-    if(Map::loadSurface("res/collideBox/level1/Layer 6.png", surfaces) < 0) return -1;
-    if(Map::loadSurface("res/collideBox/level1/Layer 7.png", surfaces) < 0) return -1;
-    if(Map::loadSurface("res/collideBox/level1/Layer 8.png", surfaces) < 0) return -1;
-    if(Map::loadSurface("res/collideBox/level1/Layer 9.png", surfaces) < 0) return -1;
-    if(Map::loadSurface("res/collideBox/level1/Layer 10.png", surfaces) < 0) return -1;
-    loadPixelFromSurface(surfaces, levelCollideBoxes_1, vector2(gb::getWidth() / gb::getScale() / surfaces[0]->w,gb::getHeight() / gb::getScale() / surfaces[0]->h));
-    surfaces.clear();
+    vector<SDL_Surface*> levelSurfaces;
+    vector<vector<int>> levelboxes;
+    if(Map::loadSurface("res/collideBox/level1/Layer 1.png", levelSurfaces) < 0) return -1;
+    if(Map::loadSurface("res/collideBox/level1/Layer 2.png", levelSurfaces) < 0) return -1;
+    if(Map::loadSurface("res/collideBox/level1/Layer 3.png", levelSurfaces) < 0) return -1;
+    if(Map::loadSurface("res/collideBox/level1/Layer 4.png", levelSurfaces) < 0) return -1;
+    if(Map::loadSurface("res/collideBox/level1/Layer 5.png", levelSurfaces) < 0) return -1;
+    if(Map::loadSurface("res/collideBox/level1/Layer 6.png", levelSurfaces) < 0) return -1;
+    if(Map::loadSurface("res/collideBox/level1/Layer 7.png", levelSurfaces) < 0) return -1;
+    if(Map::loadSurface("res/collideBox/level1/Layer 8.png", levelSurfaces) < 0) return -1;
+    if(Map::loadSurface("res/collideBox/level1/Layer 9.png", levelSurfaces) < 0) return -1;
+    if(Map::loadSurface("res/collideBox/level1/Layer 10.png", levelSurfaces) < 0) return -1;
+    loadPixelFromSurface(levelSurfaces, levelboxes, vector2(gb::getWidth() / gb::getScale() / levelSurfaces[0]->w,gb::getHeight() / gb::getScale() / levelSurfaces[0]->h));
+    levelSurfaces.clear();
+    levelCollideBoxes[LEV_1] = levelboxes;
+    levelboxes.clear();
     
-    if(Map::loadSurface("res/collideBox/level2/Layer 1.png", surfaces) < 0) return -1;
-    if(Map::loadSurface("res/collideBox/level2/Layer 2.png", surfaces) < 0) return -1;
-    if(Map::loadSurface("res/collideBox/level2/Layer 3.png", surfaces) < 0) return -1;
-    if(Map::loadSurface("res/collideBox/level2/Layer 4.png", surfaces) < 0) return -1;
-    if(Map::loadSurface("res/collideBox/level2/Layer 5.png", surfaces) < 0) return -1;
-    if(Map::loadSurface("res/collideBox/level2/Layer 6.png", surfaces) < 0) return -1;
-    if(Map::loadSurface("res/collideBox/level2/Layer 7.png", surfaces) < 0) return -1;
-    if(Map::loadSurface("res/collideBox/level2/Layer 8.png", surfaces) < 0) return -1;
-    if(Map::loadSurface("res/collideBox/level2/Layer 9.png", surfaces) < 0) return -1;
-    if(Map::loadSurface("res/collideBox/level2/Layer 10.png", surfaces) < 0) return -1;
-    if(Map::loadSurface("res/collideBox/level2/Layer 11.png", surfaces) < 0) return -1;
-    if(Map::loadSurface("res/collideBox/level2/Layer 12.png", surfaces) < 0) return -1;
-    loadPixelFromSurface(surfaces, levelCollideBoxes_2, vector2(gb::getWidth() / gb::getScale() / surfaces[0]->w,gb::getHeight() / gb::getScale() / surfaces[0]->h));
-    surfaces.clear();
+    if(Map::loadSurface("res/collideBox/level2/Layer 1.png", levelSurfaces) < 0) return -1;
+    if(Map::loadSurface("res/collideBox/level2/Layer 2.png", levelSurfaces) < 0) return -1;
+    if(Map::loadSurface("res/collideBox/level2/Layer 3.png", levelSurfaces) < 0) return -1;
+    if(Map::loadSurface("res/collideBox/level2/Layer 4.png", levelSurfaces) < 0) return -1;
+    if(Map::loadSurface("res/collideBox/level2/Layer 5.png", levelSurfaces) < 0) return -1;
+    if(Map::loadSurface("res/collideBox/level2/Layer 6.png", levelSurfaces) < 0) return -1;
+    if(Map::loadSurface("res/collideBox/level2/Layer 7.png", levelSurfaces) < 0) return -1;
+    if(Map::loadSurface("res/collideBox/level2/Layer 8.png", levelSurfaces) < 0) return -1;
+    if(Map::loadSurface("res/collideBox/level2/Layer 9.png", levelSurfaces) < 0) return -1;
+    if(Map::loadSurface("res/collideBox/level2/Layer 10.png", levelSurfaces) < 0) return -1;
+    if(Map::loadSurface("res/collideBox/level2/Layer 11.png", levelSurfaces) < 0) return -1;
+    if(Map::loadSurface("res/collideBox/level2/Layer 12.png", levelSurfaces) < 0) return -1;
+    loadPixelFromSurface(levelSurfaces, levelboxes, vector2(gb::getWidth() / gb::getScale() / levelSurfaces[0]->w,gb::getHeight() / gb::getScale() / levelSurfaces[0]->h));
+    levelSurfaces.clear();
+    levelCollideBoxes[LEV_2] = levelboxes;
+    levelboxes.clear();
     
     return 0;
+}
+
+template<typename type>
+void CollideBox::loadPixelFromSurface(int length, SDL_Surface** surfaces, vector<vector<int>>& boxes){
+    // record the offsetX, offsetY, boxWidth, boxHeight of each surface's green box 
+    for(type j=(type)0;j<(type)length;j=(type)(j+1)){
+        SDL_Surface* surface = surfaces[j];
+        SDL_PixelFormat *fmt;
+        Uint32 temp, pixel;
+        Uint8 green;
+
+        fmt = surface->format;
+        int totalPixels = surface->w * surface->h;
+        vector<int> box;
+        bool foundTopLeftGreen = false;
+        bool findingWidth = false;
+        bool findingHeight = false;
+        int offsetX = 0;
+        int offsetY = 0;
+        int boxWidth = 0;
+        int boxHeight = 0;
+
+        for(int i=0;i<totalPixels;i++){
+            SDL_LockSurface(surface);
+            pixel = *(((Uint32*)surface->pixels) + i);
+            SDL_UnlockSurface(surface);
+
+            // Get Green component
+            temp = pixel & fmt->Gmask;  // Isolate red component
+            temp = temp >> fmt->Gshift; // Shift it down to 8-bit 
+            temp = temp << fmt->Gloss;  // Expand to a full 8-bit number
+            green = (Uint8)temp;
+            if(green == 255) {
+                if(!foundTopLeftGreen){
+                    foundTopLeftGreen = true;
+                    findingWidth = true;
+                    offsetX = i % surface->w;
+                    offsetY = i / surface->w;
+                }
+                if(findingWidth){
+                    boxWidth++;
+                    if(boxWidth == surface->w){
+                        findingWidth = false;
+                        findingHeight = true;
+                    }
+                }
+                if(findingHeight){
+                    boxHeight++;
+                    i+=surface->w-1;
+                }
+            }else if(findingWidth){
+                findingWidth = false;
+                findingHeight = true;
+                boxHeight++;
+                i+=surface->w-2;
+            }else if(findingHeight){
+                findingHeight = false;
+                break;
+            }
+        }
+        offsetX *= gb::getScale();
+        offsetY *= gb::getScale();
+        boxWidth *= gb::getScale();
+        boxHeight *= gb::getScale();
+        box.push_back(offsetX); // at(0)
+        box.push_back(offsetY); // at(1)
+        box.push_back(boxWidth); // at(2)
+        box.push_back(boxHeight); // at(3)
+        boxes[j] = box;
+    }
 }
 
 void CollideBox::loadPixelFromSurface(vector<SDL_Surface*> surfaces, vector<vector<int>>& boxes, vector2 scale){
@@ -127,41 +200,17 @@ void CollideBox::loadPixelFromSurface(vector<SDL_Surface*> surfaces, vector<vect
 }
 
 vector<int>* CollideBox::getCollideBox(CollideBoxType type){
-    switch (type)
-    {
-    case COLBOX_default:
-        return &collideBoxes[0];
-        break;
-    case COLBOX_player:
-        return &collideBoxes[1];
-        break;
-    case COLBOX_crawler:
-        return &collideBoxes[2];
-        break;
-    case COLBOX_ploder:
-        return &collideBoxes[3];
-        break;
-    default:
-        printf("Error: failed to get collideBox\nGetCollideBox Error: '%s'\n", type);
-        return &collideBoxes[0];
-        break;
-    }
+    vector<int>* collideBox;
+    collideBox = &collideBoxes[type];
+    if(collideBox == nullptr) printf("Error: failed to get collideBox\nGetCollideBox Error: '%d'\n", type);
+    return collideBox;
 }
 
 vector<vector<int>>* CollideBox::getLevelCollideBox(LevelCollideBoxType type){
-    switch (type)
-    {
-    case COLBOX_level_1:
-        return &levelCollideBoxes_1;
-        break;
-    case COLBOX_level_2:
-        return &levelCollideBoxes_2;
-        break;
-    default:
-        printf("Error: failed to get levelCollideBox\nGetLevelCollideLBox Error: '%s'\n", type);
-        return &levelCollideBoxes_1;
-        break;
-    }
+    vector<vector<int>>* levelCollideBox;
+    levelCollideBox = &levelCollideBoxes[type];
+    if(levelCollideBox == nullptr) printf("Error: failed to get levelCollideBox\nGetLevelCollideLBox Error: '%d'\n", type);
+    return levelCollideBox;
 }
 
 /*

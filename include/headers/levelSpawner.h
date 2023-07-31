@@ -19,6 +19,5 @@ private:
     static vector2 enemySpawnPos;
     static Uint64 nextSpawnTick;
     static Uint64 spawnGapTicks;
-    static const int enemyTypes = ENEMY_END;
-    static int ratio[enemyTypes];
+    static int ratio[ENEMY_END];
 };
