@@ -118,3 +118,11 @@ void LevelSpawner::clearLevel(){
         AllSprite::addLevelEntity(e);
     }
 }
+
+void LevelSpawner::clearProjt(){
+    for(int i=0;i<gb::maxProjtEntities;i++){
+        Entity *e = new Entity();
+        e->setActive(false);
+        AllSprite::addLevelEntity(e);
+    }
+}

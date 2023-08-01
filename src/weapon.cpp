@@ -3,8 +3,9 @@
 Weapon::Weapon(){
 }
 
-Weapon::Weapon(vector2* playerPos, vector2 shootOffsetPos, int shootSpeed, int damage, int shootDelayTicks, TextureType weaponTType, TextureType projtTType, CollideBoxType projtCBType){
+Weapon::Weapon(vector2* playerPos, vector2 offset, vector2 shootOffsetPos, int shootSpeed, int damage, int shootDelayTicks, TextureType weaponTType, TextureType projtTType, CollideBoxType projtCBType){
     this->playerPos = playerPos;
+    this->offset = offset * gb::getScale();
     this->shootOffsetPos = shootOffsetPos * gb::getScale();
     this->shootSpeed = shootSpeed;
     this->damage = damage;
@@ -14,8 +15,16 @@ Weapon::Weapon(vector2* playerPos, vector2 shootOffsetPos, int shootSpeed, int d
     setTexture(weaponTType);
 }
 
-void Weapon::render(){
-    pos = *playerPos;
+void Weapon::render(bool flip){
+    isFlipping = flip;
+    pos.y = playerPos->y + offset.y;
+    if(isFlipping){
+        int playerSizeX = 32*gb::getScale();
+        double pivotX = playerPos->x+playerSizeX-size.x;
+        pos.x = pivotX - offset.x;
+    }else{
+        pos.x = playerPos->x + offset.x;
+    }
     Entity::render();
 }
 
@@ -26,7 +35,9 @@ void Weapon::shoot(){
         int tmp_shootSpeed;
         shootPos.y = pos.y + shootOffsetPos.y;
         if(isFlipping) {
-            shootPos.x = pos.x - shootOffsetPos.x;
+            int pjtSizeX = 32*gb::getScale();
+            double pivotX = pos.x + size.x - pjtSizeX;
+            shootPos.x = pivotX - shootOffsetPos.x;
             tmp_shootSpeed = -1*shootSpeed;
         }
         else {

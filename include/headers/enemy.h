@@ -17,5 +17,6 @@ private:
     void evolve(TextureType tType, double newSpeed);
 protected:
     TextureType evolverType = TEX_sprite_testBlock;
+    int newHp = 1;
     double newSpeed = 200;
 };

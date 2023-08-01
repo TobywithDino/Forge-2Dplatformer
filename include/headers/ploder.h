@@ -7,9 +7,10 @@ public:
     }
     Ploder(vector2 spawnPos) : Enemy(spawnPos, TEX_sprite_ploder, COLBOX_sprite_ploder){
         hp = 20;
-        speed = 120;
+        speed = 80;
         evolverType = TEX_sprite_ploder_evolved;
         newSpeed = 200;
+        newHp = hp;
         size = vector2(48, 48)*gb::getScale();
     }
 };

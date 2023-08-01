@@ -1,11 +1,11 @@
 #include "headers/player.h"
 
 Player::Player() : MovableEntity(vector2(0,0), TEX_sprite_player, COLBOX_sprite_player, COL_player){
-    speed = 350;
+    speed = 320;
 }
 
 Player::Player(vector2 pos) : MovableEntity(pos, TEX_sprite_player, COLBOX_sprite_player, COL_player){
-    speed = 350;
+    speed = 320;
 }
 
 void Player::handleEvent(SDL_Event e){
@@ -50,9 +50,7 @@ void Player::update(){
 
 void Player::render(){
     MovableEntity::render();
-    if(isFlipping) weapon->setIsFlipping(true);
-    else weapon->setIsFlipping(false);
-    weapon->render();
+    weapon->render(isFlipping);
 }
 
 void Player::jump(vector2& tmpVel){
