@@ -11,6 +11,10 @@ public:
     static void addPlayer(Entity* e);
     static void addLevelEntity(Entity* e);
     static void addProjt(Entity* e);
+    static void clearEnemy();
+    static void clearLevel();
+    static void clearProjt();
+    static void clearPlayer();
 private:
     static bool isEnemyFull();
     static bool isProjtFull();

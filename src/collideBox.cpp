@@ -1,7 +1,7 @@
 #include "headers/collideBox.h"
 
 vector<vector<int>> CollideBox::collideBoxes(COLBOX_END);
-vector<vector<vector<int>>> CollideBox::levelCollideBoxes(COLBOX_level_END);
+vector<vector<vector<int>>> CollideBox::levelCollideBoxes(LEV_END);
 bool CollideBox::showCollideBox = false;
 /*
         static part
@@ -19,7 +19,8 @@ int CollideBox::initCollideBoxes(){
     if(Map::loadSurfaceT<CollideBoxType>("res/collideBox/sprites/Forge-collideBox-player.png", COLBOX_sprite_player, boxSurfaces) < 0) return -1;
     if(Map::loadSurfaceT<CollideBoxType>("res/collideBox/sprites/Forge-collideBox-crawler.png", COLBOX_sprite_crawler, boxSurfaces) < 0) return -1;
     if(Map::loadSurfaceT<CollideBoxType>("res/collideBox/sprites/Forge-collideBox-ploder.png", COLBOX_sprite_ploder, boxSurfaces) < 0) return -1;
-    if(Map::loadSurfaceT<CollideBoxType>("res/collideBox/projectile/Forge-collideBox-bullet.png", COLBOX_projectile_bullet, boxSurfaces) < 0) return -1;
+    if(Map::loadSurfaceT<CollideBoxType>("res/collideBox/projectile/Forge-collideBox-pistolBullet.png", COLBOX_projectile_pistolBullet, boxSurfaces) < 0) return -1;
+    if(Map::loadSurfaceT<CollideBoxType>("res/collideBox/projectile/Forge-collideBox-revolverBullet.png", COLBOX_projectile_revolverBullet, boxSurfaces) < 0) return -1;
     loadPixelFromSurface<CollideBoxType>(COLBOX_END, boxSurfaces, collideBoxes);
     return 0;
 }
@@ -207,10 +208,10 @@ vector<int>* CollideBox::getCollideBox(CollideBoxType type){
     return collideBox;
 }
 
-vector<vector<int>>* CollideBox::getLevelCollideBox(LevelCollideBoxType type){
+vector<vector<int>>* CollideBox::getLevelCollideBox(LevelType levelType){
     vector<vector<int>>* levelCollideBox;
-    levelCollideBox = &levelCollideBoxes[type];
-    if(levelCollideBox == nullptr) printf("Error: failed to get levelCollideBox\nGetLevelCollideLBox Error: '%d'\n", type);
+    levelCollideBox = &levelCollideBoxes[levelType];
+    if(levelCollideBox == nullptr) printf("Error: failed to get levelCollideBox\nGetLevelCollideLBox Error: '%d'\n", levelType);
     return levelCollideBox;
 }
 

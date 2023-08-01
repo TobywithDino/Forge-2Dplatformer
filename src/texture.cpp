@@ -13,8 +13,10 @@ int Texture::init(){
     if(loadTexture("res/sprites/Forge-sprite-ploder_evolved.png", TEX_sprite_ploder_evolved) < 0) return -1;
     if(loadTexture("res/sprites/Forge-map-level1.png", TEX_map_level1) < 0) return -1;
     if(loadTexture("res/sprites/Forge-map-level2.png", TEX_map_level2) < 0) return -1;
-    if(loadTexture("res/sprites/Forge-projt-bullet.png", TEX_projt_bullet) < 0) return -1;
     if(loadTexture("res/sprites/Forge-weapon-pistol.png", TEX_weapon_pistol) < 0) return -1;
+    if(loadTexture("res/sprites/Forge-weapon-revolver.png", TEX_weapon_revolver) < 0) return -1;
+    if(loadTexture("res/sprites/Forge-projt-pistolBullet.png", TEX_projt_pistolBullet) < 0) return -1;
+    if(loadTexture("res/sprites/Forge-projt-revolverBullet.png", TEX_projt_revolverBullet) < 0) return -1;
     return 0;
 }
 

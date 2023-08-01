@@ -5,8 +5,6 @@ vector<vector<int>> Map::levels = vector<vector<int>>(LEV_END);
 LevelType Map::levelType = LEV_1;
 
 int Map::init(){
-    setLevelType(LEV_1);
-
     // load png to surfaces
     if(loadSurfaceT<LevelType>("res/maps/Forge-map-level1.png", LEV_1, surfaces) < 0) return -1;
     if(loadSurfaceT<LevelType>("res/maps/Forge-map-level2.png", LEV_2, surfaces) < 0) return -1;

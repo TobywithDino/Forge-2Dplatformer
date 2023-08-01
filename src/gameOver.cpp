@@ -8,9 +8,7 @@ void GameOver::handleEvent(){
             if(event.type == SDL_KEYDOWN){
                 if(event.key.keysym.scancode == SDL_SCANCODE_Z){
                     gb::setGameState(GS_Menu);
-                    spawnedPlayer = false;
-                    spawnedLevel = false;
-                    spawnedEnemy = false;
+                    spawned = false;
                 }
             }
         }

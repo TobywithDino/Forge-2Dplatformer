@@ -34,5 +34,6 @@ void Enemy::update(){
 
 void Enemy::evolve(TextureType tType, double newSpeed){
     speed = newSpeed;
+    hp = newHp;
     setTexture(tType);
 }

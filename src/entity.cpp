@@ -29,7 +29,6 @@ void Entity::update(){
 }
 
 void Entity::render(){
-    if(!isActive) return;
     SDL_Rect dst;
     dst.w = size.x;
     dst.h = size.y;

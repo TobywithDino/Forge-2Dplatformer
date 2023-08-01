@@ -7,14 +7,11 @@ enum CollideBoxType{
     COLBOX_sprite_player,
     COLBOX_sprite_crawler,
     COLBOX_sprite_ploder,
-    COLBOX_projectile_bullet,
+    COLBOX_projectile_pistolBullet,
+    COLBOX_projectile_revolverBullet,
     COLBOX_END
 };
-enum LevelCollideBoxType{
-    COLBOX_level_1,
-    COLBOX_level_2,
-    COLBOX_level_END
-};
+
 enum CollideType{
     COL_sprite,
     COL_player,
@@ -29,7 +26,7 @@ class CollideBox{
 // static part
 public:
     static int init();
-    static vector<vector<int>>* getLevelCollideBox(LevelCollideBoxType boxType);
+    static vector<vector<int>>* getLevelCollideBox(LevelType levelType);
 private:
     static int initCollideBoxes();
     static int initLevelCollideBoxes();

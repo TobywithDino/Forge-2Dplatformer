@@ -13,9 +13,6 @@ private:
     static void spawnLevelEntities();
     static void spawnPlayer(vector2 pos);
     static void spawnEnemy(vector2 pos, int ratio[]);
-    static void clearEnemy(); // move them to allsprite;
-    static void clearLevel();
-    static void clearProjt();
     static vector2 playerSpawnPos;
     static vector2 enemySpawnPos;
     static Uint64 nextSpawnTick;

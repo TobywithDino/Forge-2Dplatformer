@@ -10,25 +10,13 @@ int AllSprite::projtIndex = 0;
 
 int AllSprite::init(){
     // initialize level entities
-    for(int i=0;i<gb::maxLevelEntities;i++){
-        levelEntities[i] = new Entity();
-        levelEntities[i]->setActive(false);
-    }
-
+    clearLevel();
     // initialize enemy entities
-    for(int i=0;i<gb::maxEnemyEntities;i++){
-        enemyEntities[i] = new Entity();
-        enemyEntities[i]->setActive(false);
-    }
+    clearEnemy();
     // initialize projectile entities
-    for(int i=0;i<gb::maxProjtEntities;i++){
-        projtEntities[i] = new Entity();
-        projtEntities[i]->setActive(false);
-    }
-
+    clearProjt();
     // initialize player entity
-    player = new Entity();
-    player->setActive(false);
+    clearPlayer();
 
     // initialize entities
     for(int i=0;i<gb::maxEntities;i++){
@@ -61,7 +49,11 @@ int AllSprite::init(){
 }
 
 void AllSprite::handleEvent(SDL_Event e){
-    for(int i=0;i<gb::maxEntities;i++) (*entities[i])->handleEvent(e);
+    for(int i=0;i<gb::maxEntities;i++){
+        if((*entities[i])->getActive()){
+            (*entities[i])->handleEvent(e);
+        }
+    }
     for(int i=0;i<gb::maxEntities;i++) {
         CollideBox::handleEvent(e);
     }
@@ -69,12 +61,18 @@ void AllSprite::handleEvent(SDL_Event e){
 
 void AllSprite::update(){
     for(int i=0;i<gb::maxEntities;i++) {
-        (*entities[i])->update();
+        if((*entities[i])->getActive()){
+            (*entities[i])->update();
+        }
     }
 }
 
 void AllSprite::render(){
-    for(int i=0;i<gb::maxEntities;i++) (*entities[i])->render();
+    for(int i=0;i<gb::maxEntities;i++){
+        if((*entities[i])->getActive()){
+            (*entities[i])->render();
+        }
+    }
     for(int i=0;i<gb::maxEntities;i++) {
         if((*entities[i])->getActive()){
             (*entities[i])->getCollideBox()->render();
@@ -104,6 +102,32 @@ void AllSprite::addProjt(Entity* e){
 
 void AllSprite::addPlayer(Entity* e){
     player = e;
+}
+
+void AllSprite::clearEnemy(){
+    for(int i=0;i<gb::maxEnemyEntities;i++){
+        enemyEntities[i] = new Entity();
+        enemyEntities[i]->setActive(false);
+    }
+}
+
+void AllSprite::clearLevel(){
+    for(int i=0;i<gb::maxLevelEntities;i++){
+        levelEntities[i] = new Entity();
+        levelEntities[i]->setActive(false);
+    }
+}
+
+void AllSprite::clearProjt(){
+    for(int i=0;i<gb::maxProjtEntities;i++){
+        projtEntities[i] = new Entity();
+        projtEntities[i]->setActive(false);
+    }
+}
+
+void AllSprite::clearPlayer(){
+    player = new Entity();
+    player->setActive(false);
 }
 
 bool AllSprite::isEnemyFull(){

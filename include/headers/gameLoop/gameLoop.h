@@ -5,7 +5,5 @@ public:
     virtual void handleEvent() = 0;
     virtual void update() = 0;
     virtual void render() = 0;
-    static bool spawnedPlayer;
-    static bool spawnedLevel;
-    static bool spawnedEnemy;
+    static bool spawned;
 };

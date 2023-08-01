@@ -14,7 +14,6 @@ void MovableEntity::handleEvent(SDL_Event e){
 }
 
 void MovableEntity::update(){
-    
     vector2 dMove(0, 0);
 
     if(!inAir){
