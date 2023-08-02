@@ -7,6 +7,7 @@ enum CollideBoxType{
     COLBOX_sprite_player,
     COLBOX_sprite_crawler,
     COLBOX_sprite_ploder,
+    COLBOX_sprite_weaponBox,
     COLBOX_projectile_pistolBullet,
     COLBOX_projectile_revolverBullet,
     COLBOX_END
@@ -17,7 +18,8 @@ enum CollideType{
     COL_player,
     COL_enemy,
     COL_level,
-    COL_projectile
+    COL_projectile,
+    COL_weaponBox
 };
     
 
@@ -27,6 +29,7 @@ class CollideBox{
 public:
     static int init();
     static vector<vector<int>>* getLevelCollideBox(LevelType levelType);
+    static void handleEvent(SDL_Event e);
 private:
     static int initCollideBoxes();
     static int initLevelCollideBoxes();
@@ -42,7 +45,6 @@ public:
     CollideBox();
     CollideBox(CollideBoxType boxType, vector2* pos, CollideType type);
     CollideBox(vector<int>* box);
-    static void handleEvent(SDL_Event e);
     void render();
     void setPos(vector2* pos) {this->entityPos = pos;}
     double getBoxLeft() {return entityPos->x + box->at(0);}

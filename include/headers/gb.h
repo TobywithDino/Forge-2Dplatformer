@@ -37,7 +37,7 @@ public:
     static const int maxEnemyEntities = 50;
     static const int maxLevelEntities = 30;
     static const int maxProjtEntities = 30;
-    static const int maxEntities = maxEnemyEntities + maxLevelEntities + maxProjtEntities + 1;
+    static const int maxEntities = maxEnemyEntities + maxLevelEntities + maxProjtEntities + 2;
 private:
     static int SCREEN_WIDTH;
     static int SCREEN_HEIGHT;

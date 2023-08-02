@@ -19,6 +19,7 @@ int CollideBox::initCollideBoxes(){
     if(Map::loadSurfaceT<CollideBoxType>("res/collideBox/sprites/Forge-collideBox-player.png", COLBOX_sprite_player, boxSurfaces) < 0) return -1;
     if(Map::loadSurfaceT<CollideBoxType>("res/collideBox/sprites/Forge-collideBox-crawler.png", COLBOX_sprite_crawler, boxSurfaces) < 0) return -1;
     if(Map::loadSurfaceT<CollideBoxType>("res/collideBox/sprites/Forge-collideBox-ploder.png", COLBOX_sprite_ploder, boxSurfaces) < 0) return -1;
+    if(Map::loadSurfaceT<CollideBoxType>("res/collideBox/sprites/Forge-collideBox-weaponBox.png", COLBOX_sprite_weaponBox, boxSurfaces) < 0) return -1;
     if(Map::loadSurfaceT<CollideBoxType>("res/collideBox/projectile/Forge-collideBox-pistolBullet.png", COLBOX_projectile_pistolBullet, boxSurfaces) < 0) return -1;
     if(Map::loadSurfaceT<CollideBoxType>("res/collideBox/projectile/Forge-collideBox-revolverBullet.png", COLBOX_projectile_revolverBullet, boxSurfaces) < 0) return -1;
     loadPixelFromSurface<CollideBoxType>(COLBOX_END, boxSurfaces, collideBoxes);

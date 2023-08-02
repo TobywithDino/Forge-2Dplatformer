@@ -8,6 +8,7 @@ enum TextureType{
     TEX_sprite_crawler_evolved,
     TEX_sprite_ploder,
     TEX_sprite_ploder_evolved,
+    TEX_sprite_weaponBox,
     TEX_map_level1,
     TEX_map_level2,
     TEX_weapon_pistol,

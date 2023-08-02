@@ -1,7 +1,5 @@
 #pragma once
-#include "headers/movableEntity.h"
-#include "headers/pistol.h"
-#include "headers/revolver.h"
+#include "headers/weaponBox.h"
 
 class Player : public MovableEntity{
 public:
@@ -17,5 +15,5 @@ private:
     bool right = false;
     bool jumping = false;
     bool shooting = false;
-    Weapon* weapon = new Revolver(&this->pos);
+    Weapon* weapon;
 };

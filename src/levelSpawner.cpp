@@ -13,7 +13,7 @@ void LevelSpawner::update(){
     case LEV_1:
         playerSpawnPos = vector2(gb::getWidth()/2, 300);
         enemySpawnPos = vector2(gb::getWidth()/2, -100);
-        spawnGapTicks = 3000;
+        spawnGapTicks = 2500 + (rand()%2000-1000);
         ratio[ENEMY_crawler] = 7;
         ratio[ENEMY_ploder] = 1;
         loadLevel();
@@ -21,7 +21,7 @@ void LevelSpawner::update(){
     case LEV_2:
         playerSpawnPos = vector2(gb::getWidth()/2, 360);
         enemySpawnPos = vector2(gb::getWidth()/2, -100);
-        spawnGapTicks = 3000;
+        spawnGapTicks = 3000 + (rand()%2000-1000);
         ratio[ENEMY_crawler] = 5;
         ratio[ENEMY_ploder] = 1;
         loadLevel();
@@ -37,6 +37,7 @@ void LevelSpawner::loadLevel(){
         AllSprite::clearLevel();
         AllSprite::clearEnemy();
         AllSprite::clearProjt();
+        AllSprite::clearWeaponBox();
         AllSprite::clearPlayer();
         spawnLevelEntities();
         spawnPlayer(playerSpawnPos);
@@ -46,6 +47,7 @@ void LevelSpawner::loadLevel(){
         nextSpawnTick = SDL_GetTicks64() + spawnGapTicks;
         spawnEnemy(enemySpawnPos, ratio);
     }
+    spawnWeaponBox();
 }
 
 void LevelSpawner::spawnLevelEntities(){
@@ -87,4 +89,18 @@ void LevelSpawner::spawnEnemy(vector2 pos, int ratio[]){
         break;
     }
     AllSprite::addEnemy(e);
+}
+
+void LevelSpawner::spawnWeaponBox(){
+    if(AllSprite::isWeaponBoxFull()) return;
+    vector2 tmpPos = vector2(rand()%(gb::getWidth()-50) + 50, rand()%(gb::getHeight()-150) + 50);
+    CollideBox tmpBox = CollideBox(COLBOX_sprite_weaponBox, &tmpPos, COL_weaponBox);
+    while(  Collision::isColliding(tmpBox, new Entity(), COL_level) ||
+            Collision::isColliding(tmpBox, new Entity(), COL_player))
+    {   
+        tmpPos = vector2(rand()%(gb::getWidth()-50) + 50, rand()%(gb::getHeight()-150) + 50);
+        tmpBox = CollideBox(COLBOX_sprite_weaponBox, &tmpPos, COL_weaponBox);
+    }
+    Entity* e = new WeaponBox(tmpPos);
+    AllSprite::addWeaponBox(e);
 }

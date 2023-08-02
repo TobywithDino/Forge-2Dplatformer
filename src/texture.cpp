@@ -11,6 +11,7 @@ int Texture::init(){
     if(loadTexture("res/sprites/Forge-sprite-crawler_evolved.png", TEX_sprite_crawler_evolved) < 0) return -1;
     if(loadTexture("res/sprites/Forge-sprite-ploder.png", TEX_sprite_ploder) < 0) return -1;
     if(loadTexture("res/sprites/Forge-sprite-ploder_evolved.png", TEX_sprite_ploder_evolved) < 0) return -1;
+    if(loadTexture("res/sprites/Forge-sprite-weaponBox.png", TEX_sprite_weaponBox) < 0) return -1;
     if(loadTexture("res/sprites/Forge-map-level1.png", TEX_map_level1) < 0) return -1;
     if(loadTexture("res/sprites/Forge-map-level2.png", TEX_map_level2) < 0) return -1;
     if(loadTexture("res/sprites/Forge-weapon-pistol.png", TEX_weapon_pistol) < 0) return -1;

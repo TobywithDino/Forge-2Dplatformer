@@ -6,6 +6,8 @@ Player::Player() : MovableEntity(vector2(0,0), TEX_sprite_player, COLBOX_sprite_
 
 Player::Player(vector2 pos) : MovableEntity(pos, TEX_sprite_player, COLBOX_sprite_player, COL_player){
     speed = 320;
+    WeaponBox tmpWeaponBox = WeaponBox();
+    weapon = tmpWeaponBox.getWeapon(&this->pos);
 }
 
 void Player::handleEvent(SDL_Event e){
@@ -30,7 +32,13 @@ void Player::update(){
         gb::setGameState(GS_GameOver);
     }
 
-    if(shooting){
+    if(Collision::isColliding(collideBox, this, COL_weaponBox)){
+        collidedEntity->setActive(false);
+        WeaponBox* e = dynamic_cast<WeaponBox*>(collidedEntity);
+        weapon = e->getWeapon(&this->pos); 
+    }
+
+    if(shooting && weapon != nullptr){
         weapon->shoot();
     }
 
@@ -50,7 +58,9 @@ void Player::update(){
 
 void Player::render(){
     MovableEntity::render();
-    weapon->render(isFlipping);
+    if(weapon != nullptr){
+        weapon->render(isFlipping);
+    }
 }
 
 void Player::jump(vector2& tmpVel){

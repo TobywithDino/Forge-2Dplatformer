@@ -8,7 +8,7 @@ public:
     
     Crawler(vector2 spawnPos) : Enemy(spawnPos, TEX_sprite_crawler, COLBOX_sprite_crawler){
         hp = 9;
-        speed = 80;
+        speed = 120;
         evolverType = TEX_sprite_crawler_evolved;
         newSpeed = 220;
         newHp = hp;
