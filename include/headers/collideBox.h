@@ -10,6 +10,7 @@ enum CollideBoxType{
     COLBOX_sprite_weaponBox,
     COLBOX_projectile_pistolBullet,
     COLBOX_projectile_revolverBullet,
+    COLBOX_projectile_dualgunBullet,
     COLBOX_END
 };
 

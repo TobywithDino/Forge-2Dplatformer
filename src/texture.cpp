@@ -16,8 +16,10 @@ int Texture::init(){
     if(loadTexture("res/sprites/Forge-map-level2.png", TEX_map_level2) < 0) return -1;
     if(loadTexture("res/sprites/Forge-weapon-pistol.png", TEX_weapon_pistol) < 0) return -1;
     if(loadTexture("res/sprites/Forge-weapon-revolver.png", TEX_weapon_revolver) < 0) return -1;
+    if(loadTexture("res/sprites/Forge-weapon-dualgun.png", TEX_weapon_dualgun) < 0) return -1;
     if(loadTexture("res/sprites/Forge-projt-pistolBullet.png", TEX_projt_pistolBullet) < 0) return -1;
     if(loadTexture("res/sprites/Forge-projt-revolverBullet.png", TEX_projt_revolverBullet) < 0) return -1;
+    if(loadTexture("res/sprites/Forge-projt-dualgunBullet.png", TEX_projt_dualgunBullet) < 0) return -1;
     return 0;
 }
 

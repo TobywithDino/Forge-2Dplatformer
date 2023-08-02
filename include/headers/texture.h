@@ -13,8 +13,10 @@ enum TextureType{
     TEX_map_level2,
     TEX_weapon_pistol,
     TEX_weapon_revolver,
+    TEX_weapon_dualgun,
     TEX_projt_pistolBullet,
     TEX_projt_revolverBullet,
+    TEX_projt_dualgunBullet,
     TEX_END
 };
 
