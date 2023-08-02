@@ -1,11 +1,11 @@
 #include "headers/player.h"
 
 Player::Player() : MovableEntity(vector2(0,0), TEX_sprite_player, COLBOX_sprite_player, COL_player){
-    speed = 300;
+    speed = 320;
 }
 
 Player::Player(vector2 pos) : MovableEntity(pos, TEX_sprite_player, COLBOX_sprite_player, COL_player){
-    speed = 300;
+    speed = 320;
     WeaponBox tmpWeaponBox = WeaponBox();
     weapon = tmpWeaponBox.getWeapon(&this->pos);
 }

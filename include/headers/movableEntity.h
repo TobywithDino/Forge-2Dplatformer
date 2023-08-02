@@ -13,7 +13,7 @@ private:
     void updateXPos(vector2& dMove);
     // variables for JUMPING
     const double gravity = 4000;    
-    double fallSpeedAfterCollision = 300;
+    double fallSpeedAfterCollision = 150;
 protected:
     bool inAir = false;
     double speed = 100;

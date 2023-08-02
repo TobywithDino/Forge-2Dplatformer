@@ -5,7 +5,7 @@ class Dualgun : public Weapon{
 public:
     Dualgun() : Weapon(){}
     Dualgun(vector2* playerPos) : 
-    Weapon(playerPos, vector2(0,7), vector2(17,0), 700, 2, 350, TEX_weapon_dualgun, TEX_projt_dualgunBullet, COLBOX_projectile_dualgunBullet){}
+    Weapon(playerPos, vector2(0,7), vector2(17,0), 700, 2, 280, TEX_weapon_dualgun, TEX_projt_dualgunBullet, COLBOX_projectile_dualgunBullet){}
     void shoot() override{
         if(SDL_GetTicks64() - lastShootTick >= shootDelayTicks){
             lastShootTick = SDL_GetTicks64();
