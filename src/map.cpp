@@ -43,29 +43,6 @@ int Map::init(){
     return 0;
 }
 
-// template<typename Type>
-// int Map::loadSurfaceT(const char* path, Type t, SDL_Surface** surfaces){
-//     SDL_Surface* surface;
-//     surface = IMG_Load(path);
-//     if(surface == nullptr){
-//         printf("Error: failed to load surface\nMap::init() Error: '%s'\n", path);
-//         return -1;
-//     }
-//     surfaces[t] = surface;
-//     return 0;
-// }
-
-// int Map::loadSurface(const char* path, vector<SDL_Surface*> surfaces){
-//     SDL_Surface* surface;
-//     surface = IMG_Load(path);
-//     if(surface == nullptr){
-//         printf("Error: failed to load surface\nMap::init() Error: '%s'\n", path);
-//         return -1;
-//     }
-//     surfaces.push_back(surface);
-//     return 0;
-// }
-
 void Map::render(){
     TextureType texType;
     switch (levelType)
@@ -75,6 +52,9 @@ void Map::render(){
         break;
     case LEV_2:
         texType = TEX_map_level2;
+        break;
+    case LEV_3:
+        texType = TEX_map_level3;
         break;
     default:
         texType = TEX_sprite_testBlock;

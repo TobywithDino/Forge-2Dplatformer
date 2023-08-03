@@ -26,6 +26,14 @@ void LevelSpawner::update(){
         ratio[ENEMY_ploder] = 2;
         loadLevel();
         break;
+    case LEV_3:
+        playerSpawnPos = vector2(gb::getWidth()/2, 300);
+        enemySpawnPos = vector2(gb::getWidth()/2, -100);
+        spawnGapTicks = 2000 + (rand()%2000-1000);
+        ratio[ENEMY_crawler] = 5;
+        ratio[ENEMY_ploder] = 2;
+        loadLevel();
+        break;
     default:
         printf("Error: LevelSpawner can't spawn level: %d\n", levelType);
         break;

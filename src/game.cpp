@@ -4,12 +4,12 @@ Game::Game(){
     gb::setWidth(960);
     gb::setHeight(704);
     gb::setTitle("Forge");
-    gb::setScale(1.5);
+    gb::setScale(2);
     gb::setRunning(true);
     gb::setFPS(120);
     gb::setFrameTicks(0);
     gb::setGameState(GS_Menu);
-    Map::setLevelType(LEV_2);
+    Map::setLevelType(LEV_1);
 }
 
 int Game::init(){

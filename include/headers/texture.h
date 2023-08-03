@@ -11,6 +11,7 @@ enum TextureType{
     TEX_sprite_weaponBox,
     TEX_map_level1,
     TEX_map_level2,
+    TEX_map_level3,
     TEX_weapon_pistol,
     TEX_weapon_revolver,
     TEX_weapon_dualgun,
