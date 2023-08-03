@@ -14,9 +14,11 @@ enum TextureType{
     TEX_weapon_pistol,
     TEX_weapon_revolver,
     TEX_weapon_dualgun,
+    TEX_weapon_disc,
     TEX_projt_pistolBullet,
     TEX_projt_revolverBullet,
     TEX_projt_dualgunBullet,
+    TEX_projt_discBullet,
     TEX_END
 };
 

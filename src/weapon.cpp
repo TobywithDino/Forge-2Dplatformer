@@ -1,4 +1,4 @@
-#include "headers/weapon.h"
+#include "headers/weapon/weapon.h"
 
 Weapon::Weapon(){
 }

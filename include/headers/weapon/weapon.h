@@ -1,5 +1,5 @@
 #pragma once
-#include "headers/projectile.h"
+#include "headers/weapon/projectile.h"
 
 class Weapon : public Entity{
 public:

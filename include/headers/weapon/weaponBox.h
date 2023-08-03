@@ -1,13 +1,15 @@
 #pragma once
 #include "headers/movableEntity.h"
-#include "headers/pistol.h"
-#include "headers/revolver.h"
-#include "headers/dualgun.h"
+#include "headers/weapon/pistol.h"
+#include "headers/weapon/revolver.h"
+#include "headers/weapon/dualgun.h"
+#include "headers/weapon/disc.h"
 
 enum WeaponType{
     WP_pistol,
     WP_revolver,
     WP_dualgun,
+    WP_disc,
     WP_END
 };
 

@@ -1,10 +1,11 @@
-#include "headers/weaponBox.h"
+#include "headers/weapon/weaponBox.h"
 WeaponType WeaponBox::lastType = WP_END;
 
 WeaponBox::WeaponBox() : MovableEntity(){
     ratio[WP_pistol] = 1;
     ratio[WP_revolver] = 1;
     ratio[WP_dualgun] = 1;
+    ratio[WP_disc] = 1;
     for(WeaponType i=WP_pistol;i<WP_END;i=(WeaponType)(i+1)){
         for(int j=0;j<ratio[i];j++){
             dice.push_back(i);
@@ -16,6 +17,7 @@ WeaponBox::WeaponBox(vector2 pos) : MovableEntity(pos, TEX_sprite_weaponBox, COL
     ratio[WP_pistol] = 1;
     ratio[WP_revolver] = 1;
     ratio[WP_dualgun] = 1;
+    ratio[WP_disc] = 1;
     for(WeaponType i=WP_pistol;i<WP_END;i=(WeaponType)(i+1)){
         for(int j=0;j<ratio[i];j++){
             dice.push_back(i);
@@ -42,6 +44,9 @@ Weapon* WeaponBox::getWeapon(vector2 *playerPos){
         break;
     case WP_dualgun:
         w = new Dualgun(playerPos);
+        break;
+    case WP_disc:
+        w = new Disc(playerPos);
         break;
     default:
         printf("Error: WeaponBox::getWeapon : couldn't get weapon %d\n", type);

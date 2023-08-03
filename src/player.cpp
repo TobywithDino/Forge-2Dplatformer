@@ -29,6 +29,9 @@ void Player::handleEvent(SDL_Event e){
 
 void Player::update(){
     if(Collision::isColliding(collideBox, this, COL_enemy) || pos.y > gb::getHeight()){
+        hp = 0;
+    }
+    if(hp <= 0){
         gb::setGameState(GS_GameOver);
     }
 
