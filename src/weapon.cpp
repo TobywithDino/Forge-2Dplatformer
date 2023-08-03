@@ -1,6 +1,6 @@
 #include "headers/weapon/weapon.h"
 
-Weapon::Weapon(){
+Weapon::Weapon() : Entity(){
 }
 
 Weapon::Weapon(vector2* playerPos, vector2 offset, vector2 shootOffsetPos, int shootSpeed, int damage, int shootDelayTicks, TextureType weaponTType, TextureType projtTType, CollideBoxType projtCBType){

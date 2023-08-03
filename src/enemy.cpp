@@ -21,8 +21,8 @@ void Enemy::update(){
     tmpBox.setPos(new vector2(pos.x+vel.x*gb::getFrameTicks()/1000, pos.y));
     if(Collision::isColliding(tmpBox, this, COL_level)) vel.x *= -1;
     
-    if(pos.y > gb::getHeight()){
-        evolve(evolverType, newSpeed);
+    if(pos.y > gb::getHeight()+100){
+        if(!evolved) evolve(evolverType, newSpeed);
         pos = spawnPos;
         vel.y = 0;
         if(rand()%2) vel.x = speed;
@@ -33,6 +33,7 @@ void Enemy::update(){
 }
 
 void Enemy::evolve(TextureType tType, double newSpeed){
+    evolved = true;
     speed = newSpeed;
     hp = newHp;
     setTexture(tType);

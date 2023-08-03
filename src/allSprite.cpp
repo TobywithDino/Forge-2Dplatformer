@@ -67,6 +67,9 @@ void AllSprite::update(){
             (*entities[i])->update();
         }
     }
+    if(!player->getActive()){
+        gb::setGameState(GS_GameOver);
+    }
 }
 
 void AllSprite::render(){

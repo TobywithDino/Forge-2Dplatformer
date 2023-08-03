@@ -10,8 +10,9 @@ public:
     virtual void update() override;
     virtual void render() override;
 private:
+    bool jumpedAfterDead = false;
+    void dropDead();
     void updateXPos(vector2& dMove);
-    // variables for JUMPING
     const double gravity = 4000;    
 protected:
     bool inAir = false;

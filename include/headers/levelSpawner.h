@@ -15,7 +15,7 @@ private:
     static void spawnEnemy(vector2 pos, int ratio[]);
     static void spawnWeaponBox();
     static vector2 playerSpawnPos;
-    static vector2 enemySpawnPos;
+    static vector<vector2> enemySpawnPos;
     static Uint64 nextSpawnTick;
     static Uint64 spawnGapTicks;
     static int ratio[ENEMY_END];

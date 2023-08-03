@@ -14,6 +14,7 @@ public:
     virtual void update() override;
 private:
     vector2 spawnPos = vector2(0,0);
+    bool evolved = false;
     void evolve(TextureType tType, double newSpeed);
 protected:
     TextureType evolverType = TEX_sprite_testBlock;

@@ -19,10 +19,14 @@ public:
     virtual void render();
     void setActive(bool isActive) {this->isActive = isActive;}
     void setCollidedEntity(Entity* e) {this->collidedEntity = e;}
-    void setTexture(TextureType tType) {this->tex = Texture::getTexture(tType);}
+    void setTexture(TextureType tType) {
+        this->tType = tType;
+        this->tex = Texture::getTexture(tType);
+    }
 
     bool getActive() {return isActive;}
     CollideBox* getCollideBox() {return &collideBox;}
+    TextureType getTextureType() {return tType;}
 
     void hurt(int damage) {this->hp -= damage;}
 private:
@@ -36,4 +40,6 @@ protected:
     CollideBox collideBox = CollideBox();
     Entity* collidedEntity = this;
     int hp = 1;
+    double angle = 0;
+    TextureType tType = TEX_sprite_testBlock;
 };

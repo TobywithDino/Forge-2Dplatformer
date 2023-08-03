@@ -1,6 +1,6 @@
 #include "headers/levelSpawner.h"
 vector2 LevelSpawner::playerSpawnPos = vector2(0,0);
-vector2 LevelSpawner::enemySpawnPos = vector2(0,0);
+vector<vector2> LevelSpawner::enemySpawnPos = {vector2(0,0)};
 Uint64 LevelSpawner::spawnGapTicks = 200;
 Uint64 LevelSpawner::nextSpawnTick = 0;
 int LevelSpawner::ratio[ENEMY_END] = {0};
@@ -12,7 +12,7 @@ void LevelSpawner::update(){
     {
     case LEV_1:
         playerSpawnPos = vector2(gb::getWidth()/2, 300);
-        enemySpawnPos = vector2(gb::getWidth()/2, -100);
+        enemySpawnPos = {vector2(gb::getWidth()/2, -100)};
         spawnGapTicks = 2500 + (rand()%2000-1000);
         ratio[ENEMY_crawler] = 7;
         ratio[ENEMY_ploder] = 1;
@@ -20,7 +20,7 @@ void LevelSpawner::update(){
         break;
     case LEV_2:
         playerSpawnPos = vector2(gb::getWidth()/2, 360);
-        enemySpawnPos = vector2(gb::getWidth()/2, -100);
+        enemySpawnPos = {vector2(gb::getWidth()/2, -100)};
         spawnGapTicks = 2000 + (rand()%2000-1000);
         ratio[ENEMY_crawler] = 5;
         ratio[ENEMY_ploder] = 2;
@@ -28,7 +28,7 @@ void LevelSpawner::update(){
         break;
     case LEV_3:
         playerSpawnPos = vector2(gb::getWidth()/2, 300);
-        enemySpawnPos = vector2(gb::getWidth()/2, -100);
+        enemySpawnPos = {vector2(gb::getWidth()/2, -100)};
         spawnGapTicks = 2000 + (rand()%2000-1000);
         ratio[ENEMY_crawler] = 5;
         ratio[ENEMY_ploder] = 2;
@@ -53,7 +53,7 @@ void LevelSpawner::loadLevel(){
     }
     if(SDL_GetTicks64() >= nextSpawnTick){
         nextSpawnTick = SDL_GetTicks64() + spawnGapTicks;
-        spawnEnemy(enemySpawnPos, ratio);
+        spawnEnemy(enemySpawnPos[rand()%enemySpawnPos.size()], ratio);
     }
     spawnWeaponBox();
 }

@@ -14,8 +14,16 @@ void MovableEntity::handleEvent(SDL_Event e){
 }
 
 void MovableEntity::update(){
+    // drop dead when hp<=0 and don't run to pos update below.
+    if(hp <= 0){
+        collideBox.setCollideType(COL_END);
+        dropDead();
+        return;
+    }
+
     vector2 dMove(0, 0);
 
+    // when not in air(on the ground), check if it's still on the ground this frame.
     if(!inAir){
         CollideBox tmpBox = collideBox;
         tmpBox.setPos(new vector2(pos.x, pos.y+1));
@@ -48,8 +56,12 @@ void MovableEntity::update(){
         updateXPos(dMove);
     }
 
+    // update pos
     pos = pos + dMove;
-    Entity::update();
+
+    // flip image according to vel.x
+    if(vel.x > 0) isFlipping = false;
+    if(vel.x < 0) isFlipping = true;
 }
 
 void MovableEntity::updateXPos(vector2& dMove){
@@ -68,4 +80,21 @@ void MovableEntity::updateXPos(vector2& dMove){
 
 void MovableEntity::render(){
     Entity::render();
+}
+
+void MovableEntity::dropDead(){
+    if(!jumpedAfterDead){
+        jumpedAfterDead = true;
+        vel.y = -500;
+    }
+    if(isFlipping) angle -= (hp-1);
+    else angle += (hp-1);
+    vector2 dMove;
+    dMove.x += vel.x * gb::getFrameTicks() / 1000;
+    dMove.y += vel.y * gb::getFrameTicks() / 1000;
+    vel.y += gravity * gb::getFrameTicks() / 1000;
+    pos = pos + dMove;
+    if(pos.y > gb::getHeight()){
+        isActive = false;
+    }
 }

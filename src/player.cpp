@@ -11,6 +11,7 @@ Player::Player(vector2 pos) : MovableEntity(pos, TEX_sprite_player, COLBOX_sprit
 }
 
 void Player::handleEvent(SDL_Event e){
+    if(hp <= 0) return;
     MovableEntity::handleEvent(e);
 
     if(e.type == SDL_KEYDOWN){
@@ -31,14 +32,17 @@ void Player::update(){
     if(Collision::isColliding(collideBox, this, COL_enemy) || pos.y > gb::getHeight()){
         hp = 0;
     }
-    if(hp <= 0){
-        gb::setGameState(GS_GameOver);
-    }
 
     if(Collision::isColliding(collideBox, this, COL_weaponBox)){
+        // drop last weapon
+        MovableEntity *w = new MovableEntity(pos, weapon->getTextureType(), COLBOX_default, COL_END);
+        w->hurt(1);
+        AllSprite::addProjt(w);
+
+        // get weapon from box
         collidedEntity->setActive(false);
         WeaponBox* e = dynamic_cast<WeaponBox*>(collidedEntity);
-        weapon = e->getWeapon(&this->pos); 
+        weapon = e->getWeapon(&this->pos);
     }
 
     if(shooting && weapon != nullptr){

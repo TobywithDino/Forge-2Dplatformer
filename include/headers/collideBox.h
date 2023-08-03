@@ -21,7 +21,8 @@ enum CollideType{
     COL_enemy,
     COL_level,
     COL_projectile,
-    COL_weaponBox
+    COL_weaponBox,
+    COL_END
 };
     
 
@@ -49,6 +50,7 @@ public:
     CollideBox(vector<int>* box);
     void render();
     void setPos(vector2* pos) {this->entityPos = pos;}
+    void setCollideType(CollideType cType) {collideType = cType;}
     double getBoxLeft() {return entityPos->x + box->at(0);}
     double getBoxRight() {return entityPos->x + box->at(0) + box->at(2);}
     double getBoxTop() {return entityPos->y + box->at(1);}
