@@ -42,3 +42,19 @@ double Collision::getYAfterCollision(double yV, CollideBox aBox, CollideBox bBox
         return aBox.getBoxTop() - aBox.getBoxOffset().y;
     }
 }
+
+double Collision::getDistance(CollideBox aBox, CollideType colType){
+    Entity*** entities = Entity::getEntities();
+    double dis = 0;
+    double minDis = 100000;
+    for(int i=0;i<gb::maxEntities;i++){
+        if((*entities[i])->getCollideBox()->getCollideType() != colType) continue;
+        int dx = (*entities[i])->getCollideBox()->getBoxLeft() - aBox.getBoxLeft();
+        int dy = (*entities[i])->getCollideBox()->getBoxTop() - aBox.getBoxTop();
+        dis = sqrt(dx*dx + dy*dy);
+        if(dis < minDis){
+            minDis = dis;
+        }
+    }
+    return minDis;
+}

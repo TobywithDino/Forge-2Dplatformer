@@ -52,15 +52,7 @@ Weapon* WeaponBox::getWeapon(vector2 *playerPos){
 
 void WeaponBox::update(){
     if(pos.y >= gb::getHeight()){
-        vector2 tmpPos = vector2(rand()%(gb::getWidth()-50) + 50, rand()%(gb::getHeight()-150) + 50);
-        CollideBox tmpBox = CollideBox(COLBOX_sprite_weaponBox, &tmpPos, COL_weaponBox);
-        while(  Collision::isColliding(tmpBox, new Entity(), COL_level) ||
-                Collision::isColliding(tmpBox, new Entity(), COL_player))
-        {   
-            tmpPos = vector2(rand()%(gb::getWidth()-50) + 50, rand()%(gb::getHeight()-150) + 50);
-            tmpBox = CollideBox(COLBOX_sprite_weaponBox, &tmpPos, COL_weaponBox);
-        }
-        pos = tmpPos;
+        setActive(false);
     }
     MovableEntity::update();
 }

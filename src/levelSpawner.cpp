@@ -21,9 +21,9 @@ void LevelSpawner::update(){
     case LEV_2:
         playerSpawnPos = vector2(gb::getWidth()/2, 360);
         enemySpawnPos = vector2(gb::getWidth()/2, -100);
-        spawnGapTicks = 3000 + (rand()%2000-1000);
+        spawnGapTicks = 2000 + (rand()%2000-1000);
         ratio[ENEMY_crawler] = 5;
-        ratio[ENEMY_ploder] = 1;
+        ratio[ENEMY_ploder] = 2;
         loadLevel();
         break;
     default:
@@ -96,7 +96,7 @@ void LevelSpawner::spawnWeaponBox(){
     vector2 tmpPos = vector2(rand()%(gb::getWidth()-50) + 50, rand()%(gb::getHeight()-150) + 50);
     CollideBox tmpBox = CollideBox(COLBOX_sprite_weaponBox, &tmpPos, COL_weaponBox);
     while(  Collision::isColliding(tmpBox, new Entity(), COL_level) ||
-            Collision::isColliding(tmpBox, new Entity(), COL_player))
+            Collision::getDistance(tmpBox) < 300)
     {   
         tmpPos = vector2(rand()%(gb::getWidth()-50) + 50, rand()%(gb::getHeight()-150) + 50);
         tmpBox = CollideBox(COLBOX_sprite_weaponBox, &tmpPos, COL_weaponBox);
