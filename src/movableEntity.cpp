@@ -38,11 +38,8 @@ void MovableEntity::update(){
             // after moved to correct y, check inAir state and update vel.y
             if(vel.y > 0){
                 inAir = false;
-                vel.y = 0;
             }
-            else{
-                vel.y = fallSpeedAfterCollision;
-            }
+            vel.y = 0;
         }
         // after checking vertically, check horizontally
         updateXPos(dMove);

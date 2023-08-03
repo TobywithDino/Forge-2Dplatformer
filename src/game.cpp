@@ -1,15 +1,15 @@
 #include "headers/game.h"
 
 Game::Game(){
-    gb::setWidth(960);
-    gb::setHeight(704);
+    gb::setWidth(1280);
+    gb::setHeight(720);
     gb::setTitle("Forge");
     gb::setScale(2);
     gb::setRunning(true);
     gb::setFPS(120);
     gb::setFrameTicks(0);
     gb::setGameState(GS_Menu);
-    Map::setLevelType(LEV_1);
+    Map::setLevelType(LEV_3);
 }
 
 int Game::init(){

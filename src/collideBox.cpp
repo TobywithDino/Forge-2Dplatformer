@@ -39,8 +39,6 @@ int CollideBox::initLevelCollideBoxes(){
     if(Map::loadSurface("res/collideBox/level1/Layer 6.png", levelSurfaces) < 0) return -1;
     if(Map::loadSurface("res/collideBox/level1/Layer 7.png", levelSurfaces) < 0) return -1;
     if(Map::loadSurface("res/collideBox/level1/Layer 8.png", levelSurfaces) < 0) return -1;
-    if(Map::loadSurface("res/collideBox/level1/Layer 9.png", levelSurfaces) < 0) return -1;
-    if(Map::loadSurface("res/collideBox/level1/Layer 10.png", levelSurfaces) < 0) return -1;
     loadPixelFromSurface(levelSurfaces, levelboxes, vector2(gb::getWidth() / gb::getScale() / levelSurfaces[0]->w,gb::getHeight() / gb::getScale() / levelSurfaces[0]->h));
     levelSurfaces.clear();
     levelCollideBoxes[LEV_1] = levelboxes;
@@ -56,8 +54,6 @@ int CollideBox::initLevelCollideBoxes(){
     if(Map::loadSurface("res/collideBox/level2/Layer 8.png", levelSurfaces) < 0) return -1;
     if(Map::loadSurface("res/collideBox/level2/Layer 9.png", levelSurfaces) < 0) return -1;
     if(Map::loadSurface("res/collideBox/level2/Layer 10.png", levelSurfaces) < 0) return -1;
-    if(Map::loadSurface("res/collideBox/level2/Layer 11.png", levelSurfaces) < 0) return -1;
-    if(Map::loadSurface("res/collideBox/level2/Layer 12.png", levelSurfaces) < 0) return -1;
     loadPixelFromSurface(levelSurfaces, levelboxes, vector2(gb::getWidth() / gb::getScale() / levelSurfaces[0]->w,gb::getHeight() / gb::getScale() / levelSurfaces[0]->h));
     levelSurfaces.clear();
     levelCollideBoxes[LEV_2] = levelboxes;
@@ -73,6 +69,7 @@ int CollideBox::initLevelCollideBoxes(){
     if(Map::loadSurface("res/collideBox/level3/Layer 8.png", levelSurfaces) < 0) return -1;
     if(Map::loadSurface("res/collideBox/level3/Layer 9.png", levelSurfaces) < 0) return -1;
     if(Map::loadSurface("res/collideBox/level3/Layer 10.png", levelSurfaces) < 0) return -1;
+    if(Map::loadSurface("res/collideBox/level3/Layer 11.png", levelSurfaces) < 0) return -1;
     loadPixelFromSurface(levelSurfaces, levelboxes, vector2(gb::getWidth() / gb::getScale() / levelSurfaces[0]->w,gb::getHeight() / gb::getScale() / levelSurfaces[0]->h));
     levelSurfaces.clear();
     levelCollideBoxes[LEV_3] = levelboxes;
