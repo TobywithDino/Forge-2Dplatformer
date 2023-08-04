@@ -62,6 +62,10 @@ void MovableEntity::update(){
     // flip image according to vel.x
     if(vel.x > 0) isFlipping = false;
     if(vel.x < 0) isFlipping = true;
+    
+    // update anim state
+    if(vel.x != 0) anim.setState(AS_walk);
+    else anim.setState(AS_idle);
 }
 
 void MovableEntity::updateXPos(vector2& dMove){

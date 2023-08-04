@@ -12,5 +12,7 @@ public:
         evolverType = TEX_sprite_crawler_evolved;
         newSpeed = 270;
         newHp = hp;
+        anim = Anim(&this->pos, TEX_sprite_crawler, ANIM_END, ANIM_crawler_walk, ANIM_END);
+        evolvedAnim = Anim(&this->pos, TEX_sprite_crawler_evolved, ANIM_END, ANIM_crawler_evolved_walk, ANIM_END);
     }
 };

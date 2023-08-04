@@ -1,5 +1,6 @@
 #pragma once
 #include "headers/collideBox.h" 
+#include "headers/anim.h"
 
 class Entity{
 // static part
@@ -42,4 +43,5 @@ protected:
     int hp = 1;
     double angle = 0;
     TextureType tType = TEX_sprite_testBlock;
+    Anim anim = Anim();
 };

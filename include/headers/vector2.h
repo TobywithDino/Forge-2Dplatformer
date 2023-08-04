@@ -12,6 +12,11 @@ public:
         return vector2(x*k, y*k);
     }
 
+    vector2 operator/(double k){
+        if(k == 0) return vector2(x,y);
+        return vector2(x/k, y/k);
+    }
+
     vector2 operator+(vector2 b){
         return vector2(x+b.x, y+b.y);
     }

@@ -1,5 +1,4 @@
 #pragma once
-#include "headers/vector2.h"
 #include "headers/map.h"
 
 enum CollideBoxType{

@@ -11,7 +11,10 @@ Player::Player(vector2 pos) : MovableEntity(pos, TEX_sprite_player, COLBOX_sprit
 }
 
 void Player::handleEvent(SDL_Event e){
-    if(hp <= 0) return;
+    if(hp <= 0) {
+        shooting = false;
+        return;
+    }
     MovableEntity::handleEvent(e);
 
     if(e.type == SDL_KEYDOWN){

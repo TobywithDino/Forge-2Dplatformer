@@ -9,7 +9,7 @@ Game::Game(){
     gb::setFPS(120);
     gb::setFrameTicks(0);
     gb::setGameState(GS_Menu);
-    Map::setLevelType(LEV_3);
+    Map::setLevelType(LEV_1);
 }
 
 int Game::init(){
@@ -36,6 +36,7 @@ int Game::init(){
     }
 
     if(Texture::init() < 0) return 1;
+    if(Anim::init() < 0) return 1;
     if(Map::init() < 0) return 1;
     if(CollideBox::init() < 0) return 1;
     if(AllSprite::init() < 0) return 1;

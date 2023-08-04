@@ -27,9 +27,17 @@ class Texture{
 public:
     static int init();
     static SDL_Texture* getTexture(TextureType type);
+    template<typename type>
+    static int loadTexture(const char* path, type t, SDL_Texture** textures){
+        SDL_Texture* tex;
+        tex = IMG_LoadTexture(gb::getRenderer(), path);
+        if(tex == nullptr){
+            printf("Error: failed to load texture\nTexture Error: '%s'\n", path);
+            return -1;
+        }
+        textures[t] = tex;
+        return 0;
+    }
 private:
     static SDL_Texture* textures[TEX_END];
-    static vector<SDL_Texture*> spriteTextures;
-    static vector<SDL_Texture*> levelTextures;
-    static int loadTexture(const char* path, TextureType type);
 };

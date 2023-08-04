@@ -35,5 +35,7 @@ void Entity::render(){
     dst.y = (int)pos.y;
     SDL_RendererFlip flip = SDL_FLIP_NONE;
     if(isFlipping) flip = SDL_FLIP_HORIZONTAL;
-    SDL_RenderCopyEx(gb::getRenderer(), tex, NULL, &dst, angle, NULL, flip);
+    
+    if(!anim.getOnAnim()) SDL_RenderCopyEx(gb::getRenderer(), tex, NULL, &dst, angle, NULL, flip);
+    else anim.render(angle, flip);
 }

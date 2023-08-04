@@ -20,4 +20,5 @@ protected:
     TextureType evolverType = TEX_sprite_testBlock;
     int newHp = 1;
     double newSpeed = 200;
+    Anim evolvedAnim = Anim();
 };
