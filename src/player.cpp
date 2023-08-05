@@ -8,6 +8,7 @@ Player::Player(vector2 pos) : MovableEntity(pos, TEX_sprite_player, COLBOX_sprit
     speed = 400;
     WeaponBox tmpWeaponBox = WeaponBox();
     weapon = tmpWeaponBox.getWeapon(&this->pos);
+    anim = Anim(&this->pos, TEX_sprite_player, ANIM_player_idle, ANIM_player_walk, ANIM_END);
 }
 
 void Player::handleEvent(SDL_Event e){

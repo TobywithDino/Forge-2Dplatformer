@@ -5,6 +5,8 @@ int Anim::init(){
     if(Texture::loadTexture("res/anim/Forge-anim-crawler-walk.png", ANIM_crawler_walk, anims) < 0) return -1;
     if(Texture::loadTexture("res/anim/Forge-anim-crawler_evolved-walk.png", ANIM_crawler_evolved_walk, anims) < 0) return -1;
     if(Texture::loadTexture("res/anim/Forge-anim-ploder-walk.png", ANIM_ploder_walk, anims) < 0) return -1;
+    if(Texture::loadTexture("res/anim/Forge-anim-player-idle.png", ANIM_player_idle, anims) < 0) return -1;
+    if(Texture::loadTexture("res/anim/Forge-anim-player-walk.png", ANIM_player_walk, anims) < 0) return -1;
     return 0;
 }
 
@@ -57,9 +59,10 @@ void Anim::render(double angle, SDL_RendererFlip flip){
 
     vector2 originalSize = size / gb::getScale();
     // get length of current animation
-    int w, length = 1;
+    int w = 1;
     SDL_QueryTexture(texture, NULL, NULL, &w, NULL);
-    length = w/(int)originalSize.x;
+    int length = 1;
+    length = w / (int)originalSize.x;
     if(length == 0) length = 1;
     
     // update frame of animation
@@ -80,4 +83,12 @@ void Anim::render(double angle, SDL_RendererFlip flip){
     dst.x = pos->x;
     dst.y = pos->y;
     SDL_RenderCopyEx(gb::getRenderer(), texture, &src, &dst, angle, NULL, flip);
+}
+
+void Anim::setState(AnimState state){
+    if(state == this->state) return;
+    else {
+        this->state = state;
+        index = 0;
+    }
 }

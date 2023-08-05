@@ -64,8 +64,8 @@ void MovableEntity::update(){
     if(vel.x < 0) isFlipping = true;
     
     // update anim state
-    if(vel.x != 0) anim.setState(AS_walk);
-    else anim.setState(AS_idle);
+    if(vel.x == 0) anim.setState(AS_idle);
+    else anim.setState(AS_walk);
 }
 
 void MovableEntity::updateXPos(vector2& dMove){

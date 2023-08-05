@@ -5,6 +5,8 @@ enum AnimType{
     ANIM_crawler_walk,
     ANIM_crawler_evolved_walk,
     ANIM_ploder_walk,
+    ANIM_player_idle,
+    ANIM_player_walk,
     ANIM_END
 };
 
@@ -29,7 +31,7 @@ public:
     Anim(vector2 *pos, TextureType defaultTex, AnimType idle, AnimType walk, AnimType jump, bool on = true);
     Anim(vector2 *pos, TextureType defaultTex, AnimType idle, AnimType walk, AnimType jump, vector2 size, bool on = true);
     void render(double angle, SDL_RendererFlip flip);
-    void setState(AnimState state) {this->state = state;}
+    void setState(AnimState state);
     void setOnAnim(bool onAnim) {this->onAnim = onAnim;}
     bool getOnAnim() {return onAnim;}
 private:
