@@ -12,9 +12,11 @@ public:
             if(hp == 0) {
                 isActive = false;
                 Projectile::setDiscBulletOut(false);
+                return;
             }
+            Sound::playSFX(SFX_weapon_disc_bounce);
+            lastCollidedEntity = collidedEntity;
         }
-        if(!isActive) return;
         pos.x += vel.x * gb::getFrameTicks() / 1000;
         if(Collision::isColliding(collideBox, this, COL_enemy)) {
             if(lastCollidedEntity != collidedEntity){

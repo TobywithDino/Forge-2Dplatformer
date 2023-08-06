@@ -78,6 +78,9 @@ void AllSprite::render(){
             (*entities[i])->render();
         }
     }
+
+    Map::render();
+
     for(int i=0;i<gb::maxEntities;i++) {
         if((*entities[i])->getActive()){
             (*entities[i])->getCollideBox()->render();

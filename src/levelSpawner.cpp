@@ -104,7 +104,7 @@ void LevelSpawner::spawnWeaponBox(){
     vector2 tmpPos = vector2(rand()%(gb::getWidth()-50) + 50, rand()%(gb::getHeight()-150) + 50);
     CollideBox tmpBox = CollideBox(COLBOX_sprite_weaponBox, &tmpPos, COL_weaponBox);
     while(  Collision::isColliding(tmpBox, new Entity(), COL_level) ||
-            Collision::getDistance(tmpBox) < 300)
+            Collision::getDistance(tmpBox) < 500)
     {   
         tmpPos = vector2(rand()%(gb::getWidth()-50) + 50, rand()%(gb::getHeight()-150) + 50);
         tmpBox = CollideBox(COLBOX_sprite_weaponBox, &tmpPos, COL_weaponBox);

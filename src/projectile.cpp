@@ -19,5 +19,6 @@ void Projectile::update(){
         isActive = false;
         collidedEntity->hurt(damage);
     }
-    Entity::update();
+    if(vel.x > 0) isFlipping = false;
+    if(vel.x < 0) isFlipping = true;
 }

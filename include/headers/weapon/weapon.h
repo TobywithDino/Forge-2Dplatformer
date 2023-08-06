@@ -17,4 +17,5 @@ protected:
     CollideBoxType projtCBType;
     int shootDelayTicks = 500;
     Uint64 lastShootTick = 0;
+    SFXType sfxType = SFX_END;
 };

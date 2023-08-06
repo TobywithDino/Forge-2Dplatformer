@@ -23,6 +23,17 @@ int Game::init(){
         return 1;
     }
 
+    // if(Mix_Init(MIX_INIT_MP3) != MIX_INIT_MP3){
+    //     printf("Error: Mix failed to initialize\nMix Error: '%s'\n", Mix_GetError());
+    //     return 1;
+    // }
+    
+    if(Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0)
+    {
+        printf("Error: Mix failed to initialize\nMix Error: '%s'\n", Mix_GetError());
+        return 1;
+    }
+
     gb::setWindow(SDL_CreateWindow(gb::getTitle(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, gb::getWidth(), gb::getHeight(), 0));
     if(!gb::getWindow()){
         printf("Error: Failed to open window\nSDL Error: '%s'\n", SDL_GetError());
@@ -40,6 +51,7 @@ int Game::init(){
     if(Map::init() < 0) return 1;
     if(CollideBox::init() < 0) return 1;
     if(AllSprite::init() < 0) return 1;
+    if(Sound::init() < 0) return 1;
     return 0;
 }
 

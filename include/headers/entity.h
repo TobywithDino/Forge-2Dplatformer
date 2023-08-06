@@ -29,7 +29,7 @@ public:
     CollideBox* getCollideBox() {return &collideBox;}
     TextureType getTextureType() {return tType;}
 
-    void hurt(int damage) {this->hp -= damage;}
+    virtual void hurt(int damage) {this->hp -= damage;}
 private:
     SDL_Texture* tex = Texture::getTexture(TEX_sprite_testBlock);
 protected:

@@ -1,5 +1,5 @@
 #pragma once
-#include "headers/gb.h"
+#include "headers/sound.h"
 
 enum TextureType{
     TEX_sprite_testBlock,

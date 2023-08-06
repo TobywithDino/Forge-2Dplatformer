@@ -8,6 +8,7 @@ public:
     Game();
     int init();
     void start();
+    void quit();
 private:
     Menu menu = Menu();
     Playing playing = Playing();

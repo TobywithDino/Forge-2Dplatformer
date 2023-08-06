@@ -46,5 +46,6 @@ void Weapon::shoot(){
         }
         Projectile* projt = new Projectile(shootPos, tmp_shootSpeed, damage, projtTType, projtCBType);
         AllSprite::addProjt(projt);
+        Sound::playSFX(sfxType);
     }
 }

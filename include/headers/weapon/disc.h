@@ -10,6 +10,7 @@ public:
     Disc(vector2* playerPos) : 
     Weapon(playerPos, vector2(10,6), vector2(4,0), 1100, 10, 0, TEX_weapon_disc, TEX_projt_discBullet, COLBOX_projectile_discBullet){
         Projectile::setDiscBulletOut(false);
+        sfxType = SFX_weapon_disc;
     }
     void shoot() override{
         if(Projectile::getDiscBulletOut()) return;
@@ -31,6 +32,7 @@ public:
             }
             Projectile* projt = new DiscBullet(shootPos, tmp_shootSpeed, damage);
             AllSprite::addProjt(projt);
+            Sound::playSFX(sfxType);
         }
     }
 };

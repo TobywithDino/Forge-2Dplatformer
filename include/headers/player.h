@@ -8,6 +8,10 @@ public:
     void handleEvent(SDL_Event e) override;
     void update() override;
     void render() override;
+    void hurt(int damage) override{
+        this->hp -= damage;
+        Sound::playSFX(SFX_player_dead);
+    }
 private: 
     void jump(vector2& tmpVel);
     double jumpSpeed = 1300;

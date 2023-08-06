@@ -33,8 +33,9 @@ void Player::handleEvent(SDL_Event e){
 }
 
 void Player::update(){
-    if(Collision::isColliding(collideBox, this, COL_enemy) || pos.y > gb::getHeight()){
+    if((pos.y > gb::getHeight() || Collision::isColliding(collideBox, this, COL_enemy)) && hp > 0){
         hp = 0;
+        Sound::playSFX(SFX_player_dead);
     }
 
     if(Collision::isColliding(collideBox, this, COL_weaponBox)){
@@ -47,6 +48,7 @@ void Player::update(){
         collidedEntity->setActive(false);
         WeaponBox* e = dynamic_cast<WeaponBox*>(collidedEntity);
         weapon = e->getWeapon(&this->pos);
+        Sound::playSFX(SFX_player_pickWeapon);
     }
 
     if(shooting && weapon != nullptr){
