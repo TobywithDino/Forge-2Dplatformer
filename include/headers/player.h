@@ -12,7 +12,8 @@ public:
         this->hp -= damage;
         Sound::playSFX(SFX_player_dead);
     }
-private: 
+private:
+    void dropWeapon();
     void jump(vector2& tmpVel);
     double jumpSpeed = 1300;
     bool left = false;

@@ -7,6 +7,7 @@ int Anim::init(){
     if(Texture::loadTexture("res/anim/Forge-anim-ploder-walk.png", ANIM_ploder_walk, anims) < 0) return -1;
     if(Texture::loadTexture("res/anim/Forge-anim-player-idle.png", ANIM_player_idle, anims) < 0) return -1;
     if(Texture::loadTexture("res/anim/Forge-anim-player-walk.png", ANIM_player_walk, anims) < 0) return -1;
+    if(Texture::loadTexture("res/anim/Forge-anim-player-jump.png", ANIM_player_jump, anims) < 0) return -1;
     return 0;
 }
 

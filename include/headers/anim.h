@@ -7,6 +7,7 @@ enum AnimType{
     ANIM_ploder_walk,
     ANIM_player_idle,
     ANIM_player_walk,
+    ANIM_player_jump,
     ANIM_END
 };
 

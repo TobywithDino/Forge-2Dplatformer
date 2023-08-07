@@ -36,6 +36,10 @@ int AllSprite::init(){
         entities[tmp] = &enemyEntities[i];
         tmp++;
     }
+    for(int i=0;i<1;i++){
+        entities[tmp] = &player;
+        tmp++;
+    }
     for(int i=0;i<gb::maxProjtEntities;i++){
         entities[tmp] = &projtEntities[i];
         tmp++;
@@ -44,10 +48,7 @@ int AllSprite::init(){
         entities[tmp] = &weaponBox;
         tmp++;
     }
-    for(int i=0;i<1;i++){
-        entities[tmp] = &player;
-        tmp++;
-    }
+
     Entity::setEntities(entities);
     return 0;
 }

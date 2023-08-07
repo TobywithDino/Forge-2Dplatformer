@@ -1,6 +1,7 @@
 #include "headers/collision.h"
 
 bool Collision::isColliding(CollideBox aBox, Entity* a, CollideType colType){
+    if(a->getCollideBox()->getCollideType() == COL_END) return false;
     Entity*** entities = Entity::getEntities();
     for(int i=0;i<gb::maxEntities;i++){
         if(!(*entities[i])->getActive() || (*entities[i]) == a || (*entities[i])->getCollideBox()->getCollideType() != colType) continue;

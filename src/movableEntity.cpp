@@ -23,10 +23,10 @@ void MovableEntity::update(){
 
     vector2 dMove(0, 0);
 
-    // when not in air(on the ground), check if it's still on the ground this frame.
+    // when not in air(is on the ground), check if it's still on the ground this frame.
     if(!inAir){
         CollideBox tmpBox = collideBox;
-        tmpBox.setPos(new vector2(pos.x, pos.y+1));
+        tmpBox.setPos(new vector2(pos.x, pos.y+2));
         if(!Collision::isColliding(tmpBox, this, COL_level)){
             inAir = true;
         }
@@ -66,6 +66,7 @@ void MovableEntity::update(){
     // update anim state
     if(vel.x == 0) anim.setState(AS_idle);
     else anim.setState(AS_walk);
+
 }
 
 void MovableEntity::updateXPos(vector2& dMove){

@@ -33,16 +33,9 @@ void Player::handleEvent(SDL_Event e){
 }
 
 void Player::update(){
-    if((pos.y > gb::getHeight() || Collision::isColliding(collideBox, this, COL_enemy)) && hp > 0){
-        hp = 0;
-        Sound::playSFX(SFX_player_dead);
-    }
-
     if(Collision::isColliding(collideBox, this, COL_weaponBox)){
         // drop last weapon
-        MovableEntity *w = new MovableEntity(pos, weapon->getTextureType(), COLBOX_default, COL_END);
-        w->hurt(1);
-        AllSprite::addProjt(w);
+        dropWeapon();
 
         // get weapon from box
         collidedEntity->setActive(false);
@@ -66,6 +59,11 @@ void Player::update(){
         vel.x = 0;
     }
 
+    if((pos.y > gb::getHeight() || Collision::isColliding(collideBox, this, COL_enemy)) && hp > 0){
+        hp = 0;
+        Sound::playSFX(SFX_player_dead);
+        dropWeapon();
+    }
     MovableEntity::update();
 }
 
@@ -80,4 +78,12 @@ void Player::jump(vector2& tmpVel){
     if(inAir) return;
     inAir = true;
     tmpVel.y -= jumpSpeed;
+}
+
+void Player::dropWeapon(){
+    if(weapon == nullptr) return;
+    MovableEntity *w = new MovableEntity(pos, weapon->getTextureType(), COLBOX_default, COL_END);
+    w->hurt(2);
+    AllSprite::addProjt(w);
+    weapon = nullptr;
 }
