@@ -1,6 +1,5 @@
 #pragma once
-#include "headers/gb.h"
-#include "headers/gameLoop/gameLoop.h"
+#include "headers/gameLoop/playing.h"
 
 
 class GameOver : public GameLoop{

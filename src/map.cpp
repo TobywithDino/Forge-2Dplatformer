@@ -57,7 +57,7 @@ void Map::render(){
         texType = TEX_map_level3;
         break;
     default:
-        texType = TEX_sprite_testBlock;
+        return;
         break;
     }
 

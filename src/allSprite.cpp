@@ -10,17 +10,9 @@ int AllSprite::levelIndex = 0;
 int AllSprite::projtIndex = 0;
 
 int AllSprite::init(){
-    // initialize level entities
-    clearLevel();
-    // initialize enemy entities
-    clearEnemy();
-    // initialize projectile entities
-    clearProjt();
-    // initialzie weaponBox entities
-    clearWeaponBox();
-    // initialize player entity
-    clearPlayer();
-    // initialize entities
+    // initialize game entities
+    clearEntities();
+
     for(int i=0;i<gb::maxEntities;i++){
         entities[i] = new Entity*;
         *entities[i] = new Entity();
@@ -118,36 +110,33 @@ void AllSprite::addPlayer(Entity* e){
     player = e;
 }
 
-void AllSprite::clearEnemy(){
+void AllSprite::clearEntities(){
+    // clear enemies
     for(int i=0;i<gb::maxEnemyEntities;i++){
         enemyEntities[i] = new Entity();
         enemyEntities[i]->setActive(false);
     }
     enemyIndex = 0;
-}
 
-void AllSprite::clearLevel(){
+    // clear level
     for(int i=0;i<gb::maxLevelEntities;i++){
         levelEntities[i] = new Entity();
         levelEntities[i]->setActive(false);
     }
     levelIndex = 0;
-}
 
-void AllSprite::clearProjt(){
+    // clear projectiles
     for(int i=0;i<gb::maxProjtEntities;i++){
         projtEntities[i] = new Entity();
         projtEntities[i]->setActive(false);
     }
     projtIndex = 0;
-}
 
-void AllSprite::clearWeaponBox(){
+    // clear weapon box
     weaponBox = new Entity();
     weaponBox->setActive(false);
-}
 
-void AllSprite::clearPlayer(){
+    // clear player
     player = new Entity();
     player->setActive(false);
 }

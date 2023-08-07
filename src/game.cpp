@@ -22,11 +22,6 @@ int Game::init(){
         printf("Error: IMG failed to initialize\nIMG Error: '%s'\n", IMG_GetError());
         return 1;
     }
-
-    // if(Mix_Init(MIX_INIT_MP3) != MIX_INIT_MP3){
-    //     printf("Error: Mix failed to initialize\nMix Error: '%s'\n", Mix_GetError());
-    //     return 1;
-    // }
     
     if(Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0)
     {
@@ -45,13 +40,16 @@ int Game::init(){
         printf("Error: Failed to create renderer\nSDL Error: '%s'\n", SDL_GetError());
         return 1;
     }
-
+    
     if(Texture::init() < 0) return 1;
     if(Anim::init() < 0) return 1;
     if(Map::init() < 0) return 1;
     if(CollideBox::init() < 0) return 1;
     if(AllSprite::init() < 0) return 1;
     if(Sound::init() < 0) return 1;
+    
+    menu.init();
+    
     return 0;
 }
 

@@ -12,11 +12,7 @@ public:
     static void addProjt(Entity* e);
     static void addWeaponBox(Entity* e);
     static void addPlayer(Entity* e);
-    static void clearEnemy();
-    static void clearLevel();
-    static void clearProjt();
-    static void clearWeaponBox();
-    static void clearPlayer();
+    static void clearEntities();
     static bool isEnemyFull();
     static bool isProjtFull();
     static bool isWeaponBoxFull();

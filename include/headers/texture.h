@@ -20,6 +20,12 @@ enum TextureType{
     TEX_projt_revolverBullet,
     TEX_projt_dualgunBullet,
     TEX_projt_discBullet,
+    TEX_button_start_unpressed,
+    TEX_button_start_pressed,
+    TEX_button_option_unpressed,
+    TEX_button_option_pressed,
+    TEX_button_quit_unpressed,
+    TEX_button_quit_pressed,
     TEX_END
 };
 

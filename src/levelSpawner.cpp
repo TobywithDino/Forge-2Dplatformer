@@ -4,7 +4,7 @@ vector<vector2> LevelSpawner::enemySpawnPos = {vector2(0,0)};
 Uint64 LevelSpawner::spawnGapTicks = 200;
 Uint64 LevelSpawner::nextSpawnTick = 0;
 int LevelSpawner::ratio[ENEMY_END] = {0};
-bool GameLoop::spawned = false;
+bool GameLoop::spawnedEntities = false;
 
 void LevelSpawner::update(){
     LevelType levelType = Map::getLevelType();
@@ -41,15 +41,11 @@ void LevelSpawner::update(){
 }
 
 void LevelSpawner::loadLevel(){
-    if(!GameLoop::spawned){
-        AllSprite::clearLevel();
-        AllSprite::clearEnemy();
-        AllSprite::clearProjt();
-        AllSprite::clearWeaponBox();
-        AllSprite::clearPlayer();
+    if(!GameLoop::spawnedEntities){
+        AllSprite::clearEntities();
         spawnLevelEntities();
         spawnPlayer(playerSpawnPos);
-        GameLoop::spawned = true;
+        GameLoop::spawnedEntities = true;
     }
     if(SDL_GetTicks64() >= nextSpawnTick){
         nextSpawnTick = SDL_GetTicks64() + spawnGapTicks;

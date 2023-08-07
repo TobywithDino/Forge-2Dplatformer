@@ -21,6 +21,12 @@ int Texture::init(){
     if(loadTexture("res/sprites/Forge-projt-revolverBullet.png", TEX_projt_revolverBullet, textures) < 0) return -1;
     if(loadTexture("res/sprites/Forge-projt-dualgunBullet.png", TEX_projt_dualgunBullet, textures) < 0) return -1;
     if(loadTexture("res/sprites/Forge-projt-discBullet.png", TEX_projt_discBullet, textures) < 0) return -1;
+    if(loadTexture("res/sprites/Forge-button-start-unpressed.png", TEX_button_start_unpressed, textures) < 0) return -1;
+    if(loadTexture("res/sprites/Forge-button-start-pressed.png", TEX_button_start_pressed, textures) < 0) return -1;
+    if(loadTexture("res/sprites/Forge-button-option-unpressed.png", TEX_button_option_unpressed, textures) < 0) return -1;
+    if(loadTexture("res/sprites/Forge-button-option-pressed.png", TEX_button_option_pressed, textures) < 0) return -1;
+    if(loadTexture("res/sprites/Forge-button-quit-unpressed.png", TEX_button_quit_unpressed, textures) < 0) return -1;
+    if(loadTexture("res/sprites/Forge-button-quit-pressed.png", TEX_button_quit_pressed, textures) < 0) return -1;
     return 0;
 }
 

@@ -1,5 +1,5 @@
 #pragma once
-#include "headers/allSprite.h"
+#include "headers/collision.h"
 
 class StaticEntity : public Entity{
 public:

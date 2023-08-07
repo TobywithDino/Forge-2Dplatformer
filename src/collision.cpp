@@ -1,5 +1,16 @@
 #include "headers/collision.h"
 
+bool Collision::isCollidingMouse(CollideBox aBox, vector2 mousePos){
+    if( aBox.getBoxLeft() < mousePos.x && 
+        aBox.getBoxRight() > mousePos.x &&
+        aBox.getBoxTop() < mousePos.y && 
+        aBox.getBoxDown() > mousePos.y)
+    {
+        return true;
+    }
+    return false;
+}
+
 bool Collision::isColliding(CollideBox aBox, Entity* a, CollideType colType){
     if(a->getCollideBox()->getCollideType() == COL_END) return false;
     Entity*** entities = Entity::getEntities();

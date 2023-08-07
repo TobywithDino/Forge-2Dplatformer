@@ -12,7 +12,7 @@ void Playing::handleEvent(){
   
 void Playing::update(){
     LevelSpawner::update();
-    AllSprite::update();
+    AllSprite::update(); //Game will set to GS_gameover when player is not active.
 }
 
 void Playing::render(){

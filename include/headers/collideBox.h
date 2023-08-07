@@ -7,6 +7,7 @@ enum CollideBoxType{
     COLBOX_sprite_crawler,
     COLBOX_sprite_ploder,
     COLBOX_sprite_weaponBox,
+    COLBOX_sprite_menuButton,
     COLBOX_projectile_pistolBullet,
     COLBOX_projectile_revolverBullet,
     COLBOX_projectile_dualgunBullet,
@@ -21,6 +22,7 @@ enum CollideType{
     COL_level,
     COL_projectile,
     COL_weaponBox,
+    COL_button,
     COL_END
 };
     
