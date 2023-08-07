@@ -9,7 +9,7 @@ Game::Game(){
     gb::setFPS(120);
     gb::setFrameTicks(0);
     gb::setGameState(GS_Menu);
-    Map::setLevelType(LEV_1);
+    Map::setLevelType(LEV_3);
 }
 
 int Game::init(){
@@ -86,8 +86,15 @@ void Game::start(){
                 gameOver.render();
             }
             break;
+        case GS_Quit:
+            gb::setRunning(false);
+            break;
         default:
             break;
         }
     }
+}
+
+void Game::quit(){
+    
 }
