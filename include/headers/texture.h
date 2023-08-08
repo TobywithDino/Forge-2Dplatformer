@@ -26,6 +26,8 @@ enum TextureType{
     TEX_button_option_pressed,
     TEX_button_quit_unpressed,
     TEX_button_quit_pressed,
+    TEX_button_menu_pressed,
+    TEX_button_menu_unpressed,
     TEX_END
 };
 

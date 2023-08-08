@@ -8,5 +8,5 @@ public:
     void render() override;
     void init();
 private:
-    // attributes
+    Button* optionButton;
 };

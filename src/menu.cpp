@@ -35,5 +35,5 @@ void Menu::init(){
     menuButtons[0] = startButton;
     menuButtons[1] = optionButton;
     menuButtons[2] = quitButton;
-    t = new Text("Forge", vector2(gb::getWidth()/2, 150), 2);
+    t = new Text("Forge", vector2(gb::getWidth()/2, 150), 3);
 }
