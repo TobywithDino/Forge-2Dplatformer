@@ -25,11 +25,13 @@ void Button::handleEvent(SDL_Event e){
         if(Collision::isCollidingMouse(this->collideBox, mousePos) && !holdingAButton){
             pressing = true;
             holdingAButton = true;
+            setTexture(pressedTex);
         }
     }
     if(e.type == SDL_MOUSEBUTTONUP){
         pressing = false;
         holdingAButton = false;
+        setTexture(unPressTex);
         if(Collision::isCollidingMouse(this->collideBox, mousePos)){
             gb::setGameState(dstState);
         }
@@ -37,5 +39,4 @@ void Button::handleEvent(SDL_Event e){
 }
 
 void Button::update(){
-    pressing ? setTexture(pressedTex) : setTexture(unPressTex);
 }

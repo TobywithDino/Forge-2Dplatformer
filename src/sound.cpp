@@ -1,6 +1,9 @@
 #include "headers/sound.h"
 Mix_Chunk* Sound::sfx[SFX_END];
 Mix_Music* Sound::mus[MS_END];
+int Sound::sfx_volume = MIX_MAX_VOLUME;
+int Sound::mus_volume = MIX_MAX_VOLUME;
+
 int Sound::init(){
     if(loadSound("res/sound/sfx/Forge-sfx-weapon-disc.wav", SFX_weapon_disc, sfx) < 0) return -1;
     if(loadSound("res/sound/sfx/Forge-sfx-weapon-disc-bounce.wav", SFX_weapon_disc_bounce, sfx) < 0) return -1;
@@ -18,9 +21,13 @@ int Sound::init(){
 void Sound::playSFX(SFXType type){
     if(sfx[type] == nullptr) return;
     if(type == SFX_END) return;
+    Mix_Volume(-1, sfx_volume);
     Mix_PlayChannel(-1, sfx[type], 0);
 }
 
 void Sound::playMusic(MSType type){
-
+    if(mus[type] == nullptr) return;
+    if(type == MS_END) return;
+    Mix_Volume(-1, mus_volume);
+    Mix_PlayMusic(mus[type], 0);
 }

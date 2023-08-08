@@ -29,6 +29,11 @@ int Game::init(){
         return 1;
     }
 
+    if(TTF_Init() < 0) {
+        printf("Error: TTF failed to initialize\nTTF Error: '%s'\n", TTF_GetError());
+        return 1;
+    }
+
     gb::setWindow(SDL_CreateWindow(gb::getTitle(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, gb::getWidth(), gb::getHeight(), 0));
     if(!gb::getWindow()){
         printf("Error: Failed to open window\nSDL Error: '%s'\n", SDL_GetError());
@@ -47,8 +52,10 @@ int Game::init(){
     if(CollideBox::init() < 0) return 1;
     if(AllSprite::init() < 0) return 1;
     if(Sound::init() < 0) return 1;
+    if(Text::init() < 0) return 1;
     
     menu.init();
+    option.init();
     
     return 0;
 }
@@ -67,6 +74,15 @@ void Game::start(){
                 menu.update();
                 menu.render();
             }
+            break;
+        case GS_Option:
+            option.handleEvent();
+            if(SDL_GetTicks64() - gb::getLastTicks() > 1000/gb::getFPS()){
+                gb::setFrameTicks(SDL_GetTicks64() - gb::getLastTicks());
+                gb::setLastTicks(SDL_GetTicks64());
+                option.update();
+                option.render();
+            }  
             break;
         case GS_Playing:
             playing.handleEvent();
@@ -90,6 +106,7 @@ void Game::start(){
             gb::setRunning(false);
             break;
         default:
+            printf("Error : Game loop have no state : %d", state);
             break;
         }
     }

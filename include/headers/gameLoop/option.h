@@ -1,13 +1,12 @@
 #pragma once
-#include "headers/levelSpawner.h"
+#include "headers/gameLoop/gameOver.h"
 
-class Menu : public GameLoop{
+class Option : public GameLoop{
 public:
     void handleEvent() override;
     void update() override;
     void render() override;
     void init();
 private:
-    Button* menuButtons[3];
-    Text* t;
+    // attributes
 };

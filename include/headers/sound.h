@@ -1,5 +1,5 @@
 #pragma once
-#include "gb.h"
+#include "headers/text.h"
 
 enum SFXType{
     SFX_weapon_disc,
@@ -24,6 +24,12 @@ public:
     static int init();
     static void playSFX(SFXType type);
     static void playMusic(MSType type);
+    static void setSFXVolumn(int percent){
+        sfx_volume = (MIX_MAX_VOLUME * percent) / 100;
+    };
+    static void setMusVolumn(int percent){
+        mus_volume = (MIX_MAX_VOLUME * percent) / 100;
+    }
 private:
     static int loadSound(const char* path, SFXType type, Mix_Chunk** arr){
         Mix_Chunk* sfx;
@@ -48,4 +54,6 @@ private:
     }
     static Mix_Chunk* sfx[SFX_END];
     static Mix_Music* mus[MS_END];
+    static int sfx_volume;
+    static int mus_volume;
 };
