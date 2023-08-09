@@ -29,6 +29,10 @@ int Texture::init(){
     if(loadTexture("res/sprites/Forge-button-quit-pressed.png", TEX_button_quit_pressed, textures) < 0) return -1;
     if(loadTexture("res/sprites/Forge-button-menu-unpressed.png", TEX_button_menu_unpressed, textures) < 0) return -1;
     if(loadTexture("res/sprites/Forge-button-menu-pressed.png", TEX_button_menu_pressed, textures) < 0) return -1;
+    if(loadTexture("res/sprites/Forge-button-music-unpressed.png", TEX_button_music_unpressed, textures) < 0) return -1;
+    if(loadTexture("res/sprites/Forge-button-music-pressed.png", TEX_button_music_pressed, textures) < 0) return -1;
+    if(loadTexture("res/sprites/Forge-button-sfx-unpressed.png", TEX_button_sfx_unpressed, textures) < 0) return -1;
+    if(loadTexture("res/sprites/Forge-button-sfx-pressed.png", TEX_button_sfx_pressed, textures) < 0) return -1;
     return 0;
 }
 

@@ -28,6 +28,10 @@ enum TextureType{
     TEX_button_quit_pressed,
     TEX_button_menu_pressed,
     TEX_button_menu_unpressed,
+    TEX_button_music_unpressed,
+    TEX_button_music_pressed,
+    TEX_button_sfx_unpressed,
+    TEX_button_sfx_pressed,
     TEX_END
 };
 

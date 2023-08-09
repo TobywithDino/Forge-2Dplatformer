@@ -11,7 +11,7 @@ public:
         evolverType = TEX_sprite_ploder_evolved;
         newSpeed = 260;
         newHp = hp;
-        size = vector2(48, 48) * gb::getScale();
+        size = vector2(48, 48);
         anim = Anim(&this->pos, TEX_sprite_crawler, ANIM_END, ANIM_ploder_walk, ANIM_END, size);
     }
 };

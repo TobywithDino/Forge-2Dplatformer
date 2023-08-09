@@ -8,6 +8,7 @@ enum CollideBoxType{
     COLBOX_sprite_ploder,
     COLBOX_sprite_weaponBox,
     COLBOX_sprite_menuButton,
+    COLBOX_sprite_musicButton,
     COLBOX_projectile_pistolBullet,
     COLBOX_projectile_revolverBullet,
     COLBOX_projectile_dualgunBullet,

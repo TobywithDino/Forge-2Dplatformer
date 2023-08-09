@@ -5,8 +5,7 @@ Button::Button(){
 }
 
 Button::Button(vector2 pos, TextureType tType_unPress, TextureType tType_pressed, CollideBoxType cbType, vector2 size, GameState dstState){
-    size = size * gb::getScale();
-    vector2 center = vector2(pos.x - size.x/2, pos.y - size.y/2);
+    vector2 center = vector2(pos.x - size.x * gb::getScale()/2, pos.y - size.y * gb::getScale()/2);
     this->pos = center;
     this->unPressTex = tType_unPress;
     this->pressedTex = tType_pressed;
@@ -33,10 +32,11 @@ void Button::handleEvent(SDL_Event e){
         holdingAButton = false;
         setTexture(unPressTex);
         if(Collision::isCollidingMouse(this->collideBox, mousePos)){
-            gb::setGameState(dstState);
+            if(dstState != GS_END) gb::setGameState(dstState);
         }
     }
 }
 
 void Button::update(){
+    
 }

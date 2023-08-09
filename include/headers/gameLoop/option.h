@@ -8,5 +8,8 @@ public:
     void render() override;
     void init();
 private:
-    Button* optionButton;
+    Button* optionButtons[3];
+    Text* optionTexts[2];
+    int musPercent = 100;
+    int sfxPercent = 100;
 };

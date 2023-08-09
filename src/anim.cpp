@@ -58,12 +58,11 @@ void Anim::render(double angle, SDL_RendererFlip flip){
         break;
     }
 
-    vector2 originalSize = size / gb::getScale();
     // get length of current animation
     int w = 1;
     SDL_QueryTexture(texture, NULL, NULL, &w, NULL);
     int length = 1;
-    length = w / (int)originalSize.x;
+    length = w / (int)size.x;
     if(length == 0) length = 1;
     
     // update frame of animation
@@ -75,12 +74,12 @@ void Anim::render(double angle, SDL_RendererFlip flip){
 
     // draw on screen
     SDL_Rect src,dst;
-    src.w = originalSize.x;
-    src.h = originalSize.y;
-    src.x = originalSize.x * index; 
+    src.w = size.x;
+    src.h = size.y;
+    src.x = size.x * index; 
     src.y = 0;
-    dst.w = size.x;
-    dst.h = size.y;
+    dst.w = size.x*gb::getScale();
+    dst.h = size.y*gb::getScale();
     dst.x = pos->x;
     dst.y = pos->y;
     SDL_RenderCopyEx(gb::getRenderer(), texture, &src, &dst, angle, NULL, flip);

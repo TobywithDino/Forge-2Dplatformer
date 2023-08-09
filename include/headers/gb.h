@@ -10,6 +10,7 @@
 #include <time.h>
 #include <cmath>
 #include <vector>
+#include <string>
 using namespace std;
 
 class gb{

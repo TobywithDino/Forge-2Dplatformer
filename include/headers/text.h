@@ -11,12 +11,12 @@ private:
 // non-static part
 public:
     Text();
-    Text(const char* word, vector2 pos);
-    Text(const char* word, vector2 pos, double sizeMultiplier, SDL_Color color = {255,255,255,255});
-    void update(const char* word);
+    Text(string word, vector2 pos);
+    Text(string word, vector2 pos, double sizeMultiplier, SDL_Color color = {255,255,255,255});
+    void update(string word);
     void render();
 private:
-    const char* word = "t";
+    string word = "t";
     vector2 pos = vector2(0,0);
     double sizeMultiplier = 1;
     SDL_Color color = {255,255,255,255};

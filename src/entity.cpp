@@ -17,7 +17,7 @@ Entity::Entity(vector2 pos, TextureType tType, CollideBoxType cbType, CollideTyp
     vel = vector2(0,0);
     this->tType = tType;
     tex = Texture::getTexture(tType);
-    this->size = size*gb::getScale();
+    this->size = size;
     collideBox = CollideBox(cbType, &this->pos, cType);
 }
 
@@ -29,8 +29,8 @@ void Entity::update(){
 
 void Entity::render(){
     SDL_Rect dst;
-    dst.w = size.x;
-    dst.h = size.y;
+    dst.w = size.x*gb::getScale();
+    dst.h = size.y*gb::getScale();
     dst.x = (int)pos.x;
     dst.y = (int)pos.y;
     SDL_RendererFlip flip = SDL_FLIP_NONE;

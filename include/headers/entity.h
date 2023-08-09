@@ -36,7 +36,7 @@ protected:
     bool isActive = true;
     vector2 pos = vector2(0,0);
     vector2 vel = vector2(0,0);
-    vector2 size = vector2(32,32) * gb::getScale();
+    vector2 size = vector2(32,32);
     bool isFlipping = false;
     CollideBox collideBox = CollideBox();
     Entity* collidedEntity = this;

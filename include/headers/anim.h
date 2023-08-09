@@ -43,7 +43,7 @@ private:
     SDL_Texture* walk;
     SDL_Texture* jump;
     AnimState state = AS_END;
-    vector2 size = vector2(32,32) * gb::getScale();
+    vector2 size = vector2(32,32);
     Uint64 lastTick = 0;
     int gapTicks = 150;
     int index = 0;

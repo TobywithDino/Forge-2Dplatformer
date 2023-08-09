@@ -20,7 +20,7 @@ void Weapon::render(bool flip){
     pos.y = playerPos->y + offset.y;
     if(isFlipping){
         int playerSizeX = 32*gb::getScale();
-        double pivotX = playerPos->x+playerSizeX-size.x;
+        double pivotX = playerPos->x+playerSizeX-size.x*gb::getScale();
         pos.x = pivotX - offset.x;
     }else{
         pos.x = playerPos->x + offset.x;
@@ -36,7 +36,7 @@ void Weapon::shoot(){
         shootPos.y = pos.y + shootOffsetPos.y;
         if(isFlipping) {
             int pjtSizeX = 32*gb::getScale();
-            double pivotX = pos.x + size.x - pjtSizeX;
+            double pivotX = pos.x + size.x*gb::getScale() - pjtSizeX;
             shootPos.x = pivotX - shootOffsetPos.x;
             tmp_shootSpeed = -1*shootSpeed;
         }

@@ -4,5 +4,6 @@ enum GameState{
     GS_Option,
     GS_Playing,
     GS_GameOver,
-    GS_Quit
+    GS_Quit,
+    GS_END
 };
