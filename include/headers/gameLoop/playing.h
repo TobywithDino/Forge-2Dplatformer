@@ -6,4 +6,7 @@ public:
     void handleEvent() override;
     void update() override;
     void render() override;
+    void init();
+private:
+    Text* t;
 };

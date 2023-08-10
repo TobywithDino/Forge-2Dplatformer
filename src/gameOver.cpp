@@ -9,6 +9,7 @@ void GameOver::handleEvent(){
                 if(event.key.keysym.scancode == SDL_SCANCODE_Z){
                     gb::setGameState(GS_Menu);
                     spawnedEntities = false;
+                    gb::setScore(0);
                 }
             }
         }

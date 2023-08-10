@@ -26,6 +26,7 @@ public:
     static Uint64 getFrameTicks() {return frameTicks;}
     static Uint64 getLastTicks() {return lastTicks;}
     static GameState getGameState() {return state;}
+    static int getScore() {return score;}
 
     static void setWidth(int w) {SCREEN_WIDTH = w;}
     static void setHeight(int h) {SCREEN_HEIGHT = h;}
@@ -38,6 +39,7 @@ public:
     static void setFrameTicks(Uint64 d) {frameTicks = d;}
     static void setLastTicks(Uint64 l) {lastTicks = l;}
     static void setGameState(GameState s) {state = s;}
+    static void setScore(int s) {score = s;}
 
     static const int maxEnemyEntities = 50;
     static const int maxLevelEntities = 30;
@@ -55,4 +57,5 @@ private:
     static Uint64 frameTicks;
     static Uint64 lastTicks;
     static GameState state;
+    static int score;
 };

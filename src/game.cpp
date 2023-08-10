@@ -9,7 +9,7 @@ Game::Game(){
     gb::setFPS(120);
     gb::setFrameTicks(0);
     gb::setGameState(GS_Menu);
-    Map::setLevelType(LEV_3);
+    Map::setLevelType(LEV_1);
 }
 
 int Game::init(){
@@ -56,6 +56,7 @@ int Game::init(){
     
     menu.init();
     option.init();
+    playing.init();
     
     return 0;
 }

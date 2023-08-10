@@ -42,6 +42,7 @@ void Player::update(){
         WeaponBox* e = dynamic_cast<WeaponBox*>(collidedEntity);
         weapon = e->getWeapon(&this->pos);
         Sound::playSFX(SFX_player_pickWeapon);
+        gb::setScore(gb::getScore()+1);
     }
 
     if(shooting && weapon != nullptr){

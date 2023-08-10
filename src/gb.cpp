@@ -11,3 +11,4 @@ int gb::FPS;
 Uint64 gb::frameTicks;
 Uint64 gb::lastTicks;
 GameState gb::state;
+int gb::score;
