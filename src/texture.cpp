@@ -10,12 +10,12 @@ int Texture::init(){
     if(loadTexture("res/sprites/Forge-sprite-ploder.png", TEX_sprite_ploder, textures) < 0) return -1;
     if(loadTexture("res/sprites/Forge-sprite-ploder_evolved.png", TEX_sprite_ploder_evolved, textures) < 0) return -1;
     if(loadTexture("res/sprites/Forge-sprite-weaponBox.png", TEX_sprite_weaponBox, textures) < 0) return -1;
-    if(loadTexture("res/sprites/Forge-mapBrick-level1.png", TEX_mapBrick_level1, textures) < 0) return -1;
-    if(loadTexture("res/sprites/Forge-mapBrick-level2.png", TEX_mapBrick_level2, textures) < 0) return -1;
-    if(loadTexture("res/sprites/Forge-mapBrick-level3.png", TEX_mapBrick_level3, textures) < 0) return -1;
-    if(loadTexture("res/maps/Forge-map-level1.png", TEX_map_level1, textures) < 0) return -1;
-    if(loadTexture("res/maps/Forge-map-level2.png", TEX_map_level2, textures) < 0) return -1;
-    if(loadTexture("res/maps/Forge-map-level3.png", TEX_map_level3, textures) < 0) return -1;
+    if(loadTexture("res/sprites/Forge-mapBrick-level1.png", TEX_sprite_mapBrick_level1, textures) < 0) return -1;
+    if(loadTexture("res/sprites/Forge-mapBrick-level2.png", TEX_sprite_mapBrick_level2, textures) < 0) return -1;
+    if(loadTexture("res/sprites/Forge-mapBrick-level3.png", TEX_sprite_mapBrick_level3, textures) < 0) return -1;
+    if(loadTexture("res/sprites/Forge-map-level1.png", TEX_sprite_map_level1, textures) < 0) return -1;
+    if(loadTexture("res/sprites/Forge-map-level2.png", TEX_sprite_map_level2, textures) < 0) return -1;
+    if(loadTexture("res/sprites/Forge-map-level3.png", TEX_sprite_map_level3, textures) < 0) return -1;
     if(loadTexture("res/sprites/Forge-weapon-pistol.png", TEX_weapon_pistol, textures) < 0) return -1;
     if(loadTexture("res/sprites/Forge-weapon-revolver.png", TEX_weapon_revolver, textures) < 0) return -1;
     if(loadTexture("res/sprites/Forge-weapon-dualgun.png", TEX_weapon_dualgun, textures) < 0) return -1;

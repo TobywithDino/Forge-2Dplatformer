@@ -18,7 +18,7 @@ void SelectLevel::update(){
         if(level > LEV_1){
             level = (LevelType)(level - 1);
             Map::setLevelType(level);
-            TextureType tmp = TEX_map_level1;
+            TextureType tmp = TEX_sprite_map_level1;
             tmp = (TextureType)((int)tmp + (int)level);
             e->setTexture(tmp);
         }
@@ -27,7 +27,7 @@ void SelectLevel::update(){
         if(level < LEV_END-1){
             level = (LevelType)(level + 1);
             Map::setLevelType(level);
-            TextureType tmp = TEX_map_level1;
+            TextureType tmp = TEX_sprite_map_level1;
             tmp = (TextureType)((int)tmp + (int)level);
             e->setTexture(tmp);
         }
@@ -52,5 +52,5 @@ void SelectLevel::init(){
     selectButtons[3] = new Button(vector2(gb::getWidth()/2, gb::getHeight()/2+120), TEX_button_play_unpressed, TEX_button_play_pressed, COLBOX_sprite_menuButton, vector2(64,64), GS_Playing);
     t = new Text("Choose Level", vector2(gb::getWidth()/2, gb::getHeight()/2-200));
     e = new StaticEntity(vector2(gb::getWidth()/2-32*gb::getScale(), gb::getHeight()/2-32*gb::getScale()), vector2(64,64));
-    e->setTexture(TEX_map_level1);
+    e->setTexture(TEX_sprite_map_level1);
 }
