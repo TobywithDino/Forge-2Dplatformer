@@ -57,6 +57,7 @@ int Game::init(){
     menu.init();
     option.init();
     playing.init();
+    selectLevel.init();
     
     return 0;
 }
@@ -85,6 +86,15 @@ void Game::start(){
                 option.render();
             }  
             break;
+        case GS_SelectLevel:
+            selectLevel.handleEvent();
+            if(SDL_GetTicks64() - gb::getLastTicks() > 1000/gb::getFPS()){
+                gb::setFrameTicks(SDL_GetTicks64() - gb::getLastTicks());
+                gb::setLastTicks(SDL_GetTicks64());
+                selectLevel.update();
+                selectLevel.render();
+            } 
+            break;
         case GS_Playing:
             playing.handleEvent();
             if(SDL_GetTicks64() - gb::getLastTicks() > 1000/gb::getFPS()){
@@ -108,6 +118,7 @@ void Game::start(){
             break;
         default:
             printf("Error : Game loop have no state : %d", state);
+            gb::setRunning(false);
             break;
         }
     }

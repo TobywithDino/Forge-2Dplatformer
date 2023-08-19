@@ -10,6 +10,11 @@ StaticEntity::StaticEntity(vector<int>* box) : Entity(){
     collideBox = CollideBox(box);
 }
 
+StaticEntity::StaticEntity(vector2 pos, vector2 size){
+    this->pos = pos;
+    this->size = size;
+}
+
 void StaticEntity::render(){
     if(!show) return;
     Entity::render();

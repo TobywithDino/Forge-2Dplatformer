@@ -9,6 +9,9 @@ enum TextureType{
     TEX_sprite_ploder,
     TEX_sprite_ploder_evolved,
     TEX_sprite_weaponBox,
+    TEX_mapBrick_level1,
+    TEX_mapBrick_level2,
+    TEX_mapBrick_level3,
     TEX_map_level1,
     TEX_map_level2,
     TEX_map_level3,
@@ -32,6 +35,12 @@ enum TextureType{
     TEX_button_music_pressed,
     TEX_button_sfx_unpressed,
     TEX_button_sfx_pressed,
+    TEX_button_selectLeft_unpressed,
+    TEX_button_selectLeft_pressed,
+    TEX_button_selectRight_unpressed,
+    TEX_button_selectRight_pressed,
+    TEX_button_play_unpressed,
+    TEX_button_play_pressed,
     TEX_END
 };
 

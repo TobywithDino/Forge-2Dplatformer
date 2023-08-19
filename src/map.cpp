@@ -48,13 +48,13 @@ void Map::render(){
     switch (levelType)
     {
     case LEV_1:
-        texType = TEX_map_level1;
+        texType = TEX_mapBrick_level1;
         break;
     case LEV_2:
-        texType = TEX_map_level2;
+        texType = TEX_mapBrick_level2;
         break;
     case LEV_3:
-        texType = TEX_map_level3;
+        texType = TEX_mapBrick_level3;
         break;
     default:
         return;

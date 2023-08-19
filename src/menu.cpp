@@ -26,7 +26,7 @@ void Menu::render(){
 }
 
 void Menu::init(){
-    Button* startButton = new Button(vector2(gb::getWidth()/2, gb::getHeight()/2), TEX_button_start_unpressed, TEX_button_start_pressed, COLBOX_sprite_menuButton, vector2(64,64), GS_Playing);
+    Button* startButton = new Button(vector2(gb::getWidth()/2, gb::getHeight()/2), TEX_button_start_unpressed, TEX_button_start_pressed, COLBOX_sprite_menuButton, vector2(64,64), GS_SelectLevel);
     Button* optionButton = new Button(vector2(gb::getWidth()/2, gb::getHeight()/2+100), TEX_button_option_unpressed, TEX_button_option_pressed, COLBOX_sprite_menuButton, vector2(64,64), GS_Option);
     Button* quitButton = new Button(vector2(gb::getWidth()/2, gb::getHeight()/2+200), TEX_button_quit_unpressed, TEX_button_quit_pressed, COLBOX_sprite_menuButton, vector2(64,64), GS_Quit);
     menuButtons[0] = startButton;
