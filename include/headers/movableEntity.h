@@ -13,7 +13,8 @@ private:
     bool jumpedAfterDead = false;
     void dropDead();
     void updateXPos(vector2& dMove);
-    const double gravity = 4000;    
+    const double gravity = 4000;
+    const double bounceSpeed = 400;  
 protected:
     bool inAir = false;
     double speed = 100;

@@ -43,11 +43,13 @@ void MovableEntity::update(){
         }else{
             // if it's hitting roof or floor, move to the sides of the roof or floor
             pos.y = Collision::getYAfterCollision(vel.y, collideBox, *(collidedEntity->getCollideBox()));
-            // after moved to correct y, check inAir state and update vel.y
+            // after moved to correct y, check vel.y and update inAir state
             if(vel.y > 0){
                 inAir = false;
+                vel.y = 0;
+            }else if(vel.y < 0){
+                vel.y = bounceSpeed;
             }
-            vel.y = 0;
         }
         // after checking vertically, check horizontally
         updateXPos(dMove);
