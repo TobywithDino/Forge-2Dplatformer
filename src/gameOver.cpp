@@ -7,6 +7,10 @@ void GameOver::handleEvent(){
         else{
             if(event.type == SDL_KEYDOWN){
                 if(event.key.keysym.scancode == SDL_SCANCODE_Z){
+                    if(spawnedEntities){
+                        spawnedEntities = false;
+                        gb::setScore(0);
+                    }   
                     gb::setGameState(GS_Playing);
                 }
             }
