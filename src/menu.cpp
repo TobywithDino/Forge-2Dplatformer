@@ -13,6 +13,10 @@ void Menu::handleEvent(){
 }
 
 void Menu::update(){
+    if(spawnedEntities){
+        spawnedEntities = false;
+        gb::setScore(0);
+    }
 }
 
 void Menu::render(){
