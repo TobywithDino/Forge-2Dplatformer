@@ -9,4 +9,5 @@ public:
     void init();
 private:
     Text* t;
+    Entity* background[LEV_END];
 };

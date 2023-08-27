@@ -17,7 +17,7 @@ LDLIBS = -lmingw32 -lSDL2main -lSDL2 -lSDL2_image -lSDL2_mixer -lSDL2_ttf
 # 获取所有的源文件列表
 CPP_FILES = $(wildcard $(SRC_DIR)/*.cpp)
 
-# 从源文件列表生成目标文件列表
+# 从源文件列表生成目标文件列表	
 OBJ_FILES = $(patsubst $(SRC_DIR)/%.cpp,$(BUILD_DIR)/%.o,$(CPP_FILES))
 
 # 默认目标：生成PROJECT_NAME文件

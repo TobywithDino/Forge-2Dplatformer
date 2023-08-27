@@ -261,7 +261,7 @@ void CollideBox::handleEvent(SDL_Event e){
 }
 
 void CollideBox::render(){
-    if(!showCollideBox) return;
+    if(!showCollideBox || collideType == COL_END) return;
     int offsetX = box->at(0);
     int offsetY = box->at(1);
     int boxWidth = box->at(2);

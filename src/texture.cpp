@@ -42,6 +42,9 @@ int Texture::init(){
     if(loadTexture("res/sprites/Forge-button-selectRight-unpressed.png", TEX_button_selectRight_unpressed, textures) < 0) return -1;
     if(loadTexture("res/sprites/Forge-button-play-unpressed.png", TEX_button_play_unpressed, textures) < 0) return -1;
     if(loadTexture("res/sprites/Forge-button-play-pressed.png", TEX_button_play_pressed, textures) < 0) return -1;
+    if(loadTexture("res/sprites/Forge_sprite_background_level1.png",TEX_sprite_background_level1, textures) < 0 ) return -1;
+    if(loadTexture("res/sprites/Forge_sprite_background_level2.png",TEX_sprite_background_level2, textures) < 0 ) return -1;
+    if(loadTexture("res/sprites/Forge_sprite_background_level3.png",TEX_sprite_background_level3, textures) < 0 ) return -1;
     return 0;
 }
 
