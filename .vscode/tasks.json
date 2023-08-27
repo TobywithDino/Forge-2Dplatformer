@@ -10,7 +10,7 @@
         {
             "label": "run",
             "type": "shell",
-            "command": "./Forge",
+            "command": "./main",
             "dependsOn": [
                 "build"
             ],

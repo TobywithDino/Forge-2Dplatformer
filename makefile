@@ -4,7 +4,7 @@ CC = g++
 BUILD_DIR = build
 SRC_DIR = src
 INCLUDE_DIR = include
-PROJECT_NAME = Forge
+PROJECT_NAME = main
 # 定義頭文件位置
 CXXFLAGS = -I$(INCLUDE_DIR)
 
@@ -24,11 +24,11 @@ OBJ_FILES = $(patsubst $(SRC_DIR)/%.cpp,$(BUILD_DIR)/%.o,$(CPP_FILES))
 all: $(PROJECT_NAME)
 
 $(PROJECT_NAME): $(OBJ_FILES)
-	@$(CC) $(LDFLAGS) -o $@ $^ $(LDLIBS)
+	$(CC) -O3 -s $(LDFLAGS) -o $@ $^ $(LDLIBS)
 
 # 模式规则：将每个源文件编译成对应的目标文件
 $(BUILD_DIR)/%.o: $(SRC_DIR)/%.cpp
-	@$(CC) $(CXXFLAGS) -c $< -o $@
+	$(CC) $(CXXFLAGS) -c $< -o $@
 
 clean:
-	del $(BUILD_DIR)\*.o $(PROJECT_NAME).exe
+	del $(BUILD_DIR)\*.o *.exe
