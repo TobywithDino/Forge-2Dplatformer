@@ -13,7 +13,7 @@ void LevelSpawner::update(){
     case LEV_1:
         playerSpawnPos = vector2(gb::getWidth()/2, 300);
         enemySpawnPos = {vector2(gb::getWidth()/2, -100)};
-        spawnGapTicks = 2500 + (rand()%2000-1000);
+        spawnGapTicks = 2300 + (rand()%2000-1000);
         ratio[ENEMY_crawler] = 7;
         ratio[ENEMY_ploder] = 1;
         loadLevel();
