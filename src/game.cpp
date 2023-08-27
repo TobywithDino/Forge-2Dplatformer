@@ -35,6 +35,7 @@ int Game::init(){
     }
 
     gb::setWindow(SDL_CreateWindow(gb::getTitle(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, gb::getWidth(), gb::getHeight(), 0));
+    SDL_SetWindowIcon(gb::getWindow(), IMG_Load("res/forge.ico"));
     if(!gb::getWindow()){
         printf("Error: Failed to open window\nSDL Error: '%s'\n", SDL_GetError());
         return 1;
@@ -58,6 +59,7 @@ int Game::init(){
     option.init();
     playing.init();
     selectLevel.init();
+    gameOver.init();
     
     return 0;
 }
