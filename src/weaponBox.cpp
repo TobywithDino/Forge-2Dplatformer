@@ -2,7 +2,7 @@
 WeaponType WeaponBox::lastType = WP_END;
 
 WeaponBox::WeaponBox() : MovableEntity(){
-    ratio[WP_pistol] = 1;
+    ratio[WP_pistol] = 0;
     ratio[WP_revolver] = 1;
     ratio[WP_dualgun] = 1;
     ratio[WP_disc] = 1;
@@ -14,10 +14,10 @@ WeaponBox::WeaponBox() : MovableEntity(){
 }
 
 WeaponBox::WeaponBox(vector2 pos) : MovableEntity(pos, TEX_sprite_weaponBox, COLBOX_sprite_weaponBox, COL_weaponBox){
-    ratio[WP_pistol] = 8;
-    ratio[WP_revolver] = 8;
+    ratio[WP_pistol] = 0;
+    ratio[WP_revolver] = 3;
     ratio[WP_dualgun] = 3;
-    ratio[WP_disc] = 6;
+    ratio[WP_disc] = 2;
     for(WeaponType i=WP_pistol;i<WP_END;i=(WeaponType)(i+1)){
         for(int j=0;j<ratio[i];j++){
             dice.push_back(i);

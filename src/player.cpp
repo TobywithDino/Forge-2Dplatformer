@@ -1,13 +1,12 @@
 #include "headers/player.h"
 
 Player::Player() : MovableEntity(vector2(0,0), TEX_sprite_player, COLBOX_sprite_player, COL_player){
-    speed = 350;
+    speed = 500;
 }
 
 Player::Player(vector2 pos) : MovableEntity(pos, TEX_sprite_player, COLBOX_sprite_player, COL_player){
-    speed = 350;
-    WeaponBox tmpWeaponBox = WeaponBox();
-    weapon = tmpWeaponBox.getWeapon(&this->pos);
+    speed = 500;
+    weapon = new Pistol(&this->pos);
     anim = Anim(&this->pos, TEX_sprite_player, ANIM_player_idle, ANIM_player_walk, ANIM_END);
 }
 
@@ -22,13 +21,21 @@ void Player::handleEvent(SDL_Event e){
         if(e.key.keysym.scancode == SDL_SCANCODE_RIGHT) right = true;
         if(e.key.keysym.scancode == SDL_SCANCODE_LEFT) left = true;
         if(e.key.keysym.scancode == SDL_SCANCODE_Z) jumping = true;
-        if(e.key.keysym.scancode == SDL_SCANCODE_X) shooting = true;
+        if(e.key.keysym.scancode == SDL_SCANCODE_X) {
+            if(!shooting && weapon != nullptr)
+            {
+                weapon->shoot();
+                shooting = true;
+            }
+        }
     }
     if(e.type == SDL_KEYUP){
         if(e.key.keysym.scancode == SDL_SCANCODE_RIGHT) right = false;
         if(e.key.keysym.scancode == SDL_SCANCODE_LEFT) left = false;
         if(e.key.keysym.scancode == SDL_SCANCODE_Z) jumping = false;
-        if(e.key.keysym.scancode == SDL_SCANCODE_X) shooting = false;
+        if(e.key.keysym.scancode == SDL_SCANCODE_X){
+            shooting = false;
+        }
     }
 }
 
@@ -43,10 +50,6 @@ void Player::update(){
         weapon = e->getWeapon(&this->pos);
         Sound::playSFX(SFX_player_pickWeapon);
         gb::setScore(gb::getScore()+1);
-    }
-
-    if(shooting && weapon != nullptr){
-        weapon->shoot();
     }
 
     vector2 tmpVel(0, vel.y);
