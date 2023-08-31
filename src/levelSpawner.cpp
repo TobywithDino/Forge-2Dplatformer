@@ -1,7 +1,7 @@
 #include "headers/levelSpawner.h"
 vector2 LevelSpawner::playerSpawnPos = vector2(0,0);
 vector<vector2> LevelSpawner::enemySpawnPos = {vector2(0,0)};
-Uint64 LevelSpawner::spawnGapTicks = 200;
+Uint64 LevelSpawner::spawnGapTicks = 1500;
 Uint64 LevelSpawner::nextSpawnTick = 0;
 int LevelSpawner::ratio[ENEMY_END] = {0};
 bool GameLoop::spawnedEntities = false;
@@ -13,7 +13,6 @@ void LevelSpawner::update(){
     case LEV_1:
         playerSpawnPos = vector2(gb::getWidth()/2, 300);
         enemySpawnPos = {vector2(gb::getWidth()/2, -100)};
-        spawnGapTicks = 2300 + (rand()%2000-1000);
         ratio[ENEMY_crawler] = 7;
         ratio[ENEMY_ploder] = 1;
         loadLevel();
@@ -21,7 +20,6 @@ void LevelSpawner::update(){
     case LEV_2:
         playerSpawnPos = vector2(gb::getWidth()/2, 360);
         enemySpawnPos = {vector2(gb::getWidth()/2, -100)};
-        spawnGapTicks = 2000 + (rand()%2000-1000);
         ratio[ENEMY_crawler] = 5;
         ratio[ENEMY_ploder] = 2;
         loadLevel();
@@ -29,7 +27,6 @@ void LevelSpawner::update(){
     case LEV_3:
         playerSpawnPos = vector2(gb::getWidth()/2, 300);
         enemySpawnPos = {vector2(gb::getWidth()/2, -100)};
-        spawnGapTicks = 2000 + (rand()%2000-1000);
         ratio[ENEMY_crawler] = 5;
         ratio[ENEMY_ploder] = 2;
         loadLevel();
