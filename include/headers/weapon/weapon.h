@@ -4,7 +4,7 @@
 class Weapon : public Entity{
 public:
     Weapon();
-    Weapon(vector2* playerPos,vector2 offset, vector2 shootOffsetPos, int shootSpeed, int damage, int shootDelayTicks, TextureType weaponTType, TextureType projtTType, CollideBoxType projtCBType);
+    Weapon(vector2* playerPos,vector2 offset, vector2 shootOffsetPos, int shootSpeed, int damage, TextureType weaponTType, TextureType projtTType, CollideBoxType projtCBType);
     void render(bool flip);
     virtual void shoot();
 protected:
@@ -15,7 +15,5 @@ protected:
     int damage = 1;
     TextureType projtTType;
     CollideBoxType projtCBType;
-    int shootDelayTicks = 500;
-    Uint64 lastShootTick = 0;
     SFXType sfxType = SFX_END;
 };
