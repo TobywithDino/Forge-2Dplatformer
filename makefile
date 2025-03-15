@@ -9,7 +9,7 @@ PROJECT_NAME = main
 CXXFLAGS = -I$(INCLUDE_DIR)
 
 # 定義庫文件位置
-LDFLAGS = -Llib/SDL2 -Llib/SDL2_image -Llib/SDL2_mixer -Llib/SDL2_ttf
+LDFLAGS = -Llib -Llib/SDL2 -Llib/SDL2_image -Llib/SDL2_mixer -Llib/SDL2_ttf
 
 # 鏈接庫文件
 LDLIBS = -lmingw32 -lSDL2main -lSDL2 -lSDL2_image -lSDL2_mixer -lSDL2_ttf
@@ -24,7 +24,7 @@ OBJ_FILES = $(patsubst $(SRC_DIR)/%.cpp,$(BUILD_DIR)/%.o,$(CPP_FILES))
 all: $(PROJECT_NAME)
 
 $(PROJECT_NAME): $(OBJ_FILES)
-	$(CC) -O3 -s $(LDFLAGS) -o $@ $^ $(LDLIBS)
+	$(CC) -O3 -s $(LDFLAGS) -o $@ $^ $(LDLIBS) -mwindows
 
 # 模式规则：将每个源文件编译成对应的目标文件
 $(BUILD_DIR)/%.o: $(SRC_DIR)/%.cpp

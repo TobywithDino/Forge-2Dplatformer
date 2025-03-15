@@ -8,11 +8,11 @@ set_package_properties(SDL2_image PROPERTIES
 
 set(SDL2_image_FOUND TRUE)
 
-set(SDL2IMAGE_AVIF  0)
+set(SDL2IMAGE_AVIF  1)
 set(SDL2IMAGE_BMP   1)
 set(SDL2IMAGE_GIF   1)
 set(SDL2IMAGE_JPG   1)
-set(SDL2IMAGE_JXL   1)
+set(SDL2IMAGE_JXL   0)
 set(SDL2IMAGE_LBM   1)
 set(SDL2IMAGE_PCX   1)
 set(SDL2IMAGE_PNG   1)
@@ -35,6 +35,7 @@ set(SDL2IMAGE_BACKEND_IMAGEIO   0)
 set(SDL2IMAGE_BACKEND_STB       1)
 set(SDL2IMAGE_BACKEND_WIC       0)
 
+get_filename_component(CMAKE_CURRENT_LIST_DIR ${CMAKE_CURRENT_LIST_DIR} REALPATH)
 get_filename_component(prefix "${CMAKE_CURRENT_LIST_DIR}/../../.." ABSOLUTE)
 set(exec_prefix "${prefix}")
 set(bindir "${exec_prefix}/bin")
